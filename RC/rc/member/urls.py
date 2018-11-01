@@ -17,12 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+app_name = 'member'
 
-    path('member/', include('member.urls', namespace='member')),
-    path('info/', include('info.urls', namespace='info')),
-    path('board/', include('board.urls', namespace='board')),
-    path('store/', include('store.urls', namespace='store')),
+urlpatterns = [
 ]
