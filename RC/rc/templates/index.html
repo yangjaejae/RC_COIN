@@ -1,0 +1,186 @@
+{% extends './base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}RC Coin{% endblock title %}
+
+{% block content %}
+<!--==========================
+소개 id hero
+============================-->
+<section id="hero" class="wow fadeIn">
+  <div class="hero-container">
+    <br/><br/>
+    <h1>저희는 RC 코인입니다</h1>
+    <h2><span>새로운 블록체인 지역화폐 플랫폼</span></h2>
+    <p></p>
+    <img src="{% static 'img/hero-img.png' %}" alt="Hero Imgs">
+    <a href="#get-started" class="btn-get-started scrollto">다음</a>
+    <div class="btns">
+      <a href="#"><i class="fa fa-apple fa-3x"></i> App Store</a>
+      <a href="#"><i class="fa fa-play fa-3x"></i> Google Play</a>
+      <a href="#"><i class="fa fa-windows fa-3x"></i> windows</a>
+    </div>
+  </div>
+</section><!-- #hero -->
+
+<!--==========================
+rc 코인이란 id get-started
+============================-->
+<section id="get-started" class="wow fadeIn">
+  <div class="container">
+    <div class="section-title text-center">
+      <br/><br/>
+      <h2>RC 코인이란?</h2>
+      <p class="separator">REGION CURRENCY COIN의 약자입니다.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/cloud.svg'%}" alt="img" class="img-fluid">
+          <h4>신뢰성</h4>
+          <p>신뢰가 됩니다.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/planet.svg'%}" alt="img" class="img-fluid">
+          <h4>탈중앙화</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/asteroid.svg' %}" alt="img" class="img-fluid">
+          <h4>실용성</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          <a href="#">read more</a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/asteroid.svg' %}" alt="img" class="img-fluid">
+          <h4></h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          <a href="#">read more</a>
+
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/asteroid.svg' %}" alt="img" class="img-fluid">
+          <h4>실용성</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          <a href="#">read more</a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-block">
+          <img src="{% static 'img/svg/asteroid.svg' %}" alt="img" class="img-fluid">
+          <h4>실용성</h4>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+          <a href="#">read more</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="team" class="padd-section text-center wow fadeInUp">
+  <div class="container">
+    <div class="section-title text-center">
+      <h2>팀 소개</h2>
+      <p class="separator">팀 소개 입니다.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class = "owl-carousel owl-theme">
+        <div class="col-md-12 col-md-12 col-lg-12">
+          <div class="team-block bottom">
+            <img src='{% static "mainapp/img/team/1.jpg" %}' class="img-responsive" alt="img">
+            <div class="team-content">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <span>음식</span>
+              <h4>냉면맛집</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-md-4 col-lg-12">
+          <div class="team-block bottom">
+            <img src='{% static "mainapp/img/team/2.jpg" %}' class="img-responsive" alt="img">
+            <div class="team-content">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <span>숙박</span>
+              <h4>졸라 좋아요</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-md-4 col-lg-12">
+          <div class="team-block bottom">
+            <img src='{% static "mainapp/img/team/3.jpg" %}' class="img-responsive" alt="img">
+            <div class="team-content">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <span>여행</span>
+              <h4>여행은 좋아요</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-md-4 col-lg-12">
+          <div class="team-block bottom">
+            <img src='{% static "mainapp/img/team/4.jpg" %}' class="img-responsive" alt="img">
+            <div class="team-content">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <span>뭐하니</span>
+              <h4>뭐하니</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-md-4 col-lg-12">
+          <div class="team-block bottom">
+            <img src='{% static "mainapp/img/team/2.jpg" %}' class="img-responsive" alt="img">
+            <div class="team-content">
+              <ul class="list-unstyled">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+              <span>숙박</span>
+              <h4>졸라 좋아요</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

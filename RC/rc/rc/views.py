@@ -4,8 +4,8 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def home(request):
-    template = loader.get_template('home.html')
+def index(request):
+    template = loader.get_template('index.html')
     context = {
         'latest_question_list': "test",
     }

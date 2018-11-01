@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.index, name='index'),
 
     path('member/', include('member.urls', namespace='member')),
     path('info/', include('info.urls', namespace='info')),
