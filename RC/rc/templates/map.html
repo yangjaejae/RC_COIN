@@ -6,8 +6,141 @@
 
 {% block content %}
 
+<!DOCTYPE html>
 
+<section id="blog" class="padd-section wow fadeInUp">
+
+    <div class="container">
+      <div class="section-title text-center">
+
+        <h2>Latest posts</h2>
+        <p class="separator">Integer cursus bibendum augue ac cursus .</p>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="block-blog text-left">
+            <a href="#"><img src="{% static 'img/blog/blog-image-1.jpg'%}" alt="img"></a>
+
+            <div class="content-blog">
+              <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
+              <span>05, juin 2017</span>
+              <a class="pull-right readmore" href="#">read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="block-blog text-left">
+            <a href="#"><img src="{% static 'img/blog/blog-image-2.jpg'%}" class="img-responsive" alt="img"></a>
+
+            <div class="content-blog">
+              <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
+              <span>05, juin 2017</span>
+              <a class="pull-right readmore" href="#">read more</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="block-blog text-left">
+            <a href="#"><img src="{% static 'img/blog/blog-image-3.jpg'%}" class="img-responsive" alt="img"></a>
+
+            <div class="content-blog">
+              <h4><a href="#">whats isthe difference between good and bat typography</a></h4>
+              <span>05, juin 2017</span>
+              <a class="pull-right readmore" href="#">read more</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="padd-section text-center wow fadeInUp">
+    <div class="container">
+      <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+          <div>
+              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;포항 여객터미널 이용안내</h2><br>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <html>
+                    <head>
+                     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+                     <meta charset="euc-kr">
+                     
+                     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                     <script>
+                     function initialize() {
+                    
+                     var Y_point = 36.051964; // Y 좌표, 
+                     var X_point = 129.377680; // X 좌표
+                     var zoomLevel = 16; // 첫 로딩시 보일 지도의 확대 레벨
+                     var markerTitle = "포항여객터미널"; // 현재 위치 마커에 마우스를 올렸을때 나타나는 이름
+                     var markerMaxWidth = 300; // 마커를 클릭했을때 나타나는 말풍선의 최대 크기
+                    
+                     // 말풍선 내용
+                     var contentString = '<div id="content">' +
+                     '<div id="siteNotice">' +
+                     '</div>' +
+                     '<h3 id="firstHeading" class="firstHeading">포항여객터미널</h3>' +
+                     '<div id="bodyContent">' +
+                     '<p>포항시 중앙동 구항<br />' +
+                     '</div>' +
+                     '</div>';
+                    
+                     var myLatlng = new google.maps.LatLng(Y_point, X_point);
+                     var mapOptions = {
+                     zoom: zoomLevel,
+                     center: myLatlng,
+                     mapTypeId: google.maps.MapTypeId.ROADMAP
+                     }
+                     var map = new google.maps.Map(document.getElementById('map_view'), mapOptions);
+                    
+                     var marker = new google.maps.Marker({
+                     position: myLatlng,
+                     map: map,
+                     title: markerTitle
+                     });
+                    
+                     var infowindow = new google.maps.InfoWindow(
+                     {
+                     content: contentString,
+                     maxWidth: markerMaxWidth
+                     }
+                     );
+                    
+                     google.maps.event.addListener(marker, 'click', function() {
+                     infowindow.open(map, marker);
+                     });
+                     }
+                     </script>
+                    </head>
+                    
+                    <body onload="initialize()">
+                     <div id="map_view" style="width:800px; height:400px;"></div>
+                    </body>
+                        </html> 
+              <div class="carousel-inner" role="listbox">
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
 {% endblock content %}
+
+
