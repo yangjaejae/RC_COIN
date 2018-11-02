@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}로그아웃{% endblock title %}
+
+{% block content %}
+<meta http-equiv="content-type" content="text/html; charset=euc-kr">
+<meta http-equiv="refresh" content="2; url='{% url 'index' %}'">
+
+<section id="contact" class="padd-section wow fadeInUp">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>로그아웃</h2>
+            <p class="separator">로그아웃 되었습니다.<br/>메인페이지로 이동합니다.</p>
+        </div>
+    </div>
+</section>
+{% endblock content %}

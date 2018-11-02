@@ -87,7 +87,7 @@
           <li class="menu-has-children"><a href="#pricing">마이페이지</a>
             <ul>
               <li><a href="#">정보수정</a></li>
-              <li><a href="{% url 'member:login' %}">로그아웃</a></li>
+              <li><a href="{% url 'logout' %}">로그아웃</a></li>
             </ul>
           </li>
         {% else %}
@@ -97,7 +97,7 @@
               <li><a href="#">가맹점 가입</a></li>
             </ul>
           </li>
-          <li><a href="{% url 'member:login' %}">로그인</a></li>
+          <li><a href="{% url 'login' %}">로그인</a></li>
         {% endif %}
       </ul>
 

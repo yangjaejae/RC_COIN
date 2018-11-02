@@ -25,3 +25,10 @@ def map(request):
         'latest_question_list': "test",
     }
     return HttpResponse(template.render(context, request))
+
+# check logged user
+class LoginRequiredMixin(object):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
+        return login_required(view)
