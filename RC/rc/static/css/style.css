@@ -1411,3 +1411,14 @@ body.mobile-nav-active #mobile-nav-toggle i {
   letter-spacing: 0;
   color: #71c55d;
 }
+
+
+#floatMenu {
+	position: absolute;
+	width: 150px;
+	height: 0px;
+	left: 1300px;
+	top: 500px;
+	background-color: #606060;
+	color: #fff;
+}
