@@ -635,6 +635,15 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* About Us Section
 --------------------------------*/
+
+#about-us h2 span {
+ margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color: #71c55d;
+}
 #about-us img {
   max-width: 100%;
 }
@@ -859,6 +868,15 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* Team Section
 --------------------------------*/
+
+#team h2 {
+ margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color: #71c55d;
+}
 #team .team-block {
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
   height: 254px;
