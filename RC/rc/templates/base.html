@@ -41,7 +41,7 @@
   <header id="header" class="header header-hide">
     <div class="container">
       <div id="logo" class="pull-left">
-        <h1><a href="http://127.0.0.1:8000" class="scrollto"><span>RC</span>Coin</a></h1>
+        <h1><a href="{% url 'index' %}"" class="scrollto"><span>RC</span>Coin</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
@@ -49,14 +49,14 @@
       <nav id="nav-menu-container">
 
       <ul class="nav-menu">
-        <li class="menu-has-children"><a href="http://127.0.0.1:8000/intro/">소개</a>
+        <li class="menu-has-children"><a href="{% url 'intro' %}">소개</a>
           <ul>
-            <li><a href="http://127.0.0.1:8000/intro/">RC코인이란</a></li>
-            <li><a href="http://127.0.0.1:8000/intro/#get-started">이용 안내</a></li>
-            <li><a href="http://127.0.0.1:8000/intro/#team">팀 소개</a></li>
+            <li><a href="{% url 'intro' %}">RC코인이란</a></li>
+            <li><a href="{% url 'intro' %}#get-started">이용 안내</a></li>
+            <li><a href="{% url 'intro' %}#team">팀 소개</a></li>
           </ul>
         </li>
-        <li><a href="http://127.0.0.1:8000/map/">오시는 길</a>
+        <li><a href="{% url 'map' %}">오시는 길</a>
         </li>
         <li class="menu-has-children"><a href="#features">정보마당</a>
           <ul>
