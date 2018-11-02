@@ -624,6 +624,18 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* About Us Section
 --------------------------------*/
+#about-us .about-content1 h3 {
+  color: #71c55d;
+  border: 1px solid #71c55d;
+  border-radius: 25px;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  width: 135px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
 #about-us img {
   max-width: 100%;
 }
@@ -633,13 +645,15 @@ body.mobile-nav-active #mobile-nav-toggle i {
 }
 
 #about-us .about-content h2 {
-  color: #252525;
-  font-family: "roboto";
-  font-size: 39px;
-  font-weight: 100;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-  text-transform: capitalize;
+  color: #71c55d;
+  border: 1px solid #71c55d;
+  border-radius: 25px;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  width: 135px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 #about-us .about-content span {
@@ -1114,10 +1128,7 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* Newsletter Section
 --------------------------------*/
-#newsletter {
-  background: transparent url(../img/newsletter-bg.jpg) no-repeat center top fixed;
-  background-size: cover;
-}
+
 
 #newsletter .overlay {
   background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 95%);

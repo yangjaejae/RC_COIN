@@ -10,3 +10,18 @@ def index(request):
         'latest_question_list': "test",
     }
     return HttpResponse(template.render(context, request))
+
+def intro(request):
+    template = loader.get_template('intro.html')
+    context = {
+        'latest_question_list': "test",
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def map(request):
+    template = loader.get_template('map.html')
+    context = {
+        'latest_question_list': "test",
+    }
+    return HttpResponse(template.render(context, request))
