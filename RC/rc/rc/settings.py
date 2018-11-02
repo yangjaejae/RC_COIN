@@ -126,7 +126,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-AUTH_USER_MODEL = 'member.User'
+# AUTH_USER_MODEL = 'member.User'
 
 # Login setting
 LOGIN_URL = '/accounts/login/'      # default = '/accounts/login/'

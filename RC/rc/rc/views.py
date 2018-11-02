@@ -5,6 +5,7 @@ from django.views.generic import CreateView, TemplateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -40,8 +41,18 @@ class LoginRequiredMixin(object):
 
 class UserCreateView(CreateView):
     template_name = "registration/register.html"
-    form_class = UserCreationForm
-    success_url = reverse_lazy("register_done")
+    
+
+    # def form_valid(self, form):
+    #     user = User.objects.create_user(
+    #         self.form.username,
+    #         self.form.password1,
+    #         self.form.email,
+    #         self.form.age,
+    #         'U',
+    #         'Y'
+    #         )
+    #     user.save()
 
 
 class UserCreateDone(TemplateView):

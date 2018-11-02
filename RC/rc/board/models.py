@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 # Create your models here.
 # author = models.ForeignKey(settings.AUTH_USER_MODEL)
 
-User = get_user_model()
+# User = get_user_model()
 
 class Board(models.Model):
     title = models.CharField('TITLE', max_length=100)
