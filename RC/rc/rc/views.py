@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+from django.views.generic import CreateView, TemplateView
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+
 
 # Create your views here.
 
@@ -32,3 +37,12 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
+
+class UserCreateView(CreateView):
+    template_name = "registration/register.html"
+    form_class = UserCreationForm
+    success_url = reverse_lazy("register_done")
+
+
+class UserCreateDone(TemplateView):
+    template_name = "registration/register_done.html"

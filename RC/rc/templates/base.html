@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   {% load staticfiles %}
   <meta charset="utf-8">
@@ -93,8 +93,8 @@
         {% else %}
           <li class="menu-has-children"><a href="#pricing">회원가입</a>
             <ul>
-              <li><a href="#">사용자 가입</a></li>
-              <li><a href="#">가맹점 가입</a></li>
+              <li><a href="{% url 'register_user' %}">사용자 가입</a></li>
+              <li><a href="{% url 'register_store' %}">가맹점 가입</a></li>
             </ul>
           </li>
           <li><a href="{% url 'login' %}">로그인</a></li>
