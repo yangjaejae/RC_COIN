@@ -624,18 +624,6 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* About Us Section
 --------------------------------*/
-#about-us .about-content1 h3 {
-  color: #71c55d;
-  border: 1px solid #71c55d;
-  border-radius: 25px;
-  line-height: 30px;
-  vertical-align: middle;
-  text-align: center;
-  width: 135px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
 #about-us img {
   max-width: 100%;
 }
@@ -645,15 +633,13 @@ body.mobile-nav-active #mobile-nav-toggle i {
 }
 
 #about-us .about-content h2 {
-  color: #71c55d;
-  border: 1px solid #71c55d;
-  border-radius: 25px;
-  line-height: 30px;
-  vertical-align: middle;
-  text-align: center;
-  width: 135px;
-  margin-top: 20px;
-  margin-bottom: 30px;
+  color: #252525;
+  font-family: "roboto";
+  font-size: 39px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
 #about-us .about-content span {
@@ -1128,7 +1114,10 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 /* Newsletter Section
 --------------------------------*/
-
+#newsletter {
+  background: transparent url(../img/newsletter-bg.jpg) no-repeat center top fixed;
+  background-size: cover;
+}
 
 #newsletter .overlay {
   background: linear-gradient(rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.2) 95%);
@@ -1208,28 +1197,6 @@ body.mobile-nav-active #mobile-nav-toggle i {
 }
 
 #newsletter ul li .fa {
-  color: #fff;
-}
-
-#newsletter .green {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 11px 36px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin-bottom: 30px;
-  border: 2px solid #71c55d;
-  background: #fff;
-  color: #71c55d;
-  text-decoration: none;
-}
-
-#newsletter .green:hover {
-  background: #71c55d;
   color: #fff;
 }
 
