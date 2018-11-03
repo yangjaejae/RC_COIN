@@ -1422,3 +1422,13 @@ body.mobile-nav-active #mobile-nav-toggle i {
 	background-color: #606060;
 	color: #fff;
 }
+
+#chatbot {
+   position:fixed;
+   left:30px;
+   bottom:0px;
+   height:150px;
+   max-width: 100px;
+   background:transparent;
+   color: white;
+}
