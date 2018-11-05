@@ -5,12 +5,13 @@
 {% block title %}RC Coin{% endblock title %}
 
 {% block content %}
-<section id='hero'>
+{% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
+<section id='about-us'>
 <div id="content">
 
 
 
-    <h2>{{ object.title }}</h2>
+
 
 
 
@@ -33,7 +34,7 @@
     <td>
 
     <ul>
-
+    <h2>{{ object.title }}</h2>
         <li>Photo Description</li>
 
         {% if object.description %}<p>{{ object.description|linebreaks }}</p>
