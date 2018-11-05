@@ -7,12 +7,7 @@
 {% block content %}
 {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
 <section id='about-us'>
-<div id="content">
-
-
-
-
-
+<div id="content" align="center">
 
 
     <table class="photo-detail">
@@ -23,7 +18,7 @@
 
         <a href="{{ object.image.url }}">
 
-        <img style="max-width:100%" src="{{ object.image.url }}"/>
+        <img width="700px" height="500px" src="{{ object.image.url }}"/>
 
         </a>
 

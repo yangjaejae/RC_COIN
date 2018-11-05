@@ -17,17 +17,19 @@
 
         <hr/>
         <div class="album-list">
+            <div class="row">
 
-            {% for photo in item.photo_set.all|slice:":5" %}
-            <div class="album-list-photo">
-                <a href="{{ photo.get_absolute_url }}">
-                <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
+                {% for photo in item.photo_set.all|slice:":5" %}
+                <div class="album-list-photo">
+                    <a href="{{ photo.get_absolute_url }}">
+                    <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
 
-                </a>
+                    </a>
 
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                {% endfor %}
             </div>
-
-            {% endfor %}
         </div>
         {% endfor %}
 
