@@ -37,22 +37,3 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
-
-class UserCreateView(CreateView):
-    template_name = "registration/register.html"
-    
-
-    # def form_valid(self, form):
-    #     user = User.objects.create_user(
-    #         self.form.username,
-    #         self.form.password1,
-    #         self.form.email,
-    #         self.form.age,
-    #         'U',
-    #         'Y'
-    #         )
-    #     user.save()
-
-
-class UserCreateDone(TemplateView):
-    template_name = "registration/register_done.html"

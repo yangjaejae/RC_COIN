@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from . import views
-from rc.views import UserCreateView, UserCreateDone
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -25,9 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/register/store/', UserCreateView.as_view(),name='register_store'),
-    path('accounts/register/user/', UserCreateView.as_view(),name='register_user'),
-    path('accounts/register/done/', UserCreateDone.as_view(),name='register_done'),
+
     path('intro/', views.intro, name='intro'),
     path('map/', views.map, name='map'),
     path('member/', include('member.urls', namespace='member')),
@@ -35,4 +32,4 @@ urlpatterns = [
     path('board/', include('board.urls', namespace='board')),
     path('store/', include('store.urls', namespace='store')),
     path('photo/', include('photo.urls', namespace='photo')),
-    ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+  ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

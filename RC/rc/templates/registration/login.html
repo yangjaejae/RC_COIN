@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-
 {% load staticfiles %}
+{% static "css/style.css" %}
 
 {% block title %}로그인{% endblock title %}
 
@@ -8,66 +8,67 @@
 
 <section id="hero" class="wow fadeIn">
     <div class="hero-container">
-        <div class="row justify-content-center">
-            <br/><br/>
+        <div class="section-title text-center">
             <h1>로그인</h1>
-            
-            <p></p>
-            
-            <div class="container">
+            <h2>회원 정보를 입력해주세요</h2>
+
             <div class="row justify-content-center">
-                <form class="col-md-10 col-lg-10" action="." method="post">
+                <form action="." method="post">
                     {% csrf_token %}
                     <div class="form">
-                        <div class="feature-block">
-                            <h1><label for="id_username">UserName</label>
-                            </h1><input type="text" class="form-control " name="username" placeholder="아이디" autofocus required id="id_username">
+                        <div class="form-group">
+                            <h4>UserName</h4><input type="text" name="username" autofocus required id="id_username">
                         </div>
-                        <p></p>
-                        <div class="feature-block">
-                            <h1><label for="id_password">Password</label></h1>
-                            <input type="password" class="form-control " name="password" placeholder="비밀번호" required id="id_password">
+
+                        <div class="form-group">
+                            <h4>Password</h4><input type="password" name="password" required id="id_password">
                         </div>
-                        <p></p>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-success">로그인</button>
-                            <a href="{% url 'index' %}"><input type="button" class="btn btn-danger" value="취소"></input></a>
+
+                        <div>
+                            <button type="submit">로그인</button>
+                            <a href="{% url 'index' %}"><input type="button" value="취소"/></a>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    </div>
 </section>
 
-<!--<section id="contact" class="padd-section wow fadeInUp">-->
-    <!--<div class="container">-->
-        <!--<div class="section-title text-center">-->
-            <!--<h2>로그인</h2>-->
-            <!--<p class="separator">회원 정보를 입력해주세요.</p>-->
+{% endblock content %}
+
+
+
+<!--<section id="hero" class="wow fadeIn">-->
+    <!--<div class="hero-container">-->
+        <!--<div class="row justify-content-center">-->
+            <!--<br/><br/>-->
+            <!--<h1>로그인</h1>-->
+            <!---->
+            <!--<p></p>-->
+            <!---->
+            <!--<div class="container">-->
+            <!--<div class="row justify-content-center">-->
+                <!--<form class="col-md-10 col-lg-10" action="." method="post">-->
+                    <!--{% csrf_token %}-->
+                    <!--<div class="form">-->
+                        <!--<div class="feature-block">-->
+                            <!--<h1><label for="id_username">UserName</label>-->
+                            <!--</h1><input type="text" class="form-control " name="username" placeholder="아이디" autofocus required id="id_username">-->
+                        <!--</div>-->
+                        <!--<p></p>-->
+                        <!--<div class="feature-block">-->
+                            <!--<h1><label for="id_password">Password</label></h1>-->
+                            <!--<input type="password" class="form-control " name="password" placeholder="비밀번호" required id="id_password">-->
+                        <!--</div>-->
+                        <!--<p></p>-->
+                        <!--<div class="text-center">-->
+                            <!--<button type="submit" class="btn btn-success">로그인</button>-->
+                            <!--<a href="{% url 'index' %}"><input type="button" class="btn btn-danger" value="취소"></input></a>-->
+                        <!--</div>-->
+                <!--</form>-->
+            <!--</div>-->
         <!--</div>-->
     <!--</div>-->
-
-    <!--<div class="container">-->
-        <!--<div class="row justify-content-center">-->
-            <!--<form class="form-inline" action="." method="post">-->
-                <!--{% csrf_token %}-->
-                <!--<div class="form">-->
-                    <!--<div class="form-group">-->
-                        <!--<label for="id_username">사용자 이름:</label><input type="text" name="username" autofocus required id="id_username">-->
-                    <!--</div>-->
-
-                    <!--<div class="form-group">-->
-                        <!--<label for="id_password">비밀번호:</label><input type="password" name="password" required id="id_password">-->
-                    <!--</div>-->
-
-                    <!--<div class="text-center">-->
-                        <!--<button type="submit" class="btn btn-default">로그인</button>-->
-                        <!--<a href="{% url 'index' %}"><input type="button" class="btn btn-default" value="취소"></input></a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</form>-->
-        <!--</div>-->
     <!--</div>-->
 <!--</section>-->
-{% endblock content %}

@@ -9,22 +9,8 @@ class ProfileInline(admin.StackedInline):
     can_delete = False
     verbose_name_plural = 'profile'
 
-
 class UserAdmin(BaseUserAdmin):
     inlines = (ProfileInline, )
 
-
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-
-
-
-# from django.contrib import admin
-# from member.models import User
-#
-# # Register your models here.
-#
-# class UserAdmin(admin.ModelAdmin):
-#     model = User
-#
-# admin.site.register(User, UserAdmin)
