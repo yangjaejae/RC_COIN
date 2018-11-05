@@ -944,6 +944,15 @@ body.mobile-nav-active #mobile-nav-toggle i {
   transition: all 0.5s ease-in-out 0s;
 }
 
+#team .container .clear_float h2 > a{
+ margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  font-family: "Philosopher", sans-serif;
+  color: #71c55d;
+}
+
 /* Testimonials Section
 --------------------------------*/
 
