@@ -43,7 +43,7 @@ def myinfo_edit(request, type):
 
             msg = {
                 'title': '회원정보수정',
-                'text': '정보가 수정되었습니다.메인페이지로 자동 이동합니다.'
+                'text': '정보가 수정되었습니다. 메인페이지로 자동 이동합니다.'
             }
             return render(request, 'registration/done.html', msg)
 

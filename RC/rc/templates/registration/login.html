@@ -6,34 +6,34 @@
 
 {% block content %}
 
-<section id="get-started" class="padd-section wow fadeInUp">
-    <div class="hero-container">
+<section id="get-started" class="padd-section">
+    <form action="." method="post">
+        {% csrf_token %}
+
         <div class="section-title text-center">
             <h1>로그인</h1>
-            <h4>회원정보를 입력해주세요</h4>
+            <p class="separator">회원정보를 입력해주세요</p>
         </div>
+
         <div>
             <div class="row justify-content-center">
-                <form action="." method="post">
-                    {% csrf_token %}
-                    <div class="form">
-                        <div class="form-group">
-                            <h4 class="text-success">UserName</h4><input type="text" name="username" class="form-control" autofocus required id="id_username">
-                        </div>
-
-                        <div class="form-group">
-                            <h4 class="text-success">Password</h4><input type="password" name="password" class="form-control" required id="id_password">
-                        </div>
-
-                        <div>
-                            <button type="submit" class="btn btn-success">로그인</button>
-                            <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"/></a>
-                        </div>
+                <div class="form">
+                    <div class="form-group">
+                        <h4 class="text-success">UserName</h4><input type="text" name="username" class="form-control" required/>
                     </div>
-                </form>
+
+                    <div class="form-group">
+                        <h4 class="text-success">Password</h4><input type="password" name="password" class="form-control" required/>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-success">로그인</button>
+                        <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"/></a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </section>
 
 {% endblock content %}
