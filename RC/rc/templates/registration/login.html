@@ -11,28 +11,32 @@
         <div class="row justify-content-center">
             <br/><br/>
             <h1>로그인</h1>
-            <h2><span>회원 정보를 입력해주세요.</span></h2>
+            
             <p></p>
-
+            
+            <div class="container">
             <div class="row justify-content-center">
-                <form class="col-md-9 col-lg-6" action="." method="post">
+                <form class="col-md-10 col-lg-10" action="." method="post">
                     {% csrf_token %}
                     <div class="form">
                         <div class="feature-block">
-                            <h1><label for="id_username">UserName</label></h1><input type="text" name="username" autofocus required id="id_username">
+                            <h1><label for="id_username">UserName</label>
+                            </h1><input type="text" class="form-control " name="username" placeholder="아이디" autofocus required id="id_username">
                         </div>
-
+                        <p></p>
                         <div class="feature-block">
-                            <h1><label for="id_password">Password</label></h1><input type="password" name="password" required id="id_password">
+                            <h1><label for="id_password">Password</label></h1>
+                            <input type="password" class="form-control " name="password" placeholder="비밀번호" required id="id_password">
                         </div>
-
+                        <p></p>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-default">로그인</button>
-                            <a href="{% url 'index' %}"><input type="button" class="btn btn-default" value="취소"></input></a>
+                            <button type="submit" class="btn btn-success">로그인</button>
+                            <a href="{% url 'index' %}"><input type="button" class="btn btn-danger" value="취소"></input></a>
                         </div>
                 </form>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
