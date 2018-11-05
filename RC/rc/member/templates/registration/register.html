@@ -11,7 +11,7 @@
 {% endblock title %}
 
 {% block content %}
-<section id="contact" class="padd-section wow fadeInUp">
+<section id="hero" class="padd-section wow fadeInUp">
     <div class="hero-container">
         <div class="section-title text-center">
             <h2>
@@ -72,9 +72,9 @@
 
                         <div class="text-center">
                             {% if username %}
-                                <button type="submit">정보수정</button>
+                                <button type="submit" class="btn_global">정보수정</button>
                             {% else %}
-                                <button type="submit">회원가입</button>
+                                <button type="submit" class="btn_global">회원가입</button>
                             {% endif %}
                             <a href="{% url 'index' %}"><input type="button" value="취소"></input></a>
                         </div>

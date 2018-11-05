@@ -1449,3 +1449,54 @@ margin: 0 0 10px 0;
    background:transparent;
    color: white;
 }
+
+
+/*
+    global css
+*/
+
+.btn_sqaure {
+  color: #FFFFFF;
+  background-color: #419E3C;
+  border-color: #3B852C;
+}
+
+.btn_sqaure:hover,
+.btn_sqaure:focus,
+.btn_sqaure:active,
+.btn_sqaure.active,
+.open .dropdown-toggle.btn_sqaure {
+  color: #FFFFFF;
+  background-color: #2C7D41;
+  border-color: #3B852C;
+}
+
+.btn_sqaure:active,
+.btn_sqaure.active,
+.open .dropdown-toggle.btn_sqaure {
+  background-image: none;
+}
+
+.btn_sqaure.disabled,
+.btn_sqaure[disabled],
+fieldset[disabled] .btn_sqaure,
+.btn_sqaure.disabled:hover,
+.btn_sqaure[disabled]:hover,
+fieldset[disabled] .btn_sqaure:hover,
+.btn_sqaure.disabled:focus,
+.btn_sqaure[disabled]:focus,
+fieldset[disabled] .btn_sqaure:focus,
+.btn_sqaure.disabled:active,
+.btn_sqaure[disabled]:active,
+fieldset[disabled] .btn_sqaure:active,
+.btn_sqaure.disabled.active,
+.btn_sqaure[disabled].active,
+fieldset[disabled] .btn_sqaure.active {
+  background-color: #419E3C;
+  border-color: #3B852C;
+}
+
+.btn_sqaure .badge {
+  color: #419E3C;
+  background-color: #FFFFFF;
+}

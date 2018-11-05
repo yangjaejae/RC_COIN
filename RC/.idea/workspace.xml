@@ -4,19 +4,8 @@
     <list default="true" id="5dd1f134-6f8e-41ae-956b-dec90f7aaf2a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rc/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/member/templates/registration/done.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/templates/registration/done.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/member/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/templates/registration/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/member/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/index_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/intro.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/intro.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rc/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/rc/static/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,66 +54,78 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="2" />
-          <entry key="project.open.time.6" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.6" value="3" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="25" />
+          <entry key="css" value="1" />
+          <entry key="html" value="30" />
           <entry key="py" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="25" />
+          <entry key="CSS" value="1" />
+          <entry key="HTML" value="30" />
           <entry key="Python" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="131" />
+          <entry key="css" value="35" />
+          <entry key="html" value="196" />
           <entry key="py" value="48" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="131" />
+          <entry key="CSS" value="35" />
+          <entry key="HTML" value="196" />
           <entry key="Python" value="48" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rc/templates/index_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="65" column="20" lean-forward="true" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="65" column="17" lean-forward="true" selection-start-line="60" selection-start-column="12" selection-end-line="65" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/index_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1562">
-              <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="440">
+                  <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/rc/static/css/style.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="321">
+                  <caret line="1457" column="11" selection-start-line="1457" selection-start-column="1" selection-end-line="1457" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="294">
+                  <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -152,6 +153,7 @@
       <find>가맹점 찾기</find>
       <find>정보</find>
       <find>정보마</find>
+      <find>btn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -176,16 +178,17 @@
         <option value="$PROJECT_DIR$/rc/templates/intro.html" />
         <option value="$PROJECT_DIR$/rc/templates/map.html" />
         <option value="$PROJECT_DIR$/rc/templates/registration/logged_out.html" />
-        <option value="$PROJECT_DIR$/rc/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/rc/member/templates/registration/done.html" />
-        <option value="$PROJECT_DIR$/rc/member/templates/registration/register.html" />
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html" />
-        <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" />
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" />
         <option value="$PROJECT_DIR$/rc/templates/index.html" />
         <option value="$PROJECT_DIR$/rc/templates/index_base.html" />
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html" />
         <option value="$PROJECT_DIR$/rc/member/templates/registration/index_base.html" />
+        <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" />
+        <option value="$PROJECT_DIR$/rc/member/templates/registration/register.html" />
+        <option value="$PROJECT_DIR$/rc/static/css/style.css" />
+        <option value="$PROJECT_DIR$/rc/templates/registration/login.html" />
       </list>
     </option>
   </component>
@@ -258,7 +261,27 @@
               <item name="RC" type="b2602c69:ProjectViewProjectNode" />
               <item name="RC" type="462c0819:PsiDirectoryNode" />
               <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -331,6 +354,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1548999" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -407,9 +431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="23" column="99" selection-start-line="23" selection-start-column="99" selection-end-line="23" selection-end-column="99" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -424,9 +445,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1430">
           <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -444,9 +462,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
           <caret line="33" column="19" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -471,20 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rc/templates/registration/logged_out.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -496,16 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -520,16 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
-          <folding>
-            <element signature="e#626#663#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -537,9 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#663#669#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -550,10 +528,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rc/templates/index_base.html">
+    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/index_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="65" column="20" lean-forward="true" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+        <state relative-caret-position="110">
+          <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -564,10 +542,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/index_base.html">
+    <entry file="file://$PROJECT_DIR$/rc/templates/index_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1562">
-          <caret line="71" column="13" lean-forward="true" selection-start-line="71" selection-start-column="13" selection-end-line="71" selection-end-column="13" />
+        <state relative-caret-position="920">
+          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="20" lean-forward="true" selection-start-column="20" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/templates/registration/logged_out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="1457" column="11" selection-start-line="1457" selection-start-column="1" selection-end-line="1457" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
     </entry>
