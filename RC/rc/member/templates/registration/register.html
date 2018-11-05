@@ -12,77 +12,73 @@
 
 {% block content %}
 <section id="hero" class="padd-section wow fadeInUp">
-    <div class="hero-container">
         <div class="section-title text-center">
-            <h2>
-                {% if username %}
-                    회원정보수정
-                {% else %}
-                    회원가입
-                {% endif %}
-            </h2>
-            <p class="separator">{{ form.errors }}</p>
+            {% if username %}
+                <h1>회원정보수정</h1>
+            {% else %}
+                <h1>회원가입</h1>
+            {% endif %}
+            {% if form.errors %}
+                <p class="separator">{{ form.errors }}</p>
+            {% endif %}
         </div>
 
-        <div class="hero-container">
-            <div class="row justify-content-center">
-                <form action="." method="POST">
-                    {% csrf_token %}
-                    <div class="form">
-                        <div class="form-group">
-                            {% if username %}
-                                <h4>사용자 이름</h4><input type="text" name="username" value="{{ username }}" disabled="disabled">
-                            {% else %}
-                            <h4>사용자 이름:</h4><input type="text" name="username" value="{{ username }}" autofocus required id="id_username">
-                            {% endif %}
-                        </div>
-
-                        <div class="form-group">
-                            <h4>비밀번호</h4><input type="password" name="password1" required id="id_password1">
-                        </div>
-
-                        <div class="form-group">
-                            <h4>비밀번호 확인</h4><input type="password" name="password2" required id="id_password2">
-                        </div>
-
-                        <div class="form-group">
-                            <h4>이메일</h4><input type="email" name="email" value="{{ email }}" required id="id_email">
-                        </div>
-
-                        <div class="form-group">
-                            <h4>성별</h4>
-                            <select name="gender" required id="id_gender">
-                                {% if gender == "F" %}
-                                    <option value="M" name="M">남성</option>
-                                    <option value="F" name="F" selected="selected">여성</option>
-                                {% else %}
-                                    <option value="M" name="M" selected="selected">남성</option>
-                                    <option value="F" name="F">여성</option>
-                                {% endif %}
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <h4>나이</h4><input type="integer" name="age" value="{{ age }}" required id="id_age">
-                        </div>
-                        <div>
-                            <input type="text" name="type" value="S" hidden="True"/>
-                            <input type="text" name="status" value="Y" hidden="True"/>
-                        </div>
-
-                        <div class="text-center">
-                            {% if username %}
-                                <button type="submit" class="btn_global">정보수정</button>
-                            {% else %}
-                                <button type="submit" class="btn_global">회원가입</button>
-                            {% endif %}
-                            <a href="{% url 'index' %}"><input type="button" value="취소"></input></a>
-                        </div>
+        <div class="row justify-content-center">
+            <form action="." method="POST">
+                {% csrf_token %}
+                <div class="form">
+                    <div class="form-group">
+                        {% if username %}
+                            <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" disabled="disabled">
+                        {% else %}
+                        <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" autofocus required id="id_username">
+                        {% endif %}
                     </div>
-                </form>
-            </div>
+
+                    <div class="form-group">
+                        <h4 class="text-success">PASSWORD</h4><input type="password" name="password1" class="form-control" required id="id_password1">
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="text-success">PASSWORD CONFIRM</h4><input type="password" name="password2" class="form-control" required id="id_password2">
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="text-success">E-MAIL</h4><input type="email" name="email" class="form-control" value="{{ email }}" required id="id_email">
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="text-success">GENDER</h4>
+                        <select name="gender" required id="id_gender">
+                            {% if gender == "F" %}
+                                <option value="M" name="M">남성</option>
+                                <option value="F" name="F" selected="selected">여성</option>
+                            {% else %}
+                                <option value="M" name="M" selected="selected">남성</option>
+                                <option value="F" name="F">여성</option>
+                            {% endif %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h4 class="text-success">AGE</h4><input type="number" name="age" class="form-control" numberOnly value="{{ age }}" required id="id_age">
+                    </div>
+                    <div>
+                        <input type="text" name="type" value="S" hidden="True"/>
+                        <input type="text" name="status" value="Y" hidden="True"/>
+                    </div>
+
+                    <div class="text-center">
+                        {% if username %}
+                            <button type="submit" class="btn btn-success">정보수정</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success">회원가입</button>
+                        {% endif %}
+                        <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"></input></a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </div>
 </section>
 
 {% endblock content %}
