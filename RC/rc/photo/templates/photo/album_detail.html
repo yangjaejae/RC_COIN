@@ -6,7 +6,8 @@
 
 {% block content %}
 {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
-<section id="hero">
+<section id="get-started">
+    <br><br>
 <div id="content">
 
 
@@ -22,7 +23,7 @@
 
 
     <div class="album-detail">
-
+        <div class="row">
         {% for photo in object.photo_set.all %}
 
         <div class="album-detail-photo">
@@ -33,14 +34,14 @@
 
             </a>
 
-            <li>{{ photo.title }}</li>
+            <li id="a">{{ photo.title }}</li>
 
             <li>{{ photo.upload_date|date:"Y-m-d" }}</li>
 
         </div>
 
         {% endfor %}
-
+ </div>
     </div>
 
 
