@@ -17,7 +17,7 @@ from django.urls import path, include
 from . import views
 
 app_name = 'member'
-
+    
 urlpatterns = [
     path('myinfo/<str:type>/', views.myinfo_edit, name='myinfo'),
     path('accounts/register_<str:type>/', views.myinfo_edit, name='register_store'),

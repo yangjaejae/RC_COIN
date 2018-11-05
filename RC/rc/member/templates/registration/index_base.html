@@ -41,7 +41,7 @@
   <header id="header" class="header header-hide">
     <div class="container">
       <div id="logo" class="pull-left">
-        <h1><a href="{% url 'index' %}"" class="scrollto"><span>RC</span>Coin</a></h1>
+        <h1><a href="{% url 'index' %}" class="scrollto"><span>RC</span>Coin</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
@@ -53,17 +53,17 @@
           <ul>
             <li><a href="{% url 'intro' %}">RC코인이란</a></li>
             <li><a href="{% url 'intro' %}#get-started">이용 안내</a></li>
-            <li><a href="{% url 'intro' %}#team">팀 소개</a></li>
+            <!--<li><a href="{% url 'intro' %}#team">팀 소개</a></li>-->
           </ul>
         </li>
         <li><a href="{% url 'map' %}">오시는 길</a>
         </li>
-        <li class="menu-has-children"><a href="#features">정보마당</a>
-          <ul>
-            <li><a href="#">공지사항</a></li>
-            <li><a href="#">1:1문의</a></li>
-          </ul>
-        </li>
+        <!--<li class="menu-has-children"><a href="#features">정보마당</a>-->
+          <!--<ul>-->
+            <!--<li><a href="#">공지사항</a></li>-->
+            <!--<li><a href="#">1:1문의</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
         <li class="menu-has-children"><a href="#screenshots">커뮤니티</a>
           <ul>
             <li><a href="#">가맹게시판</a></li>
@@ -75,15 +75,15 @@
         {% if user.is_active %}
           <li class="menu-has-children"><a href="#pricing">마이페이지</a>
             <ul>
-              <li><a href="#">정보수정</a></li>
+              <li><a href="{% url 'member:myinfo' type=user.username %}">정보수정</a></li>
               <li><a href="{% url 'logout' %}">로그아웃</a></li>
             </ul>
           </li>
         {% else %}
           <li class="menu-has-children"><a href="#pricing">회원가입</a>
             <ul>
-              <li><a href="{% url 'register_user' %}">사용자 가입</a></li>
-              <li><a href="{% url 'register_store' %}">가맹점 가입</a></li>
+              <li><a href="{% url 'member:register_user' type='U' %}">사용자 가입</a></li>
+              <li><a href="{% url 'member:register_store' type='S' %}">가맹점 가입</a></li>
             </ul>
           </li>
           <li><a href="{% url 'login' %}">로그인</a></li>
@@ -121,7 +121,7 @@
 
             <ul class="list-unstyled">
               <li><a href="#">RC코인이란?</a></li>
-              <li><a href="#">팀 소개</a></li>
+              <!--<li><a href="#">팀 소개</a></li>-->
             </ul>
           </div>
         </div>

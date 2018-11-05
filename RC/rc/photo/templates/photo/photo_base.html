@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  {% load staticfiles %}
+  <meta charset="utf-8">
+  <title>{% block title %} {% endblock title %}</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i" rel="stylesheet">
+
+  <!-- Bootstrap css -->
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+  <link href='{% static "lib/bootstrap/css/bootstrap.css" %}' rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href='{% static "lib/owlcarousel/assets/owl.carousel.min.css" %}' rel="stylesheet">
+  <link href='{% static "lib/owlcarousel/assets/owl.theme.default.min.css" %}' rel="stylesheet">
+  <link href='{% static "lib/font-awesome/css/font-awesome.min.css" %}' rel="stylesheet">
+  <link href='{% static "lib/animate/animate.min.css" %}' rel="stylesheet">
+  <link href='{% static "lib/modal-video/css/modal-video.min.css" %}' rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet">
+  <!-- =======================================================
+  Theme Name: eStartup
+  Theme URL: https://bootstrapmade.com/estartup-bootstrap-landing-page-template/
+  Author: BootstrapMade.com
+  License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+{% block header %}
+  <header id="header" class="header header-hide">
+    <div class="container">
+      <div id="logo" class="pull-left">
+        <h1><a href="{% url 'index' %}" class="scrollto"><span>RC</span>Coin</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+
+      <ul class="nav-menu">
+        <li class="menu-has-children"><a href="{% url 'intro' %}">소개</a>
+          <ul>
+            <li><a href="{% url 'intro' %}">RC코인이란</a></li>
+            <li><a href="{% url 'intro' %}#get-started">이용 안내</a></li>
+            <li><a href="{% url 'intro' %}#team">팀 소개</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'map' %}">오시는 길</a>
+        </li>
+        <!--<li class="menu-has-children"><a href="#features">정보마당</a>-->
+          <!--<ul>-->
+            <!--<li><a href="#">공지사항</a></li>-->
+            <!--<li><a href="#">1:1문의</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+        <li class="menu-has-children"><a href="#screenshots">커뮤니티</a>
+          <ul>
+            <li><a href="#">가맹게시판</a></li>
+            <li><a href="#">회원게시판</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'photo:index' %}">가맹점</a>
+        </li>
+        {% if user.is_active %}
+          <li class="menu-has-children"><a href="#pricing">마이페이지</a>
+            <ul>
+              <li><a href="#">정보수정</a></li>
+              <li><a href="{% url 'logout' %}">로그아웃</a></li>
+            </ul>
+          </li>
+        {% else %}
+          <li class="menu-has-children"><a href="#pricing">회원가입</a>
+            <ul>
+              <li><a href="{% url 'member:register_user' type='U' %}">사용자 가입</a></li>
+              <li><a href="{% url 'member:register_store' type='S' %}">가맹점 가입</a></li>
+            </ul>
+          </li>
+          <li><a href="{% url 'login' %}">로그인</a></li>
+        {% endif %}
+      </ul>
+
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  {% endblock header %}
+
+  {% block content %} {% endblock content %}
+
+  {% block footer %}
+  <!--==========================
+  Footer
+  ============================-->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12 col-lg-4">
+          <div class="footer-logo">
+
+            <a class="navbar-brand" href="#">RC COIN</a>
+            <p>RC코인은 울릉도의 지역경제를 활성화시키기 위하여 만들어진 친환경 코인입니다. 자전거를 타는 활동을 통하여 RC코인을 분배받을 수 있습니다.</p>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>소개</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">RC코인이란?</a></li>
+              <li><a href="#">팀 소개</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>가맹점 찾기</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">울릉읍</a></li>
+              <li><a href="#">북면</a></li>
+              <li><a href="#">서면</a></li>
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>정보마당</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="#">자주하는 질문</a></li>
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-lg-2">
+          <div class="list-menu">
+
+            <h4>커뮤니티</h4>
+
+            <ul class="list-unstyled">
+              <li><a href="#">회원 게시판</a></li>
+              <li><a href="#">가맹점 게시판</a></li>
+
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="copyrights">
+      <div class="container">
+        <p>&copy; Copyrights RGB PROJECT. All rights reserved.</p>
+        <div class="credits">
+          <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=eStartup
+          -->
+          Designed by <a href="https://bootstrapmade.com/">RGB PROJECT</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  {% endblock footer %}
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></a>
+
+<div id="chatbot">
+         <a href='https://frogue.danbee.ai/?chatbot_id=aa1d2bbd-bc0a-4a6c-8801-817df75dc1e9&user_id=사용자아이디'target="_blank">
+           <img src="{% static 'img/chat.png' %}" alt="img" style="max-width: 100%; height: auto;"></a>
+</div>
+
+
+  <!-- JavaScript Libraries -->
+  <script src='{% static "lib/jquery/jquery.min.js" %}'></script>
+  <script src='{% static "lib/jquery/jquery-migrate.min.js" %}'></script>
+  <script src='{% static "lib/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+  <script src='{% static "lib/superfish/hoverIntent.js" %}'></script>
+  <script src='{% static "lib/superfish/superfish.min.js" %}'></script>
+  <script src='{% static "lib/easing/easing.min.js" %}'></script>
+  <script src='{% static "lib/modal-video/js/modal-video.js" %}'></script>
+  <script src='{% static "lib/owlcarousel/owl.carousel.min.js" %}'></script>
+  <script src='{% static "lib/wow/wow.min.js" %}'></script>
+  <!-- Contact Form JavaScript File -->
+  <script src='{% static "contactform/contactform.js" %}'></script>
+  <!-- Template Main Javascript File -->
+  <script src='{% static "js/main.js" %}'></script>
+  <script>
+    $(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#floatMenu").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		/* 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 */
+
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 500);
+
+	}).scroll();
+
+    });
+  </script>
+</body>
+</html>
