@@ -12,15 +12,14 @@ from member.models import Profile
 
 def myinfo_edit(request, type):
     if request.method == 'POST':
-
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
             user.profile.age = form.cleaned_data.get('age')
             user.profile.gender = form.cleaned_data.get('gender')
-            user.profile.type = type
-            user.profile.status = 'Y'
+            user.profile.type = form.cleaned_data.get('type')
+            user.profile.status = form.cleaned_data.get('status')
             user.save()
 
             msg = {
@@ -31,7 +30,6 @@ def myinfo_edit(request, type):
 
         else:
             user = get_object_or_404(User, username=request.user.username)
-            profile = user.profile
             user.set_password(form.cleaned_data.get('password1'))
             user.email = form.cleaned_data.get('email')
             user.profile.age = form.cleaned_data.get('age')
@@ -48,13 +46,12 @@ def myinfo_edit(request, type):
             return render(request, 'registration/done.html', msg)
 
     else:
-        if type == 'A' or type == 'U' or type == 'S':
+        if type == '1' or type == '2' or type == '3':
             form = SignUpForm()
-            return render(request, 'registration/register.html', {'form': form})
+            return render(request, 'registration/register.html', {'form': form, 'type' : type})
         else:
             user = get_object_or_404(User, username=type)
             profile = user.profile
-
             info = {
                 'username': user.username,
                 'email': user.email,
@@ -63,10 +60,10 @@ def myinfo_edit(request, type):
                 'type': profile.type,
                 'status': profile.status
             }
-            return render(request, "registration/register.html", info)
+            return render(request, 'registration/register.html', info)
 
 
 def doneView(request):
-    template = 'registration/done.html'
+    template_name = 'registration/done.html'
 
-    return render(request, template)
+    return render(request, template_name)

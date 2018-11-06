@@ -15,9 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+
+from .views import BoardLV
+from .views import BoardDV
+from .views import *
 
 app_name = 'board'
 
 urlpatterns = [
+    path('list/', BoardLV.as_view(), name='list'),
+    path('read/<int:pk>/', BoardDV.as_view(), name='read'),
+    path('add/', board_edit, name='add'),
+    path('edit/<int:board_id>/', board_edit, name='edit'),
+    path('delete/<int:board_id>/', board_delete, name='delete'),
+    path('comment/', get_comment, name='comment'),
+    path('chg/', chg_board, name='chg'),
+    path('write_comment/', write_comment, name='write_comment'),
 ]

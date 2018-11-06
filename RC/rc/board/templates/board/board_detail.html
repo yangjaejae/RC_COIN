@@ -1,0 +1,148 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
+    <div style="padding: 20px;"><a class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </a></div>
+    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_1 active" value="1" href="{% url 'board:list' %}">가맹 게시판</a></div>
+    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_2" value="2" href="{% url 'board:list' %}">회원 게시판</a></div>
+</div>
+<div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
+    <h4 class="mt-4 mb-5 border-bottom">detail page</h4>
+    <h1>{{ object.title }}</h1>
+
+    <p class="date">
+        {{ object.modify_date|date:"j F Y" }}
+    </p>
+    </br>
+    <div class="body">
+
+        <!-- 개행 및 공백 문자 적용 -->
+        {{ object.content|linebreaks }}
+    </div>
+    <div>
+        {% if user.pk == object.writer.profile.pk %}
+            <a class="btn btn-secondary btn-sm btn_modify" href="{% url 'board:edit' object.id %}">수정</a>
+            <a class="btn btn-secondary btn-sm btn_delete" href="{% url 'board:delete' object.id %}">삭제</a>
+        {% endif %}
+        <a class="btn btn-secondary btn-sm" href="{% url 'board:list' %}">돌아가기</a>
+        <a class="btn btn-secondary btn-sm btn_comment" onclick="comment({{ object.id }})">댓글 보기</a>
+    </div>
+    <input class="input_comment" type='text' value='' style='width: 80%'>
+    <button class='btn btn-primary btn_comment_write' onclick="write_comment({{ object.id }})">제출</button>
+    <div class="comment_area" id="comment_area" style="display: table">
+        <ul></ul>
+    </div>
+</div>
+<input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
+<script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function(){
+    var getCookie = function(name) {
+      var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+      return value? value[2] : null;
+    };
+    var setCookie = function(name, value, exp) {
+      var date = new Date();
+      date.setTime(date.getTime() + exp*24*60*60*1000);
+      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+    var deleteCookie = function(name) {
+      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+
+    var current_board = getCookie('current_board')
+    deleteCookie('current_board')
+
+    setCookie('current_board', current_board, 7)
+
+    var current_user = {{ user.pk }}
+
+    if( current_board == 1 ){
+        $(".btn_board_type_1").removeClass("btn-info")
+        $(".btn_board_type_1").removeClass("btn-danger")
+        $(".btn_board_type_2").removeClass("btn-info")
+        $(".btn_board_type_2").removeClass("btn-danger")
+        $(".btn_board_type_1").addClass("btn-danger")
+        $(".btn_board_type_2").addClass("btn-info")
+    }
+    if( current_board == 2 ){
+        $(".btn_board_type_1").removeClass("btn-info")
+        $(".btn_board_type_1").removeClass("btn-danger")
+        $(".btn_board_type_2").removeClass("btn-info")
+        $(".btn_board_type_2").removeClass("btn-danger")
+        $(".btn_board_type_1").addClass("btn-info")
+        $(".btn_board_type_2").addClass("btn-danger")
+    }
+
+});
+
+
+function comment(num){
+    var board_id = num
+
+    $( "li" ).remove();
+
+    if( $('.comment_area').hasClass('on') ){
+        $('.comment_area').removeClass('on')
+        $('.comment_area').css('display', 'none');
+    }else{
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:comment' %}',
+            data: {
+                board_id : board_id
+            },
+            dataType : 'json',
+            success: function(data) {
+
+                html_str = ""
+                var result_data = []
+                result_data = data
+                if ( data != '' ){
+                    $(".comment_area ul").remove('li')
+                    result_data.forEach(function(data){
+                        result = (Object.entries(data))
+                        alert(result)
+                        html_str += "<li>{{ result.writer }}&nbsp; | &nbsp; {{ result.modify_date }} &nbsp; | &nbsp; {{ result.content }}</li>"
+                        $(".comment_area ul").append(html_str)
+                    });
+                }
+
+               $('.comment_area').css('display', 'table');
+               $('.comment_area').addClass('on');
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+            }
+        });
+    }
+}
+
+function write_comment(board_id){
+
+        var comment = $('.input_comment').val()
+
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:write_comment' %}',
+            data: {
+                board_id : board_id,
+                comment : comment
+            },
+            dataType : 'json',
+            success: function(data) {
+
+                <!--alert(data[0].result)-->
+
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+            }
+        });
+    }
+</script>
+
+{% endblock content %}
+
+e

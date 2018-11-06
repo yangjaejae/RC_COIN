@@ -22,5 +22,5 @@ urlpatterns = [
     path('myinfo/<str:type>/', views.myinfo_edit, name='myinfo'),
     path('accounts/register_<str:type>/', views.myinfo_edit, name='register_store'),
     path('accounts/register_<str:type>/', views.myinfo_edit, name='register_user'),
-    path('accounts/done/', views.doneView, name='done'),
+    path('accounts/register/done/', views.doneView, name='done'),
 ]

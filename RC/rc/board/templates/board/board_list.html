@@ -1,0 +1,188 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+<script src='{% static "lib/jquery/jquery.min.js" %}'></script>
+{% block content %}
+<div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
+    <div style="padding: 20px;"><button class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </button></div>
+    <div style="padding: 20px;"><button class="btn btn-info btn_board_type_1 active" value="1" href="#" onclick="chg_board( 1 )">가맹 게시판</button></div>
+    <div style="padding: 20px;"><button class="btn btn-info btn_board_type_2" href="#" value="2" onclick="chg_board( 2 )">회원 게시판</button></div>
+</div>
+<div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
+    <input type="hidden" id="user_type" name="user_type" value="{{ user.profile.type }}">
+    <input type="hidden" id="board_type" name="board_type" value="">
+    <div class="btn_write_area" style="background-color: white; background-color:67px;">
+        <a class="btn btn-primary btn-sm btn_write" href="{% url 'board:add' %}" style="display: none;position: fixed;margin-top: -50px;">글쓰기</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">날짜</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for text in boards %}
+            <tr class="tag_text">
+                <td>{{ text.id }}</td>
+                <td><a href="{{ text.get_absolute_url }}">{{ text.title }}</a></td>
+                <td>{{ text.writer }}</td>
+                <td>{{ text.modify_date|date:"Y-n-d" }}</td>
+            </tr>
+            <tr colspan="4" style="text-align: center;" class="tag_comment_{{ text.id }}" style="display: none">
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="paging_area" style="text-align: center;">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> << </a>
+        {% endif %}
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> >> </a>
+        {% endif %}
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function(){
+        $('#board_type').val($('.active').val())
+        var current_board = $('#board_type').val()
+
+        if( current_board == 1 ){
+            $(".btn_board_type_1").removeClass("btn-info")
+            $(".btn_board_type_1").addClass("btn-danger")
+        }
+        if( current_board == 2 ){
+            $(".btn_board_type_2").removeClass("btn-info")
+            $(".btn_board_type_2").addClass("btn-danger")
+        }
+
+        if( $('#user_type').val() != $('#board_type').val() ){
+            $('.btn_write').css('display', 'none')
+        }else if( $('#user_type').val() == $('#board_type').val() ){
+            $('.btn_write').css('display', 'table')
+        }
+        var getCookie = function(name) {
+          var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+          return value? value[2] : null;
+        };
+        var setCookie = function(name, value, exp) {
+          var date = new Date();
+          date.setTime(date.getTime() + exp*24*60*60*1000);
+          document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+        var deleteCookie = function(name) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+        deleteCookie('current_board')
+
+        setCookie('current_board', current_board, 7)
+
+    });
+
+    function write_comment(board_id){
+        var comment_class = '.input_comment_' + board_id
+        var comment =  $(comment_class).val()
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:write_comment' %}',
+            data: {
+                board_id : board_id,
+                comment : comment
+            },
+            dataType : 'json',
+            success: function(data) {
+
+                <!--alert(data[0].result)-->
+
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+            }
+        });
+    }
+
+    function chg_board(board_type){
+
+        var getCookie = function(name) {
+          var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+          return value? value[2] : null;
+        };
+        var setCookie = function(name, value, exp) {
+          var date = new Date();
+          date.setTime(date.getTime() + exp*24*60*60*1000);
+          document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        };
+        var deleteCookie = function(name) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+        deleteCookie('current_board')
+
+        setCookie('current_board', board_type, 7)
+
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:chg' %}',
+            data: {
+                board_type : board_type
+            },
+            dataType : 'json',
+            success: function(data) {
+                html = ''
+
+                data.forEach(function(text){
+                    html += "<tr class='tag_text'>"
+                    html += "<td>" + text.id + "</td>"
+                    html += "<td><a href='" + text.get_absolute_url + "'>" + text.title + "</a></td>"
+                    html += "<td>" +  text.writer + "</td>"
+                    html += "<td>" + text.modify_date + "</td>"
+                    html += "<td><button class='btn btn-sm tag_for_comment' value='" + text.id + "' onclick='comment(" + text.id + ")'>댓글보기</button></td>"
+                    html += "</tr>"
+                    html += "<tr colspan='4' style='text-align: center;' class='tag_comment_" + text.id + "' style='display: none'>"
+                    html += "</tr>"
+                })
+
+                $('div.board_content > table > tbody ').html(html)
+
+                if( $('.btn_board_type_1').hasClass('active') ){
+                    $('.btn_board_type_1').removeClass('active')
+                }else if( $('.btn_board_type_2').hasClass('active') ){
+                    $('.btn_board_type_2').removeClass('active')
+                }
+                var board_type_class = '.btn_board_type_' + board_type
+                $(board_type_class).addClass('active')
+                $('#board_type').val($('.active').val())
+
+                if( $('#user_type').val() != $('#board_type').val() ){
+                    $('.btn_write').css('display', 'none')
+                }else if( $('#user_type').val() == $('#board_type').val() ){
+                    $('.btn_write').css('display', 'table')
+                }
+
+                if( board_type == 1 ){
+                    $(".btn_board_type_1").removeClass("btn-info")
+                    $(".btn_board_type_1").removeClass("btn-danger")
+                    $(".btn_board_type_2").removeClass("btn-info")
+                    $(".btn_board_type_2").removeClass("btn-danger")
+                    $(".btn_board_type_1").addClass("btn-danger")
+                    $(".btn_board_type_2").addClass("btn-info")
+                }
+                if( board_type == 2 ){
+                    $(".btn_board_type_1").removeClass("btn-info")
+                    $(".btn_board_type_1").removeClass("btn-danger")
+                    $(".btn_board_type_2").removeClass("btn-info")
+                    $(".btn_board_type_2").removeClass("btn-danger")
+                    $(".btn_board_type_1").addClass("btn-info")
+                    $(".btn_board_type_2").addClass("btn-danger")
+                }
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+            }
+        })
+    }
+</script>
+    </div>
+</div>
+{% endblock content %}

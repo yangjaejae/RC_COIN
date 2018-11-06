@@ -24,7 +24,7 @@
 <!--</script>-->
 
 <section id="get-started" class="padd-section">
-    <form action="." method="POST"">
+    <form action="." method="POST">
         {% csrf_token %}
         <div class="section-title text-center">
             {% if username %}
@@ -36,58 +36,57 @@
         </div>
 
         <div class="row justify-content-center">
-                <div class="form">
-                    <div class="form-group">
-                        {% if username %}
-                            <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" disabled="disabled"/>
-                        {% else %}
-                            <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" autofocus/>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <h4 class="text-success">PASSWORD</h4><input type="password" id="password1" name="password1" class="form-control" required/>
-                    </div>
-
-                    <div class="form-group">
-                        <h4 class="text-success">CONFIRM PASSWORD</h4><input type="password" id="password2" name="password2" class="form-control" required/>
-                    </div>
-
-                    <div class="form-group">
-                        <h4 class="text-success">E-MAIL</h4><input type="email" name="email" class="form-control" value="{{ email }}" required/>
-                    </div>
-
-                    <div class="form-group">
-                        <h4 class="text-success">GENDER</h4>
-                        <select name="gender" class="custom-select d-block w-100" required>
-                            {% if gender == "F" %}
-                                <option value="M" name="M">남성</option>
-                                <option value="F" name="F" selected="selected">여성</option>
-                            {% else %}
-                                <option value="M" name="M" selected="selected">남성</option>
-                                <option value="F" name="F">여성</option>
-                            {% endif %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <h4 class="text-success">AGE</h4><input type="number" name="age" class="form-control" min="1" max="150" numberOnly value="{{ age }}" required/>
-                    </div>
-                    <div>
-                        <input type="text" name="type" value="S" hidden/>
-                        <input type="text" name="status" value="Y" hidden/>
-                    </div>
-
-                    <div class="text-center">
-                        {% if username %}
-                            <button type="submit" class="btn btn-success">정보수정</button>
-                        {% else %}
-                            <button type="submit" class="btn btn-success">회원가입</button>
-                        {% endif %}
-                        <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"/></a>
-                    </div>
+            <div class="form">
+                <div class="form-group">
+                    {% if username %}
+                        <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" disabled="disabled"/>
+                    {% else %}
+                        <h4 class="text-success">USERNAME</h4><input type="text" name="username" class="form-control" value="{{ username }}" autofocus/>
+                    {% endif %}
                 </div>
 
+                <div class="form-group">
+                    <h4 class="text-success">PASSWORD</h4><input type="password" id="password1" name="password1" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                    <h4 class="text-success">CONFIRM PASSWORD</h4><input type="password" id="password2" name="password2" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                    <h4 class="text-success">E-MAIL</h4><input type="email" name="email" class="form-control" value="{{ email }}" required/>
+                </div>
+
+                <div class="form-group">
+                    <h4 class="text-success">GENDER</h4>
+                    <select name="gender" class="custom-select d-block w-100" required>
+                        {% if gender == "F" %}
+                            <option value="M" name="M">남성</option>
+                            <option value="F" name="F" selected="selected">여성</option>
+                        {% else %}
+                            <option value="M" name="M" selected="selected">남성</option>
+                            <option value="F" name="F">여성</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <h4 class="text-success">AGE</h4><input type="number" name="age" class="form-control" min="1" max="150" numberOnly value="{{ age }}" required/>
+                </div>
+                <div>
+                    <input type="text" name="type" value="{{ type }}" hidden/>
+                    <input type="text" name="status" value="Y" hidden/>
+                </div>
+
+                <div class="text-center">
+                    {% if username %}
+                        <button type="submit" class="btn btn-success">정보수정</button>
+                    {% else %}
+                        <button type="submit" class="btn btn-success">회원가입</button>
+                    {% endif %}
+                    <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"/></a>
+                </div>
+            </div>
         </div>
     </form>
 </section>
