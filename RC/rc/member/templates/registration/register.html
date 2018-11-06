@@ -11,6 +11,9 @@
 
 {% block content %}
 
+{%
+
+%}
 <section id="get-started" class="padd-section">
     <form action="." method="POST">
         {% csrf_token %}
@@ -19,9 +22,6 @@
                 <h1>회원정보수정</h1>
             {% else %}
                 <h1>회원가입</h1>
-            {% endif %}
-            {% if form.errors %}
-                <p class="separator">{{ form.errors }}</p>
             {% endif %}
         </div>
 
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        <h4 class="text-success">PASSWORD CONFIRM</h4><input type="password" name="password2" class="form-control" required/>
+                        <h4 class="text-success">CONFIRM PASSWORD</h4><input type="password" name="password2" class="form-control" required/>
                     </div>
 
                     <div class="form-group">
@@ -61,11 +61,11 @@
                     </div>
 
                     <div class="form-group">
-                        <h4 class="text-success">AGE</h4><input type="number" name="age" class="form-control" numberOnly value="{{ age }}" required/>
+                        <h4 class="text-success">AGE</h4><input type="number" name="age" class="form-control" min="1" max="150" numberOnly value="{{ age }}" required/>
                     </div>
                     <div>
-                        <input type="text" name="type" value="S" hidden="True"/>
-                        <input type="text" name="status" value="Y" hidden="True"/>
+                        <input type="text" name="type" value="S" hidden/>
+                        <input type="text" name="status" value="Y" hidden/>
                     </div>
 
                     <div class="text-center">
