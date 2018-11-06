@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dd1f134-6f8e-41ae-956b-dec90f7aaf2a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rc/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/rc/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/member/templates/registration/done.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/templates/registration/done.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/member/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/templates/registration/register.html" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/rc/member/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/rc/member/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" afterDir="false" />
@@ -14,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/rc/templates/index_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/index_base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/templates/intro.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/intro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/templates/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/map.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/rc/templates/index_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/index_base.html" afterDir="false" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
       <change beforePath="$PROJECT_DIR$/rc/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/registration/logged_out.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rc/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/rc/templates/registration/login.html" afterDir="false" />
     </list>
@@ -99,19 +101,34 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rc/templates/index_base.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1804">
               <caret line="82" column="56" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
+=======
+            <state relative-caret-position="242">
+              <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html">
+        <entry file="file://$PROJECT_DIR$/rc/templates/registration/logged_out.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="662">
               <caret line="65" column="17" selection-start-line="60" selection-start-column="12" selection-end-line="65" selection-end-column="17" />
             </state>
@@ -172,10 +189,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
               <caret line="96" column="60" selection-start-line="96" selection-start-column="60" selection-end-line="96" selection-end-column="60" />
+=======
+            <state relative-caret-position="330">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rc/templates/map.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -190,6 +212,40 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="110">
               <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/index_base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-154">
+              <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/done.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rc/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="113" column="21" lean-forward="true" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
             </state>
           </provider>
         </entry>
@@ -223,10 +279,13 @@
       <find>정보</find>
       <find>정보마</find>
       <find>btn</find>
+<<<<<<< HEAD
       <find>screenshots</find>
       <find>pricing</find>
       <find>fa</find>
       <find>wow</find>
+=======
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -247,6 +306,7 @@
         <option value="$PROJECT_DIR$/rc/rc/settings.py" />
         <option value="$PROJECT_DIR$/rc/templates/base.html" />
         <option value="$PROJECT_DIR$/rc/member/urls.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html" />
         <option value="$PROJECT_DIR$/rc/member/templates/registration/index_base.html" />
         <option value="$PROJECT_DIR$/rc/static/css/style.css" />
@@ -256,12 +316,29 @@
         <option value="$PROJECT_DIR$/rc/member/templates/registration/done.html" />
         <option value="$PROJECT_DIR$/rc/member/views.py" />
         <option value="$PROJECT_DIR$/rc/templates/index_base.html" />
+=======
+        <option value="$PROJECT_DIR$/rc/templates/intro.html" />
+        <option value="$PROJECT_DIR$/rc/templates/map.html" />
+        <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_list.html" />
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" />
         <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html" />
         <option value="$PROJECT_DIR$/rc/templates/index.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/rc/templates/intro.html" />
         <option value="$PROJECT_DIR$/rc/templates/map.html" />
+=======
+        <option value="$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html" />
+        <option value="$PROJECT_DIR$/rc/member/templates/registration/index_base.html" />
+        <option value="$PROJECT_DIR$/rc/static/css/style.css" />
+        <option value="$PROJECT_DIR$/rc/photo/templates/photo/album_detail.html" />
+        <option value="$PROJECT_DIR$/rc/templates/index_base.html" />
+        <option value="$PROJECT_DIR$/rc/member/templates/registration/register.html" />
+        <option value="$PROJECT_DIR$/rc/member/templates/registration/done.html" />
+        <option value="$PROJECT_DIR$/rc/templates/registration/logged_out.html" />
+        <option value="$PROJECT_DIR$/rc/templates/registration/login.html" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
       </list>
     </option>
   </component>
@@ -289,6 +366,77 @@
               <item name="RC" type="462c0819:PsiDirectoryNode" />
               <item name="rc" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
+=======
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="member" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="member" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="member" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="photo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="photo" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="photo" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="photo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RC" type="462c0819:PsiDirectoryNode" />
+              <item name="rc" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="registration" type="462c0819:PsiDirectoryNode" />
+            </path>
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
           </expand>
           <select />
         </subPane>
@@ -302,10 +450,10 @@
     <property name="settings.editor.splitter.proportion" value="0.22189349" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\yslee\Desktop\rc_dev\RC\rc\member\templates\registration" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\yslee\Desktop\rc_dev\RC\rc\member\templates\registration" />
     </key>
   </component>
@@ -359,8 +507,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19441517" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1548999" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -445,6 +598,16 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/rc/member/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1430">
+          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
     <entry file="file://$PROJECT_DIR$/rc/photo/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -483,6 +646,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/rc/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="541">
@@ -498,6 +662,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/templates/registration/logged_out.html">
+=======
+    <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_detail.html">
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
@@ -506,6 +673,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/member/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="440">
           <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
         </state>
@@ -515,18 +683,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+=======
+        <state relative-caret-position="462">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
+    <entry file="file://$PROJECT_DIR$/rc/member/urls.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="110">
           <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+=======
+        <state relative-caret-position="484">
+          <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/album_list.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state>
           <caret column="28" lean-forward="true" selection-start-column="11" selection-end-column="28" />
         </state>
@@ -540,11 +718,23 @@
             <element signature="e#423#429#0" expanded="true" />
             <element signature="e#429#435#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="330">
+          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="65" column="17" lean-forward="true" selection-start-line="60" selection-start-column="12" selection-end-line="65" selection-end-column="17" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/photo/templates/photo/photo_base.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="662">
           <caret line="65" column="17" selection-start-line="60" selection-start-column="12" selection-end-line="65" selection-end-column="17" />
         </state>
@@ -554,18 +744,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="28" selection-start-column="28" selection-end-column="28" />
+=======
+        <state relative-caret-position="286">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+          <folding>
+            <element signature="e#423#429#0" expanded="true" />
+            <element signature="e#429#435#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="1456" lean-forward="true" selection-start-line="1456" selection-end-line="1456" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="374">
           <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+=======
+        <state relative-caret-position="535">
+          <caret line="113" column="21" lean-forward="true" selection-start-line="113" selection-start-column="21" selection-end-line="113" selection-end-column="21" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/templates/index_base.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1804">
           <caret line="82" column="56" selection-start-line="82" selection-start-column="56" selection-end-line="82" selection-end-column="56" />
         </state>
@@ -575,6 +786,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
           <caret line="24" column="45" lean-forward="true" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+=======
+        <state relative-caret-position="242">
+          <caret line="103" column="6" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="24" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>
@@ -587,8 +809,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rc/templates/map.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="161">
           <caret line="105" column="18" lean-forward="true" selection-start-line="104" selection-end-line="105" selection-end-column="18" />
+=======
+        <state relative-caret-position="-154">
+          <caret line="5" column="55" lean-forward="true" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/member/templates/registration/done.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/templates/registration/logged_out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+>>>>>>> b10bc9f1cd1a4834d00700f29ab589bb27e71822
         </state>
       </provider>
     </entry>

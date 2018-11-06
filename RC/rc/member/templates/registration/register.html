@@ -10,10 +10,10 @@
 {% endblock title %}
 
 {% block content %}
+
 <section id="get-started" class="padd-section">
     <form action="." method="POST">
         {% csrf_token %}
-
         <div class="section-title text-center">
             {% if username %}
                 <h1>회원정보수정</h1>
