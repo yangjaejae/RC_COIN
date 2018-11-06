@@ -2,10 +2,10 @@
 {% load staticfiles %}
 <script src='{% static "lib/jquery/jquery.min.js" %}'></script>
 {% block content %}
-<div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
-    <div style="padding: 20px;"><button class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </button></div>
-    <div style="padding: 20px;"><button class="btn btn-info btn_board_type_1 active" value="1" href="#" onclick="chg_board( 1 )">가맹 게시판</button></div>
-    <div style="padding: 20px;"><button class="btn btn-info btn_board_type_2" href="#" value="2" onclick="chg_board( 2 )">회원 게시판</button></div>
+<div class="side_bar" style="float: left; border: 1px solid #71c55d; margin-left: 40px; background-color: #71c55d">
+    <div style="padding: 20px;"><button class="btn btn-success" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </button></div>
+    <div style="padding: 20px;"><button class="btn btn-success btn_board_type_1 active" value="1" href="#" onclick="chg_board( 1 )">가맹 게시판</button></div>
+    <div style="padding: 20px;"><button class="btn btn-success btn_board_type_2" href="#" value="2" onclick="chg_board( 2 )">회원 게시판</button></div>
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <input type="hidden" id="user_type" name="user_type" value="{{ user.profile.type }}">
