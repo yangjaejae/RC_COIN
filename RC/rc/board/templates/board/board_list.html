@@ -81,28 +81,6 @@
 
     });
 
-    function write_comment(board_id){
-        var comment_class = '.input_comment_' + board_id
-        var comment =  $(comment_class).val()
-        $.ajax({
-            type: 'GET',
-            url: '{% url 'board:write_comment' %}',
-            data: {
-                board_id : board_id,
-                comment : comment
-            },
-            dataType : 'json',
-            success: function(data) {
-
-                <!--alert(data[0].result)-->
-
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
-            }
-        });
-    }
-
     function chg_board(board_type){
 
         var getCookie = function(name) {

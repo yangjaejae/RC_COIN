@@ -81,7 +81,7 @@ def get_comment(request):
     for li in comments:
         temp = {}
         temp['board_id'] = li.board_id.id
-        temp['writer'] = li.writer.pk
+        temp['writer'] = str(li.writer.profile.user)
         temp['content'] = li.content
         temp['create_date'] = str(li.modify_date)[0:10]
         temp['modify_date'] = str(li.modify_date)[0:10]
@@ -115,16 +115,23 @@ def chg_board(request):
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8")
 
 def write_comment(request):
-    print("###############################")
     board_id = request.GET.get('board_id', )
+    print("###############################", board_id)
     input_comment = request.GET.get('comment', )
-    writer = request.user.pk
+    user = request.user.pk
 
-    comments = Comment.objects.filter(board_id=board_id)
+    comment = Comment()
 
     comment.board_id = Board(board_id)
-    comment.writer = User(writer)
+    comment.writer = User(user)
     comment.content = input_comment
+    comment.status = 'y'
+
+    # for_save = []
+    # for_save.append(Board(board_id))
+    # for_save.append(User(user))
+    # for_save.append(input_comment)
+    # for_save.append('y')
 
     try:
         comment.save()

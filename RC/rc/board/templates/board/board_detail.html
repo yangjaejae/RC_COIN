@@ -34,7 +34,6 @@
         <ul></ul>
     </div>
 </div>
-<input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
 <script type="text/javascript">
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -77,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
-
 function comment(num){
     var board_id = num
 
@@ -95,16 +93,14 @@ function comment(num){
             },
             dataType : 'json',
             success: function(data) {
-
+                $(".comment_area ul").remove('li')
                 html_str = ""
                 var result_data = []
                 result_data = data
                 if ( data != '' ){
-                    $(".comment_area ul").remove('li')
+
                     result_data.forEach(function(data){
-                        result = (Object.entries(data))
-                        alert(result)
-                        html_str += "<li>{{ result.writer }}&nbsp; | &nbsp; {{ result.modify_date }} &nbsp; | &nbsp; {{ result.content }}</li>"
+                        html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.modify_date + "&nbsp; | &nbsp;" + data.content + "</li>"
                         $(".comment_area ul").append(html_str)
                     });
                 }
@@ -121,28 +117,29 @@ function comment(num){
 
 function write_comment(board_id){
 
-        var comment = $('.input_comment').val()
+    var comm = $('.input_comment').val()
 
-        $.ajax({
-            type: 'GET',
-            url: '{% url 'board:write_comment' %}',
-            data: {
-                board_id : board_id,
-                comment : comment
-            },
-            dataType : 'json',
-            success: function(data) {
+    $.ajax({
+        type: 'GET',
+        url: '{% url 'board:write_comment' %}',
+        data: {
+            board_id : board_id,
+            comment : comm
+        },
+        dataType : 'json',
+        success: function(data) {
 
-                <!--alert(data[0].result)-->
+            $('.input_comment').val('')
 
-            },
-            error: function( jqXHR, textStatus, errorThrown ){
-                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
-            }
-        });
-    }
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+                alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+        }
+    });
+    comment(board_id)
+}
+
 </script>
+<input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
 
 {% endblock content %}
-
-e
