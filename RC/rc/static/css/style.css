@@ -1449,8 +1449,29 @@ margin: 0 0 10px 0;
    background:transparent;
    color: white;
 }
+.ui-resizable-helper {
+    border: 1px dotted gray;
+}
+.resizable {
+    display: block;
+    width: 300px;
+    height: 400px;
+    padding: 0px;
+    overflow: hidden;
+    position: relative;
+}
+iframe {
+    width: 80%;
+    height: 80%;
+}
 
-
+.floating {
+position: fixed;
+left:0px;
+  bottom:270px;
+  height:60px;
+  width:100%;
+}
 /*
     global css
 */
