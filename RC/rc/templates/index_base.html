@@ -64,7 +64,7 @@
             <!--<li><a href="#">1:1문의</a></li>-->
           <!--</ul>-->
         <!--</li>-->
-        <li class="menu-has-children"><a href="#screenshots">커뮤니티</a>
+        <li class="menu-has-children"><a href="#community">커뮤니티</a>
           <ul>
             <li><a href="#">가맹게시판</a></li>
             <li><a href="#">회원게시판</a></li>
@@ -73,14 +73,14 @@
         <li><a href="{% url 'photo:index' %}">가맹점</a>
         </li>
         {% if user.is_active %}
-          <li class="menu-has-children"><a href="#pricing">마이페이지</a>
+          <li class="menu-has-children"><a href="#mypage">마이페이지</a>
             <ul>
               <li><a href="{% url 'member:myinfo' type=user.username %}">정보수정</a></li>
               <li><a href="{% url 'logout' %}">로그아웃</a></li>
             </ul>
           </li>
         {% else %}
-          <li class="menu-has-children"><a href="#pricing">회원가입</a>
+          <li class="menu-has-children"><a href="#mypage">회원가입</a>
             <ul>
               <li><a href="{% url 'member:register_user' type='U' %}">사용자 가입</a></li>
               <li><a href="{% url 'member:register_store' type='S' %}">가맹점 가입</a></li>
