@@ -3,7 +3,7 @@
 <script src='{% static "lib/jquery/jquery.min.js" %}'></script>
 {% block content %}
 <div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
-    <div style="padding: 20px;"><button class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </button></div>
+    <div style="padding: 20px;"><h2 align="center" style="color: white;">게 시 판</h2></div>
     <div style="padding: 20px;"><button class="btn btn-info btn_board_type_1 active" value="1" href="#" onclick="chg_board( 1 )">가맹 게시판</button></div>
     <div style="padding: 20px;"><button class="btn btn-info btn_board_type_2" href="#" value="2" onclick="chg_board( 2 )">회원 게시판</button></div>
 </div>
@@ -42,9 +42,7 @@
         {% endif %}
             {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"> >> </a>
-        {% endif %}
-<script type="text/javascript">
+        <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(){
         $('#board_type').val($('.active').val())
         var current_board = $('#board_type').val()
@@ -160,6 +158,8 @@
         })
     }
 </script>
+        <a href="?page={{ page_obj.next_page_number }}"> >> </a>
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
