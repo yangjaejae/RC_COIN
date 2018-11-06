@@ -20,7 +20,7 @@
         <div class="album-list">
             <div class="row">
 
-                {% for photo in item.photo_set.all|slice:":5" %}
+                {% comment %} {% for photo in item.photo_set.all|slice:":5" %}
                 &nbsp;&nbsp;&nbsp;
                 <div class="album-list-photo">
                     <a href="{{ photo.get_absolute_url }}">
@@ -28,11 +28,32 @@
                     </a>
                 </div>
                 &nbsp;&nbsp;&nbsp;
-                {% endfor %}
+                {% endfor %} {% endcomment %}
+
+                <div class = "owl-carousel owl-theme">
+                    {% for photo in item.photo_set.all %}
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="col-md-12 col-md-12 col-lg-12">
+                        <div class="team-block bottom">
+                        <a href="{{ photo.get_absolute_url }}">
+                        <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
+                        </a>
+                        <div class="team-content">
+                            <h4 align="center">{{photo.title}}</h4>
+                        </div>
+                        </div>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    {% endfor %}
+
+                </div>
+
+
+
             </div>
         </div>
         {% endfor %}
 
     </div>
 </section>
-{% endblock content %}
+{% endblock %}
