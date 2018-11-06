@@ -32,9 +32,7 @@
     <button class='btn btn-primary btn_comment_write' onclick="write_comment({{ object.id }})">제출</button>
     <div class="comment_area" id="comment_area" style="display: table">
         <ul></ul>
-    </div>
-</div>
-<script type="text/javascript">
+        <script type="text/javascript">
 
 document.addEventListener("DOMContentLoaded", function(){
     var getCookie = function(name) {
@@ -137,9 +135,13 @@ function write_comment(board_id){
         }
     });
     comment(board_id)
+    $('.comment_area').css('display', 'table');
+   $('.comment_area').addClass('on');
 }
 
 </script>
+    </div>
+</div>
 <input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
 
 {% endblock content %}

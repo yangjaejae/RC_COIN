@@ -39,9 +39,6 @@ class BoardDV(DetailView):
 def board_edit(request, board_id=None):
 
     user = request.user.pk
-    user_type = 1
-    user_status = "y"
-    print(user)
 
     if board_id:
         board = get_object_or_404(Board, pk=board_id)
@@ -52,7 +49,6 @@ def board_edit(request, board_id=None):
         # POST 된 request 데이터를 가지고 Form 생성
         form = BoardForm(request.POST, instance=board)
         print(form)
-
         if form.is_valid():
             board = form.save(commit=False)
             board.board_id = Board(board_id)
@@ -64,7 +60,7 @@ def board_edit(request, board_id=None):
         # book instance에서 Form 생성
         form = BoardForm(instance=board)
         # 사용자의 request를 가지고 이동한다.
-        return render(request, 'board/board_edit.html', dict(form=form, book_id=board_id))
+        return render(request, 'board/board_edit.html', dict(form=form, board_id=board_id))
 
 def board_delete(request, board_id):
     board = get_object_or_404(Board, pk=board_id)

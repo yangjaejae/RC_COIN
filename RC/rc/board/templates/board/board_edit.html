@@ -35,13 +35,12 @@
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <h4 class="mt-4 mb-5 border-bottom">추가/수정</h4>
-    {% if impression_id %}
-        <form action="{% url 'board:edit' book_id=book_id %}" method="POST">
+    {% if board_id %}
+        <form action="{% url 'board:edit' board_id=board_id %}" method="POST">
     {% else %}
         <form action="{% url 'board:add' %}" method="POST">
     {% endif %}
     {% csrf_token %}
-        <!--<input type="hidden" name="writer" value=""-->
         <fieldset class="aligned">
             <div class="form-row">
                 {{form.title.label_tag}} {{form.title}}
@@ -51,13 +50,15 @@
                 {{form.content.label_tag}} {{form.content}}
             </div>
         </fieldset>
-        <div class="form-group row btn_group">
-            <div class="offset-md-3 col-md-9">
-                <input type="submit" class="btn btn-primary" value="제출"></button>
-                <a class="btn btn-secondary btn-sm" href="{% url 'board:list' %}">돌아가기</a>
+            <div class="form-group row btn_group">
+                <div class="offset-md-3 col-md-9">
+                    <input type="submit" class="btn btn-primary" value="제출"></button>
+                    <a class="btn btn-secondary btn-sm" href="{% url 'board:list' %}">돌아가기</a>
+                </div>
             </div>
-        </div>
-    </form>
+            <!--<input type="hidden" id="board_id" name="board_id" value="{{ form.board_id }}">-->
+        </form>
+
 </div>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded", function(){
@@ -97,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function(){
         $(".btn_board_type_1").addClass("btn-info")
         $(".btn_board_type_2").addClass("btn-danger")
     }
+
+    $('#board_id').val(current_board)
 
 });
 </script>

@@ -11,7 +11,7 @@
     <input type="hidden" id="user_type" name="user_type" value="{{ user.profile.type }}">
     <input type="hidden" id="board_type" name="board_type" value="">
     <div class="btn_write_area" style="background-color: white; background-color:67px;">
-        <a class="btn btn-primary btn-sm btn_write" href="{% url 'board:add' %}" style="display: none;position: fixed;margin-top: -50px;">글쓰기</a>
+        <a class="btn btn-primary btn-sm btn_write" href="{% url 'board:add' %}" style="display: none;position: absolute;margin-top: -50px;">글쓰기</a>
     </div>
     <table class="table table-hover">
         <thead>
@@ -115,7 +115,6 @@
                     html += "<td><a href='" + text.get_absolute_url + "'>" + text.title + "</a></td>"
                     html += "<td>" +  text.writer + "</td>"
                     html += "<td>" + text.modify_date + "</td>"
-                    html += "<td><button class='btn btn-sm tag_for_comment' value='" + text.id + "' onclick='comment(" + text.id + ")'>댓글보기</button></td>"
                     html += "</tr>"
                     html += "<tr colspan='4' style='text-align: center;' class='tag_comment_" + text.id + "' style='display: none'>"
                     html += "</tr>"
