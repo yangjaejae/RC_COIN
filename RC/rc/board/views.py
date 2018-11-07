@@ -30,9 +30,6 @@ class BoardLV(ListView):
             queryset = Board.objects.filter(writer__profile__type=self.user_type)
         return queryset
 
-    def post(self, request):
-        print(request.user_type)
-
 class BoardDV(DetailView):
     model = Board
 
@@ -48,7 +45,6 @@ def board_edit(request, board_id=None):
     if request.method == "POST":
         # POST 된 request 데이터를 가지고 Form 생성
         form = BoardForm(request.POST, instance=board)
-        print(form)
         if form.is_valid():
             board = form.save(commit=False)
             board.board_id = Board(board_id)
@@ -105,14 +101,12 @@ def chg_board(request):
         temp['category'] = li.category
         temp['get_absolute_url'] = li.get_absolute_url()
         data_list.append(temp)
-    print(data_list)
     json_format = json.dumps(data_list)
 
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8")
 
 def write_comment(request):
     board_id = request.GET.get('board_id', )
-    print("###############################", board_id)
     input_comment = request.GET.get('comment', )
     user = request.user.pk
 

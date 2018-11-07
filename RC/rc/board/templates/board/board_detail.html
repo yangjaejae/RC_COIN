@@ -1,11 +1,11 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
-
+{% block extra_js %}<script type="text/javascript" src="{% static '/board/board.js' %}"></script>{% endblock %}
 {% block content %}
-<div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
-    <div style="padding: 20px;"><a class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </a></div>
-    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_1 active" value="1" href="{% url 'board:list' %}">가맹 게시판</a></div>
-    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_2" value="2" href="{% url 'board:list' %}">회원 게시판</a></div>
+<div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
+    <div style="padding: 20px;"><div class="" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;"> 게 시 판</div></div>
+    <div id="btn_board_type_1" style="padding: 20px;"><a class="btn_board_type_1 active" value="1" href="{% url 'board:list' %}" onclick="" style="text-align: center; font-weight: bold;">가맹 게시판</a></div>
+    <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'board:list' %}" value="2" onclick="" style="text-align: center; font-weight: bold;">회원 게시판</a></div>
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <h4 class="mt-4 mb-5 border-bottom">detail page</h4>
@@ -39,38 +39,11 @@ document.addEventListener("DOMContentLoaded", function(){
       var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
       return value? value[2] : null;
     };
-    var setCookie = function(name, value, exp) {
-      var date = new Date();
-      date.setTime(date.getTime() + exp*24*60*60*1000);
-      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-    };
-    var deleteCookie = function(name) {
-      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
-
-    var current_board = getCookie('current_board')
-    deleteCookie('current_board')
-
-    setCookie('current_board', current_board, 7)
 
     var current_user = {{ user.pk }}
+    var board_type = getCookie('current_board')
 
-    if( current_board == 1 ){
-        $(".btn_board_type_1").removeClass("btn-info")
-        $(".btn_board_type_1").removeClass("btn-danger")
-        $(".btn_board_type_2").removeClass("btn-info")
-        $(".btn_board_type_2").removeClass("btn-danger")
-        $(".btn_board_type_1").addClass("btn-danger")
-        $(".btn_board_type_2").addClass("btn-info")
-    }
-    if( current_board == 2 ){
-        $(".btn_board_type_1").removeClass("btn-info")
-        $(".btn_board_type_1").removeClass("btn-danger")
-        $(".btn_board_type_2").removeClass("btn-info")
-        $(".btn_board_type_2").removeClass("btn-danger")
-        $(".btn_board_type_1").addClass("btn-info")
-        $(".btn_board_type_2").addClass("btn-danger")
-    }
+    ctl_btn_by_board_type(board_type)
 
 });
 
