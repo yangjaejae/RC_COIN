@@ -177,7 +177,7 @@
 
 <!--챗봇-->
   <div class="floating">
-    <a href = "javascript:void(0);" id='btx'>닫기</a>
+    <a href = "javascript:void(0);" id='btx'>챗봇 닫기</a>
     <div id="open">
       <div class="resizable">
           <iframe id="abc" src ='https://frogue.danbee.ai/?chatbot_id=aa1d2bbd-bc0a-4a6c-8801-817df75dc1e9&user_id=사용자아이디'target="_blank">
@@ -236,8 +236,8 @@
 embed=$('#open').html();
 $('#btx').click(function(){
  status=$(this).text()
-  if(status=='닫기'){$('#open').html(''); $(this).text('열기');}
-  else{$('#open').html(embed); $(this).text('닫기'); }
+  if(status=='챗봇 닫기'){$('#open').html(''); $(this).text('챗봇 열기');}
+  else{$('#open').html(embed); $(this).text('챗봇 닫기'); }
 });
   </script>
 </body>
