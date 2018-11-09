@@ -3,7 +3,7 @@
 
 <link href='{% static "lib/bootstrap/css/bootstrap.css" %}' rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+{% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
 {% block content %}
 <style>
     .board_content{
@@ -25,13 +25,25 @@
         margin-top: 50px;
         margin-left: -342px;
     }
-
-
+    .btn{
+        border: 1px solid rgb(113, 197, 93);
+        border-radius: 7px;
+        color: #fff;
+        background-color: rgb(113, 197, 93);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 6px 21px;
+        margin: 5px;
+    }
 </style>
-<div class="side_bar" style="float: left; border: 1px solid black; margin-left: 40px; background-color: #10707f">
-    <div style="padding: 20px;"><a class="btn btn-info" href="{% url 'board:list' %}">  &nbsp;&nbsp;&nbsp;게 시 판&nbsp;&nbsp;&nbsp;  </a></div>
-    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_1 active" value="1" href="{% url 'board:list' %}">가맹 게시판</a></div>
-    <div style="padding: 20px;"><a class="btn btn-info btn_board_type_2" value="2" href="{% url 'board:list' %}">회원 게시판</a></div>
+<div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
+    <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 게 시 판</div></div>
+    <div style="border: 1px solid white;"></div>
+    <div style="padding: 20px;" value="1" id="btn_board_type_1"><a class="btn_board_type_1" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;">가맹 게시판</a></div>
+    <input type="hidden" id="board_type_1" value="1">
+    <div style="border: 1px solid white;"></div>
+    <div style="padding: 20px;" value="2" id="btn_board_type_2"><a class="btn_board_type_2" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;">회원 게시판</a></div>
+    <input type="hidden" id="board_type_2" value="2">
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <h4 class="mt-4 mb-5 border-bottom">추가/수정</h4>
@@ -52,8 +64,8 @@
         </fieldset>
             <div class="form-group row btn_group">
                 <div class="offset-md-3 col-md-9">
-                    <input type="submit" class="btn btn-primary" value="제출"></button>
-                    <a class="btn btn-secondary btn-sm" href="{% url 'board:list' %}">돌아가기</a>
+                    <input type="submit" class="btn" value="제출"></button>
+                    <a class="btn" href="{% url 'board:list' %}">돌아가기</a>
                 </div>
             </div>
             <!--<input type="hidden" id="board_id" name="board_id" value="{{ form.board_id }}">-->
@@ -66,38 +78,13 @@ document.addEventListener("DOMContentLoaded", function(){
       var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
       return value? value[2] : null;
     };
-    var setCookie = function(name, value, exp) {
-      var date = new Date();
-      date.setTime(date.getTime() + exp*24*60*60*1000);
-      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-    };
-    var deleteCookie = function(name) {
-      document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
 
     var current_board = getCookie('current_board')
-    deleteCookie('current_board')
 
-    setCookie('current_board', current_board, 7)
+    <!--var current_user = {{ user.pk }}-->
 
-    var current_user = {{ user.pk }}
-
-    if( current_board == 1 ){
-        $(".btn_board_type_1").removeClass("btn-info")
-        $(".btn_board_type_1").removeClass("btn-danger")
-        $(".btn_board_type_2").removeClass("btn-info")
-        $(".btn_board_type_2").removeClass("btn-danger")
-        $(".btn_board_type_1").addClass("btn-danger")
-        $(".btn_board_type_2").addClass("btn-info")
-    }
-    if( current_board == 2 ){
-        $(".btn_board_type_1").removeClass("btn-info")
-        $(".btn_board_type_1").removeClass("btn-danger")
-        $(".btn_board_type_2").removeClass("btn-info")
-        $(".btn_board_type_2").removeClass("btn-danger")
-        $(".btn_board_type_1").addClass("btn-info")
-        $(".btn_board_type_2").addClass("btn-danger")
-    }
+    ctl_btn_by_board_type(current_board)
+    btn_click_ctl()
 
     $('#board_id').val(current_board)
 

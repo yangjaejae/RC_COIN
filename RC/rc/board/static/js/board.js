@@ -31,3 +31,19 @@ function ctl_btn_by_board_type(board_type){
         $("#btn_board_type_2").css({'color': 'white'})
     }
 }
+
+
+
+function btn_click_ctl(){
+
+     $('.btn_board_type_1').on('click', function(){
+        var board_type_for_cookie = $('#board_type_1').val()
+        ctl_cookie(board_type_for_cookie)
+    })
+
+    $('.btn_board_type_2').on('click', function(){
+        var board_type_for_cookie = $('#board_type_2').val()
+        ctl_cookie(board_type_for_cookie)
+    })
+
+}

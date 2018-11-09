@@ -6,10 +6,11 @@ from member.models import Profile
 
 import json
 
-from board.models import Board, Comment
+from board.models import Board, Comment, BoardLiker
 from board.forms import BoardForm
 
 import datetime
+from datetime import datetime as dt
 # Create your views here.
 
 class BoardLV(ListView):
@@ -32,6 +33,34 @@ class BoardLV(ListView):
 
 class BoardDV(DetailView):
     model = Board
+
+    def __init__(self):
+        self.add_cnt()
+
+    def add_cnt(self):
+        print(str(self.model))
+
+    def get_context_data(self, **kwargs):
+        context = super(BoardDV, self).get_context_data(**kwargs)
+
+        added = self.object.count + 1
+        board = get_object_or_404(Board, id=self.object.id)
+        board.count = added
+        board.save()
+
+        comment_cnt = 0
+
+        try:
+            comment = get_object_or_404(Comment, board_id=self.object.id)
+            comment_cnt = len(comment)
+        except:
+            comment_cnt = 0
+
+        print()
+
+        context['object'] = self.object
+        context['comment_cnt'] = comment_cnt
+        return context
 
 def board_edit(request, board_id=None):
 
@@ -65,18 +94,21 @@ def board_delete(request, board_id):
 
 def get_comment(request):
 
+    now = dt.now()
+
     board_id = request.GET.get('board_id', )
 
     comments = Comment.objects.filter(board_id=board_id)
-
+    print(now)
     data_list = []
     for li in comments:
+        print(now - li.modify_date)
         temp = {}
         temp['board_id'] = li.board_id.id
         temp['writer'] = str(li.writer.profile.user)
         temp['content'] = li.content
-        temp['create_date'] = str(li.modify_date)[0:10]
-        temp['modify_date'] = str(li.modify_date)[0:10]
+        temp['create_date'] = str(li.create_date)
+        temp['modify_date'] = str(li.modify_date)
         temp['status'] = li.status
         data_list.append(temp)
     json_format = json.dumps(data_list)
@@ -95,8 +127,10 @@ def chg_board(request):
         temp['id'] = li.id
         temp['title'] = li.title
         temp['content'] = li.content
+        temp['count'] = li.count
+        temp['recommend'] = li.recommend
         temp['writer'] = str(li.writer)
-        temp['create_date'] = str(li.modify_date)[0:10]
+        temp['create_date'] = str(li.create_date)[0:10]
         temp['modify_date'] = str(li.modify_date)[0:10]
         temp['category'] = li.category
         temp['get_absolute_url'] = li.get_absolute_url()
@@ -117,12 +151,6 @@ def write_comment(request):
     comment.content = input_comment
     comment.status = 'y'
 
-    # for_save = []
-    # for_save.append(Board(board_id))
-    # for_save.append(User(user))
-    # for_save.append(input_comment)
-    # for_save.append('y')
-
     try:
         comment.save()
 
@@ -138,3 +166,35 @@ def write_comment(request):
 
     return HttpResponse(result, content_type="application/json:charset=UTF-8")
 
+def add_like(request):
+    board_id = request.GET.get('board_id', )
+    user_type = request.user.profile.type
+    liker = request.user.pk
+
+    board = get_object_or_404(Board, pk=board_id)
+    like = BoardLiker()
+
+    if_liked = BoardLiker.objects.filter(liker=liker, board=board_id)
+
+    if user_type != '1' and user_type != '2':
+        result = json.dumps([
+            {'likes': 'notLogin'}
+        ])
+        return HttpResponse(result, content_type="application/json:charset=UTF-8")
+    elif if_liked:
+        result = json.dumps([
+            {'likes': 'already'}
+        ])
+        return HttpResponse(result, content_type="application/json:charset=UTF-8")
+    else:
+        like.liker = User(liker)
+        like.board = board
+        like.save()
+
+        added = board.recommend + 1
+        board.recommend = added
+        board.save()
+        result = json.dumps([
+            {'likes' : added }
+        ])
+        return HttpResponse(result, content_type="application/json:charset=UTF-8")

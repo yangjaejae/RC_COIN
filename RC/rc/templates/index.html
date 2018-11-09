@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block title %}RC Coin{% endblock title %}
-
+{% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
 {% block content %}
 <!--==========================
 소개 id hero
@@ -203,5 +203,4 @@
       <!--</div>-->
     <!--</div>-->
 <!--</section>-->
-
 {% endblock content %}

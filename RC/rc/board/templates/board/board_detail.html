@@ -1,38 +1,65 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
-{% block extra_js %}<script type="text/javascript" src="{% static '/board/board.js' %}"></script>{% endblock %}
+{% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
 {% block content %}
+<style>
+    .btn{
+        border: 1px solid rgb(113, 197, 93);
+        border-radius: 7px;
+        color: #fff;
+        background-color: rgb(113, 197, 93);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 6px 21px;
+        margin: 5px;
+    }
+</style>
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
-    <div style="padding: 20px;"><div class="" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;"> 게 시 판</div></div>
-    <div id="btn_board_type_1" style="padding: 20px;"><a class="btn_board_type_1 active" value="1" href="{% url 'board:list' %}" onclick="" style="text-align: center; font-weight: bold;">가맹 게시판</a></div>
-    <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'board:list' %}" value="2" onclick="" style="text-align: center; font-weight: bold;">회원 게시판</a></div>
+    <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 게 시 판</div></div>
+    <div style="border: 1px solid white;"></div>
+    <div style="padding: 20px;" value="1" id="btn_board_type_1"><a class="btn_board_type_1" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;">가맹 게시판</a></div>
+    <input type="hidden" id="board_type_1" value="1">
+    <div style="border: 1px solid white;"></div>
+    <div style="padding: 20px;" value="2" id="btn_board_type_2"><a class="btn_board_type_2" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;">회원 게시판</a></div>
+    <input type="hidden" id="board_type_2" value="2">
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <h4 class="mt-4 mb-5 border-bottom">detail page</h4>
     <h1>{{ object.title }}</h1>
-
     <p class="date">
         {{ object.modify_date|date:"j F Y" }}
     </p>
     </br>
     <div class="body">
-
         <!-- 개행 및 공백 문자 적용 -->
         {{ object.content|linebreaks }}
     </div>
+    <div class="like">
+        <span>{{ object.count }}</span>
+        <a><img src="{% static 'img/people.png' %}"></a>
+        <span class="recommed_cnt">{{ object.recommend }}</span>
+        <a href="#" onclick="add_like({{ object.id }})"><img src="{% static 'img/heart.png' %}"></a>
+    </div>
     <div>
         {% if user.pk == object.writer.profile.pk %}
-            <a class="btn btn-secondary btn-sm btn_modify" href="{% url 'board:edit' object.id %}">수정</a>
-            <a class="btn btn-secondary btn-sm btn_delete" href="{% url 'board:delete' object.id %}">삭제</a>
+        <a class="btn  btn_modify" href="{% url 'board:edit' object.id %}">수정</a>
+        <a class="btn btn_delete" href="{% url 'board:delete' object.id %}">삭제</a>
         {% endif %}
-        <a class="btn btn-secondary btn-sm" href="{% url 'board:list' %}">돌아가기</a>
-        <a class="btn btn-secondary btn-sm btn_comment" onclick="comment({{ object.id }})">댓글 보기</a>
+        <a class="btn" href="{% url 'board:list' %}">돌아가기</a>
+        <a class="btn btn_comment" onclick="comment({{ object.id }})">댓글 보기</a>
+    </div>
+    <div>
+        <a><img src="{% static 'img/comment.png' %}"></a>
+        <span>{{ comment_cnt }}</span>
     </div>
     <input class="input_comment" type='text' value='' style='width: 80%'>
     <button class='btn btn-primary btn_comment_write' onclick="write_comment({{ object.id }})">제출</button>
     <div class="comment_area" id="comment_area" style="display: table">
-        <ul></ul>
-        <script type="text/javascript">
+        <ul style="list-style:none;"></ul>
+    </div>
+</div>
+<input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
+<script type="text/javascript">
 
 document.addEventListener("DOMContentLoaded", function(){
     var getCookie = function(name) {
@@ -40,22 +67,23 @@ document.addEventListener("DOMContentLoaded", function(){
       return value? value[2] : null;
     };
 
-    var current_user = {{ user.pk }}
+    <!--var current_user = {{ user.pk }}-->
     var board_type = getCookie('current_board')
 
     ctl_btn_by_board_type(board_type)
+    btn_click_ctl()
 
 });
 
+
 function comment(num){
     var board_id = num
-
-    $( "li" ).remove();
 
     if( $('.comment_area').hasClass('on') ){
         $('.comment_area').removeClass('on')
         $('.comment_area').css('display', 'none');
     }else{
+    alert(board_id)
         $.ajax({
             type: 'GET',
             url: '{% url 'board:comment' %}',
@@ -64,57 +92,101 @@ function comment(num){
             },
             dataType : 'json',
             success: function(data) {
-                $(".comment_area ul").remove('li')
+                $( "li" ).remove();
                 html_str = ""
                 var result_data = []
                 result_data = data
                 if ( data != '' ){
-
                     result_data.forEach(function(data){
                         html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.modify_date + "&nbsp; | &nbsp;" + data.content + "</li>"
                         $(".comment_area ul").append(html_str)
                     });
                 }
-
-               $('.comment_area').css('display', 'table');
-               $('.comment_area').addClass('on');
             },
             error: function( jqXHR, textStatus, errorThrown ){
                     alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
             }
         });
+        $('.comment_area').css('display', 'table');
+       $('.comment_area').addClass('on');
     }
 }
 
 function write_comment(board_id){
 
     var comm = $('.input_comment').val()
+    alert(comm)
+    if( comm != '' ){
 
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:write_comment' %}',
+            data: {
+                board_id : board_id,
+                comment : comm
+            },
+            dataType : 'json',
+            success: function(data) {
+
+                $('.input_comment').val('')
+
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+            }
+        });
+    }
     $.ajax({
         type: 'GET',
-        url: '{% url 'board:write_comment' %}',
+        url: '{% url 'board:comment' %}',
         data: {
-            board_id : board_id,
-            comment : comm
+            board_id : board_id
         },
         dataType : 'json',
         success: function(data) {
-
-            $('.input_comment').val('')
-
+            $(".comment_area ul").remove('li')
+            html_str = ""
+            var result_data = []
+            result_data = data
+            if ( data != '' ){
+                result_data.forEach(function(data){
+                    html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.modify_date + "&nbsp; | &nbsp;" + data.content + "</li>"
+                    $(".comment_area ul").append(html_str)
+                });
+            }
         },
         error: function( jqXHR, textStatus, errorThrown ){
                 alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
         }
     });
-    comment(board_id)
+    <!--comment(board_id)-->
     $('.comment_area').css('display', 'table');
    $('.comment_area').addClass('on');
 }
 
+function add_like(board_id){
+    $.ajax({
+        type: 'GET',
+        url: '{% url 'board:add_like' %}',
+        data: {
+            board_id : board_id
+        },
+        dataType : 'json',
+        success: function(data) {
+            if(data[0].likes == 'notLogin'){
+                alert("로그인을 하셔야합니다.")
+            }else if(data[0].likes == 'already'){
+                alert("이미 좋아요를 누르셨습니다.")
+            }else{
+                $('.recommed_cnt').text(data[0].likes)
+            }
+        },
+        error: function( jqXHR, textStatus, errorThrown ){
+                alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
+        }
+    });
+}
+
 </script>
-    </div>
-</div>
-<input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
 
 {% endblock content %}

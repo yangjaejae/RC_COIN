@@ -1,27 +1,30 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
 <script src='{% static "lib/jquery/jquery.min.js" %}'></script>
-{% block extra_js %}<script type="text/javascript" src="{% static '/board/board.js' %}"></script>{% endblock %}
+{% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
 {% block content %}
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
-    <div style="padding: 20px;"><div class="" href="{% url 'board:list' %}" style="text-align: center; font-weight: bold;"> 게 시 판</div></div>
+    <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 게 시 판</div></div>
+    <div style="border: 1px solid white;"></div>
     <div id="btn_board_type_1" style="padding: 20px; background-color: #71c55d;"><a class="btn_board_type_1" value="1" href="#" onclick="chg_board( 1 )" style="text-align: center; font-weight: bold;">가맹 게시판</a></div>
+    <div style="border: 1px solid white;"></div>
     <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="#" value="2" onclick="chg_board( 2 )" style="text-align: center; font-weight: bold;">회원 게시판</a></div>
 </div>
 <div class="content board_content" style="margin-left: 20%;margin-top: 10%;margin-right: 20%;margin-bottom: 30%">
     <input type="hidden" id="user_type" name="user_type" value="{{ user.profile.type }}">
     <input type="hidden" id="board_type" name="board_type" value="">
     <div class="btn_write_area" style="background-color: white; background-color:67px;">
-        <a class="btn btn-primary btn-sm btn_write" href="{% url 'board:add' %}" style="display: none;position: absolute;margin-top: -50px;">글쓰기</a>
+        <a class="btn btn_write" href="{% url 'board:add' %}" style="display: none; position: absolute; margin-top: -50px; right: 312px; background-color: #71c55d;">글쓰기</a>
     </div>
     <table class="table table-hover">
         <thead>
-        <tr>
-            <th scope="col">번호</th>
+            <tr>
+                <th scope="col">번호</th>
                 <th scope="col">제목</th>
                 <th scope="col">작성자</th>
                 <th scope="col">날짜</th>
-                <th scope="col"></th>
+                <th scope="col">조회수</th>
+                <th scope="col">추천</th>
             </tr>
         </thead>
         <tbody>
@@ -31,8 +34,8 @@
                 <td><a href="{{ text.get_absolute_url }}">{{ text.title }}</a></td>
                 <td>{{ text.writer }}</td>
                 <td>{{ text.modify_date|date:"Y-n-d" }}</td>
-            </tr>
-            <tr colspan="4" style="text-align: center;" class="tag_comment_{{ text.id }}" style="display: none">
+                <td style="text-align: center">{{ text.count }}</td>
+                <td style="text-align: center">{{ text.recommend }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -67,8 +70,8 @@
                     html += "<td><a href='" + text.get_absolute_url + "'>" + text.title + "</a></td>"
                     html += "<td>" +  text.writer + "</td>"
                     html += "<td>" + text.modify_date + "</td>"
-                    html += "</tr>"
-                    html += "<tr colspan='4' style='text-align: center;' class='tag_comment_" + text.id + "' style='display: none'>"
+                    html += "<td style='text-align: center'>" + text.count + "</td>"
+                    html += "<td style='text-align: center'>" + text.recommend + "</td>"
                     html += "</tr>"
                 })
 
@@ -88,8 +91,6 @@
         })
     }
 
-    <!--chg_board(board_type)-->
-
     document.addEventListener("DOMContentLoaded", function(){
 
         var getCookie = function(name) {
@@ -101,6 +102,7 @@
 
         if( board_type == null ){
             ctl_cookie(1)
+            chg_board(1)
         }else{
             chg_board(board_type)
         }
