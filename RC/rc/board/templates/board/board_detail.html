@@ -1,7 +1,15 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
-{% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
+{% block extra_js %}
+<script type="text/javascript" src="{% static '/js/board.js' %}"></script>
+{% endblock %}
 {% block content %}
+  <!-- editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 <style>
     .btn{
         border: 1px solid rgb(113, 197, 93);
@@ -12,6 +20,16 @@
         font-weight: 800;
         padding: 6px 21px;
         margin: 5px;
+    }
+    .note-toolbar{
+        display: none;
+        height: 0px;
+    }
+    .note-statusbar{
+        display: none;
+    }
+    .note-editor.note-frame .note-editing-area .note-editable[contenteditable="false"]{
+        background-color: white;
     }
 </style>
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
@@ -30,15 +48,15 @@
         {{ object.modify_date|date:"j F Y" }}
     </p>
     </br>
-    <div class="body">
-        <!-- 개행 및 공백 문자 적용 -->
-        {{ object.content|linebreaks }}
+    <div class="body" id="summernote">
+        {{ object.content|safe }}
+
     </div>
     <div class="like">
-        <span>{{ object.count }}</span>
         <a><img src="{% static 'img/people.png' %}"></a>
-        <span class="recommed_cnt">{{ object.recommend }}</span>
+        <span>{{ object.count }}</span>
         <a href="#" onclick="add_like({{ object.id }})"><img src="{% static 'img/heart.png' %}"></a>
+        <span class="recommed_cnt">{{ object.recommend }}</span>
     </div>
     <div>
         {% if user.pk == object.writer.profile.pk %}
@@ -60,8 +78,10 @@
 </div>
 <input id="hdn_board_val" type="hidden" value="{{ object.id }}" >
 <script type="text/javascript">
-
 document.addEventListener("DOMContentLoaded", function(){
+
+    <!--$('#summernote').html();-->
+
     var getCookie = function(name) {
       var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
       return value? value[2] : null;
@@ -83,7 +103,6 @@ function comment(num){
         $('.comment_area').removeClass('on')
         $('.comment_area').css('display', 'none');
     }else{
-    alert(board_id)
         $.ajax({
             type: 'GET',
             url: '{% url 'board:comment' %}',
@@ -108,7 +127,7 @@ function comment(num){
             }
         });
         $('.comment_area').css('display', 'table');
-       $('.comment_area').addClass('on');
+        $('.comment_area').addClass('on');
     }
 }
 
@@ -117,7 +136,6 @@ function write_comment(board_id){
     var comm = $('.input_comment').val()
     alert(comm)
     if( comm != '' ){
-
         $.ajax({
             type: 'GET',
             url: '{% url 'board:write_comment' %}',
@@ -159,9 +177,8 @@ function write_comment(board_id){
                 alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
         }
     });
-    <!--comment(board_id)-->
     $('.comment_area').css('display', 'table');
-   $('.comment_area').addClass('on');
+    $('.comment_area').addClass('on');
 }
 
 function add_like(board_id){
@@ -186,7 +203,8 @@ function add_like(board_id){
         }
     });
 }
-
+$('#summernote').summernote();
+$('.note-editable').attr('contenteditable', 'false');
 </script>
 
 {% endblock content %}

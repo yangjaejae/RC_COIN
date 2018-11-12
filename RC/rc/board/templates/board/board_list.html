@@ -3,6 +3,18 @@
 <script src='{% static "lib/jquery/jquery.min.js" %}'></script>
 {% block extra_js %}<script type="text/javascript" src="{% static '/js/board.js' %}"></script>{% endblock %}
 {% block content %}
+<style>
+    .btn{
+        border: 1px solid rgb(113, 197, 93);
+        border-radius: 7px;
+        color: #fff;
+        background-color: rgb(113, 197, 93);
+        font-size: 11px;
+        font-weight: 800;
+        padding: 6px 21px;
+        margin: 22px;
+    }
+</style>
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
     <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 게 시 판</div></div>
     <div style="border: 1px solid white;"></div>
@@ -14,6 +26,16 @@
     <input type="hidden" id="user_type" name="user_type" value="{{ user.profile.type }}">
     <input type="hidden" id="board_type" name="board_type" value="">
     <div class="btn_write_area" style="background-color: white; background-color:67px;">
+        <select name="search_categoty" style="height: 30px; border: 1px solid #CCC;color:#CCC">
+            <option value="all">전체</option>
+            <option value="writer">작성자</option>
+            <option value="title">제목</option>
+            <option value="content">게시글</option>
+        </select>
+        <input type="text" placeholder="검색어를 입력하세요. "
+               style="width: 340px;background-image:url({% static 'img/search.png' %});background-repeat: no-repeat;border:#CCC solid 1px;padding-left: 20px;">
+        <a class="" href="{% url 'board:list' %}" style="margin-right: -18px;margin-left: 6px;"><img src="{% static 'img/refresh.png' %}"></a>
+        <a class="btn btn_search">찾기</a>
         <a class="btn btn_write" href="{% url 'board:add' %}" style="display: none; position: absolute; margin-top: -50px; right: 312px; background-color: #71c55d;">글쓰기</a>
     </div>
     <table class="table table-hover">

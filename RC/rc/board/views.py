@@ -85,7 +85,7 @@ def board_edit(request, board_id=None):
         # book instance에서 Form 생성
         form = BoardForm(instance=board)
         # 사용자의 request를 가지고 이동한다.
-        return render(request, 'board/board_edit.html', dict(form=form, board_id=board_id))
+        return render(request, 'board/board_edit.html', dict(form=form, board=board))
 
 def board_delete(request, board_id):
     board = get_object_or_404(Board, pk=board_id)
@@ -99,10 +99,10 @@ def get_comment(request):
     board_id = request.GET.get('board_id', )
 
     comments = Comment.objects.filter(board_id=board_id)
-    print(now)
+    print(datetime.datetime.strptime(str(now),'%Y-%m-%d').strftime('%d/%m/%Y'))
     data_list = []
     for li in comments:
-        print(now - li.modify_date)
+        print(now - datetime.datetime.strptime(str(li.modify_date),'%Y-%m-%d').strftime('%d/%m/%Y') )
         temp = {}
         temp['board_id'] = li.board_id.id
         temp['writer'] = str(li.writer.profile.user)
@@ -198,3 +198,6 @@ def add_like(request):
             {'likes' : added }
         ])
         return HttpResponse(result, content_type="application/json:charset=UTF-8")
+
+def test(request):
+    return render(request, "board/test.html", ({}))
