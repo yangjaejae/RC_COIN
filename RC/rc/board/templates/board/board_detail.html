@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
-
 function comment(num){
     var board_id = num
 
@@ -117,9 +116,10 @@ function comment(num){
                 result_data = data
                 if ( data != '' ){
                     result_data.forEach(function(data){
-                        html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.modify_date + "&nbsp; | &nbsp;" + data.content + "</li>"
-                        $(".comment_area ul").append(html_str)
+                        html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.time_diff + "</li>"
+                        html_str += "<li>" + data.content + "</li>"
                     });
+                    $(".comment_area ul").append(html_str)
                 }
             },
             error: function( jqXHR, textStatus, errorThrown ){
@@ -153,30 +153,32 @@ function write_comment(board_id){
                     alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
             }
         });
-    }
-    $.ajax({
-        type: 'GET',
-        url: '{% url 'board:comment' %}',
-        data: {
-            board_id : board_id
-        },
-        dataType : 'json',
-        success: function(data) {
-            $(".comment_area ul").remove('li')
-            html_str = ""
-            var result_data = []
-            result_data = data
-            if ( data != '' ){
-                result_data.forEach(function(data){
-                    html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.modify_date + "&nbsp; | &nbsp;" + data.content + "</li>"
+
+        $.ajax({
+            type: 'GET',
+            url: '{% url 'board:comment' %}',
+            data: {
+                board_id : board_id
+            },
+            dataType : 'json',
+            success: function(data) {
+                alert($(".comment_area ul"))
+                html_str = ""
+                var result_data = []
+                result_data = data
+                if ( data != '' ){
+                    result_data.forEach(function(data){
+                        html_str += "<li>" + data.writer + "&nbsp; | &nbsp;" + data.time_diff + "</li>"
+                        html_str += "<li>" + data.content + "</li>"
+                    });
                     $(".comment_area ul").append(html_str)
-                });
+                }
+            },
+            error: function( jqXHR, textStatus, errorThrown ){
+                    alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
             }
-        },
-        error: function( jqXHR, textStatus, errorThrown ){
-                alert('status: ' + textStatus + '\nerror: ' + jqXHR.error )
-        }
-    });
+        });
+    }
     $('.comment_area').css('display', 'table');
     $('.comment_area').addClass('on');
 }
