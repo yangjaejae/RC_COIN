@@ -97,25 +97,25 @@
     </div>
   </section>
 
-<!--<section id="newsletter" class="newsletter text-center wow fadeInUp">-->
-    <!--<div class="overlay padd-section">-->
-      <!--<div class="container">-->
-        <!--<div class="row justify-content-center">-->
-          <!--<div class="col-md-9 col-lg-6">-->
-            <!--<form class="form-inline" method="POST" action="#">-->
-              <!--<input type="search" class="form-control " placeholder="가맹점 찾기" name="store">-->
-              <!--<button type="submit" class="btn btn-default"><i class="fa fa-location-arrow"></i>검색</button>-->
-            <!--</form>-->
-            <!--</br></br>-->
-            <!--<button type="button" class="btn btn-default">울릉읍</button>-->
-            <!--<button type="button" class="btn btn-default">북면</button>-->
-            <!--<button type="button" class="btn btn-default">서면</button>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</section>-->
+<section id="newsletter" class="newsletter text-center">
+    <div class="overlay padd-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-9 col-lg-6">
+            <form class="form-inline" method="POST" action="#">
+              <input type="search" class="form-control " placeholder="가맹점 찾기" name="store">
+              <button type="submit" class="btn btn-default"><i class="fa fa-location-arrow"></i>검색</button>
+            </form>
+            </br></br>
+            <a href="{% url 'photo:album_detail' 3 %}"><button type="button" class="btn btn-default">북면</button></a>
+            <a href="{% url 'photo:album_detail' 5 %}"><button type="button" class="btn btn-default">서면</button></a>
+            <a href="{% url 'photo:album_detail' 2 %}"><button type="button" class="btn btn-default">울릉읍</button></a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
 
 <!--<section id="get-started" class="wow fadeIn">-->
 
