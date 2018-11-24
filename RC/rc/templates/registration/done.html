@@ -1,0 +1,27 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<section id="hero">
+    <div class="con_tit">
+        <h3>{{ title }}</h3>
+    </div>
+    <div class="sm_wrap">
+        <ul align="center">
+            <p><img src="{% static '/img/mascot/mascot.jpg' %}"></p>
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </ul>
+        <div class="one_btn">
+            <div class="one_green">
+                <a href="{% url 'index' %}">메인화면으로 이동</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

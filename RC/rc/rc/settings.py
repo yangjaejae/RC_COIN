@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'member',
+    'profiles.apps.ProfilesConfig',
     'board',
     'info',
     'store',
@@ -130,10 +130,18 @@ STATICFILES_DIRS = ( os.path.join('static'), )
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Login setting
-LOGIN_URL = '/accounts/login/'      # default = '/accounts/login/'
-LOGOUT_URL = '/accounts/logout/'    # default = '/accounts/logout/'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_URL = '/accounts/logout/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Media setting
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# Email host setting
+EMAIL_HOST_PASSWORD = 'q1w2q1aa'
+EMAIL_HOST_USER = 'doradora46@naver.com'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

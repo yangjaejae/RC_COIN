@@ -80,12 +80,7 @@
             </ul>
           </li>
         {% else %}
-          <li class="menu-has-children"><a href="#pricing">회원가입</a>
-            <ul>
-              <li><a href="{% url 'member:register_user' type='U' %}">사용자 가입</a></li>
-              <li><a href="{% url 'member:register_store' type='S' %}">가맹점 가입</a></li>
-            </ul>
-          </li>
+          <li class="menu-has-children"><a href="#pricing">회원가입</a></li>
           <li><a href="{% url 'login' %}">로그인</a></li>
         {% endif %}
       </ul>

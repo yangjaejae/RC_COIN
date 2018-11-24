@@ -1,0 +1,48 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<section id="hero">
+    <div class="con_tit">
+        <h3>My Info</h3>
+    </div>
+    <div class="sm_wrap">
+        <ul>
+            <li><h3>아이디</h3></li>
+            <li><input type="text" name="username" value="{{ username }}" readonly></li>
+        </ul>
+        <ul>
+            <li><h3>이메일</h3></li>
+            <li><input type="text" name="email" value="{{ email }}" readonly></li>
+        </ul>
+        <ul>
+            <li><h3>성별</h3></li>
+            <li>
+                {% if gender == "m" %}
+                    <input type="text" name="gender" value="남성" readonly>
+                {% else %}
+                    <input type="text" name="gender" value="여성" readonly>
+                {% endif %}
+            </li>
+        </ul>
+        <ul class="birthday">
+            <li><h3>생년월일</h3></li>
+            <li><input type="text" name="gender" value="{{ birth_year }} 년  {{ birth_month }} 월  {{ birth_date }} 일" readonly></li>
+        </ul>
+        <div class="one_btn pb10">
+            <div class="one_green">
+                <a href="{% url 'profile:check_password' user.id %}">정보수정</a>
+            </div>
+        </div>
+        <div class="one_btn">
+            <div class="one_gray">
+                <a href="{% url 'index' %}">확인</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

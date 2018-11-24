@@ -27,8 +27,8 @@ urlpatterns = [
 
     path('intro/', views.intro, name='intro'),
     path('map/', views.map, name='map'),
-    path('member/', include('member.urls', namespace='member')),
     path('info/', include('info.urls', namespace='info')),
+    path('accounts/', include('profiles.urls', namespace='profile')),
     path('board/', include('board.urls', namespace='board')),
     path('store/', include('store.urls', namespace='store')),
     path('photo/', include('photo.urls', namespace='photo')),

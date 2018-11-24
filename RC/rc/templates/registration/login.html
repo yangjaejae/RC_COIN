@@ -1,36 +1,50 @@
-{% extends './index_base.html' %}
+{% extends 'index_base.html' %}
 {% load staticfiles %}
-{% static "css/style.css" %}
 
-{% block title %}로그인{% endblock title %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+{% endblock head %}
 
 {% block content %}
-
-<section id="get-started" class="padd-section">
-    <form action="." method="post">
+<section id="hero">
+    <form action="." method="POST">
         {% csrf_token %}
-        <div class="section-title text-center">
-            <h1>로그인</h1>
-            <p class="separator">회원정보를 입력해주세요</p>
+        <div class="con_tit">
+            <h3>로그인</h3>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="form">
-                <div class="form-group">
-                    <h4 class="text-success">UserName</h4><input type="text" name="username" class="form-control" required/>
+        <div class="sm_wrap">
+            <ul>
+                <li><input type="text" name="username" value="" placeholder="아이디를 입력해 주세요." required autocomplete="off" autofocus/></li>
+            </ul>
+            <ul>
+                <li><input type="password" name="password" value="" placeholder="비밀번호를 입력해 주세요." required autocomplete="off"/></li>
+            </ul>
+            <ul>
+                <li class="txt_red">{% if form.errors %}아이디 또는 비밀번호가 올바르지 않습니다.{% endif %}</li>
+            </ul>
+            <ul>
+                <li>
+                    <div>
+                        <input type="checkbox" id="remember_me" name="remember_me"><label for="remember_me">로그인 유지</label>
+                    </div>
+                </li>
+            </ul>
+            <div class="one_btn pb10">
+                <div class="one_green">
+                    <button type="submit">로그인</button>
                 </div>
-
-                <div class="form-group">
-                    <h4 class="text-success">Password</h4><input type="password" name="password" class="form-control" required/>
-                </div>
-
-                <div>
-                    <button type="submit" class="btn btn-success">로그인</button>
-                    <a href="{% url 'index' %}"><input type="button" value="취소" class="btn btn-success"/></a>
+            </div>
+            <div class="one_btn">
+                <div class="one_gray">
+                    <a href="{% url 'index' %}">취소</a>
                 </div>
             </div>
         </div>
     </form>
+    <div class="pass_src">
+        <a href="{% url 'profile:search_username' %}">아이디 찾기</a> |
+        <a href="{% url 'profile:search_password' %}">비밀번호 찾기</a> |
+        <a href="{% url 'profile:signup' %}">회원가입</a>
+    </div>
 </section>
-
 {% endblock content %}

@@ -7,51 +7,50 @@
 {% block content %}
 {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
 <section id='team'>
-<div id="content" align="center">
+    <div id="content" align="center">
 
 
-    <table class="photo-detail">
+        <table class="photo-detail">
 
-    <tr>
+            <tr>
 
-    <td>
+                <td>
 
-        <a href="{{ object.image.url }}">
+                    <a href="{{ object.image.url }}">
 
-        <img width="100%" height="100%" src="{{ object.image.url }}"/>
+                        <img width="100%" height="100%" src="{{ object.image.url }}"/>
 
-        </a>
+                    </a>
 
-    </td>
-
-
-
-    <td>
-
-    <ul>
-    <h2>{{ object.title }}</h2>
-        <li>Photo Description</li>
-
-        {% if object.description %}<p>{{ object.description|linebreaks }}</p>
-
-        {% else %}<p>(blank)</p>{% endif %}
-
-        <li>Date Uploaded</li>
-
-        <p>{{ object.upload_date }}</p>
-
-        <li>Album Name</li>
-
-        <p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p>
-
-    </ul>
-
-    </td>
-
-    </tr></table>
+                </td>
 
 
+                <td>
 
-</div>
+                    <ul>
+                        <h2>{{ object.title }}</h2>
+                        <li>Photo Description</li>
+
+                        {% if object.description %}<p>{{ object.description|linebreaks }}</p>
+
+                        {% else %}<p>(blank)</p>{% endif %}
+
+                        <li>Date Uploaded</li>
+
+                        <p>{{ object.upload_date }}</p>
+
+                        <li>Album Name</li>
+
+                        <p><a href="{% url 'photo:album_detail' object.album.id %}">{{ object.album.name }}</a></p>
+
+                    </ul>
+
+                </td>
+
+            </tr>
+        </table>
+
+
+    </div>
 </section>
 {% endblock content %}

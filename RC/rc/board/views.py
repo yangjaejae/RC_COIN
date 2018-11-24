@@ -23,7 +23,7 @@ class BoardLV(ListView):
     paginate_by = 10
 
     def __init__(self):
-        self.user_type = '1'
+        self.user_type = 1
 
     def get_queryset(self):
         if self.request.user.username == '':
@@ -225,7 +225,7 @@ def add_like(request):
 
     if_liked = BoardLiker.objects.filter(liker=liker, board=board_id)
 
-    if user_type != '1' and user_type != '2':
+    if user_type != 1 and user_type != 2:
         result = json.dumps([
             {'likes': 'notLogin'}
         ])
