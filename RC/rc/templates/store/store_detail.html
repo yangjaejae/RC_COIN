@@ -1,53 +1,127 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<section id="hero">
-        <fieldset class="aligned">
-            <br/><br/>
-            <div>
-                name:   {{ store.name }}
-            </div>
-            <div>
-                corporate_number:   {{ store.corporate_number }}
-            </div>
-            <div>
-                representative:   {{ store.representative }}
-            </div>
-            <div>
-                category:   {{ store.category }}
-            </div>
-            <div>
-                location:   {{ store.location }}
-            </div>
-            <div>
-                address:   {{ store.address }}
-            </div>
-            <div>
-                phone_number:   {{ store.phone_number }}
-            </div>
-            <div>
-                영업시간:   {{ store.opening_hour }}:{{ store.opening_minute }} - {{ store.closing_hour }}:{{ store.closing_minute }}
-            </div>
-            <div>
-                description:   {{ store.description | linebreaks }}
-            </div>
-            <div>
-                registered_date:   {{ store.registered_date }}
-            </div>
-            <div>
-                modified_date:   {{ store.modified_date }}
-            </div>
-            <div>
-                {% if store.status == 'a' or store.status == 'r' %}
-                상태:   승인됨
-                {% else %}
-                상태:   승인대기
-                {% endif %}
-            </div>
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}"/>
+{% endblock head %}
 
-        </fieldset>
-        <a href="{% url 'store:edit' store.id %}"><input type="button" class="btn" value="수정"></a>
-        <a href="{% url 'store:myList' %}"><input type="button" class="btn" value="취소"></a>
+{% block content %}
+
+<section id="hero">
+    <br/>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <strong>가맹점 상세정보</strong>
+            </div>
+            <div class="card-body">
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">상호</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.name }}" disabled>
+                    </div>
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">사업자등록번호</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.corporate_number }}" disabled>
+                    </div>
+                </div>
+
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">등록업종</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.category }}" disabled>
+                    </div>
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">등록지역</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.location }}" disabled>
+                    </div>
+                </div>
+
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">홈페이지</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.url }}" disabled>
+                    </div>
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">연락처</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.phone_number }}" disabled>
+                    </div>
+                </div>
+
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">위치</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.address }}" disabled>
+                    </div>
+                </div>
+
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">영업시간</span>
+                        </div>
+                        <input type="text" class="form-control"
+                               value="{{ store.opening_hour }}:{{ store.opening_minute }} - {{ store.closing_hour }}:{{ store.closing_minute }}"
+                               disabled>
+                    </div>
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">등록상태</span>
+                        </div>
+                        {% if store.status == 'a' %}
+                        <input type="text" class="form-control" value="승인됨" disabled>
+                        {% else %}
+                        <input type="text" class="form-control" value="승인대기" disabled>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card-block row">
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">신청일자</span>
+                        </div>
+                        <input type="text" class="form-control"
+                               value="{{ store.registered_date | date:'Y-m-d, H:i:s' }}" disabled>
+                    </div>
+                    <div class="col-sm input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">수정일자</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{ store.modified_date | date:'Y-m-d, H:i:s'}}"
+                               disabled>
+                    </div>
+                </div>
+
+                <div class="card-block">
+                    <div class="input-group mb-3">
+                        <textarea class="form-control text-area" disabled>{{ store.description }}</textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm align-center">
+                        <a href="{% url 'store:edit' store.id %}" class="one_green">수정</a>
+                        <a href="{% url 'store:myList' %}" class="one_gray">확인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
+
 {% endblock %}

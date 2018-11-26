@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
-from .models import Store
+from django.http import JsonResponse
+from .models import Store, Category, Location
 from .forms import StoreForm
 
 
@@ -12,9 +13,8 @@ class StoreLV(ListView):
     context_object_name = 'stores'
 
     def get_queryset(self):
-        if self.request.user.profile.type == 1:
-            queryset = Store.objects.filter(representative=self.request.user.id).order_by('-id')
-            return queryset
+        queryset = Store.objects.filter(representative=self.request.user.id).order_by('-id')
+        return queryset
 
 
 class StoreDV(DetailView):
@@ -44,9 +44,12 @@ def store_edit(request, store_id=None):
             store.status = "w"
             store.save()
         return redirect('store:myList')
+
     else:
         form = StoreForm(instance=store)
-        return render(request, 'store/store_edit.html', dict(form=form, store=store))
+        category = Category.objects.all().order_by('id')
+        location = Location.objects.all().order_by('id')
+        return render(request, 'store/store_edit.html', dict(form=form, store=store, categorys=category, locations=location))
 
 
 def store_remove(request, store_id=None):

@@ -1,31 +1,126 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/store.css' %}"/>
+{% endblock head %}ㅅㄷㄴㅅ
+
 {% block content %}
+
 <section id="hero">
-    {% if store.id %}
-    <form action="{% url 'store:edit' store_id=store.id %}" method="POST">
-    {% else %}
-    <form action="{% url 'store:add' %}" method="POST">
-    {% endif %}
-        {% csrf_token %}
-        <fieldset class="aligned">
-            <br/><br/>
-            {{ form.name.label_tag }} {{ form.name }}<br/>
-            {{ form.corporate_number.label_tag }} {{ form.corporate_number }}<br/>
-            {{ form.category.label_tag }} {{ form.category }}<br/>
-            {{ form.location.label_tag }} {{ form.location }}<br/>
-            {{ form.address.label_tag }} {{ form.address }}<br/>
-            {{ form.phone_number.label_tag }} {{ form.phone_number }}<br/>
-            {{ form.url.label_tag }} {{ form.url }}<br/>
-            {{ form.opening_hour.label_tag }} {{ form.opening_hour }}<br/>
-            {{ form.opening_minute.label_tag }} {{ form.opening_minute }}<br/>
-            {{ form.closing_hour.label_tag }} {{ form.closing_hour }}<br/>
-            {{ form.closing_minute.label_tag }} {{ form.closing_minute }}<br/>
-            {{ form.description.label_tag }} {{ form.description }}
-        </fieldset>
-        <input type="submit" class="btn" value="제출">
-        <a href="{% url 'profile:account_myInfo' user.id %}"><input type="button" class="btn" value="취소"></a>
-    </form>
+    <br/>
+    <div class="container">
+        {% if user.profile.type == 1 %}
+        <form id="edit_form" action="{% url 'store:edit' store_id=store.id %}" method="POST">
+        {% else %}
+        <form id="edit_form" action="{% url 'store:add' %}" method="POST">
+        {% endif %}
+            {% csrf_token %}
+            <div class="card">
+                <div class="card-header">
+                    <strong>가맹점 정보수정</strong>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                        <div id="msg" class="alert alert-success" role="alert">
+                            가맹점 정보를 입력해주세요.
+                        </div>
+                    </div>
+
+                    <div class="card-block row">
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">상호</span>
+                            </div>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">사업자등록번호</span>
+                            </div>
+                            {{ form.corporate_number }}
+                        </div>
+                    </div>
+
+                    <div class="card-block row">
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">등록업종</span>
+                            </div>
+                            <input type="text" id="myCategory" value="{{ store.category.id }}" hidden/>
+                            {{ form.category }}
+                        </div>
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">등록지역</span>
+                            </div>
+                            <input type="text" id="myLocation" value="{{ store.location.id }}" hidden/>
+                            {{ form.location }}
+                        </div>
+                    </div>
+
+                    <div class="card-block row">
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">홈페이지</span>
+                            </div>
+                            {{ form.url }}
+                        </div>
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">연락처</span>
+                            </div>
+                            {{ form.phone_number }}
+                        </div>
+                    </div>
+
+                    <div class="card-block row">
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">위치</span>
+                            </div>
+                            {{ form.address }}
+                        </div>
+                    </div>
+
+                    <div class="card-block row">
+                        <div class="col-sm input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">영업시간</span>
+                            </div>
+                            <input type="text" id="myOpening_hour" value="{{ store.opening_hour }}" hidden />
+                            <input type="text" id="myOpening_minute" value="{{ store.opening_minute }}" hidden />
+                            <input type="text" id="myClosing_hour" value="{{ store.closing_hour }}" hidden />
+                            <input type="text" id="myClosing_minute" value="{{ store.closing_minute }}" hidden />
+                            {{ form.opening_hour }}&nbsp;:&nbsp;
+                            {{ form.opening_minute }}&nbsp;&nbsp;-&nbsp;&nbsp;
+                            {{ form.closing_hour }}&nbsp;:&nbsp;
+                            {{ form.closing_minute }}
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="input-group mb-3">
+                            {{ form.description }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm align-center">
+                            <a id="btn_modify" href="" class="one_green">수정</a>
+                            {% if user.profile.type == 1 %}
+                            <a href="{% url 'store:myList' %}" class="one_gray">취소</a>
+                            {% else %}
+                            <a href="{% url 'profile:account_myInfo' user.id %}" class="one_gray">취소</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </section>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/store.js' %}"></script>
 {% endblock %}

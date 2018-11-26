@@ -11,16 +11,17 @@
                 <th>등록상태</th>
                 <th></th>
             </tr>
+
             {% for store in stores %}
                 {% if store.status != 'd' %}
                 <tr>
                     <td>{{ store.name }}</td>
                     <td>{{ store.corporate_number }}</td>
                     <td>
-                        {% if store.status == 'a' or store.status == 'r' %}
-                        승인
+                        {% if store.status == 'a' %}
+                        승인됨
                         {% else %}
-                        심사중
+                        승인대기
                         {% endif %}
                     </td>
                     <td>
