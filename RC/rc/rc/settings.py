@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
     'board',
+    'store.apps.StoreConfig',
     'info',
-    'store',
     'photo.apps.PhotoConfig'
 ]
 

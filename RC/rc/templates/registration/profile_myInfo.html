@@ -43,6 +43,13 @@
                 <a href="{% url 'index' %}">확인</a>
             </div>
         </div>
+        <div>
+            {% if user.profile.type == 1 %}
+            <a href="{% url 'store:myList' %}">가맹점 관리</a>
+            {% else %}
+            <a href="{% url 'store:add' %}">가맹점 신청</a>
+            {% endif %}
+        </div>
     </div>
 </section>
 {% endblock content %}

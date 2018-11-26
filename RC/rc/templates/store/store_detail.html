@@ -1,0 +1,53 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<section id="hero">
+        <fieldset class="aligned">
+            <br/><br/>
+            <div>
+                name:   {{ store.name }}
+            </div>
+            <div>
+                corporate_number:   {{ store.corporate_number }}
+            </div>
+            <div>
+                representative:   {{ store.representative }}
+            </div>
+            <div>
+                category:   {{ store.category }}
+            </div>
+            <div>
+                location:   {{ store.location }}
+            </div>
+            <div>
+                address:   {{ store.address }}
+            </div>
+            <div>
+                phone_number:   {{ store.phone_number }}
+            </div>
+            <div>
+                영업시간:   {{ store.opening_hour }}:{{ store.opening_minute }} - {{ store.closing_hour }}:{{ store.closing_minute }}
+            </div>
+            <div>
+                description:   {{ store.description | linebreaks }}
+            </div>
+            <div>
+                registered_date:   {{ store.registered_date }}
+            </div>
+            <div>
+                modified_date:   {{ store.modified_date }}
+            </div>
+            <div>
+                {% if store.status == 'a' or store.status == 'r' %}
+                상태:   승인됨
+                {% else %}
+                상태:   승인대기
+                {% endif %}
+            </div>
+
+        </fieldset>
+        <a href="{% url 'store:edit' store.id %}"><input type="button" class="btn" value="수정"></a>
+        <a href="{% url 'store:myList' %}"><input type="button" class="btn" value="취소"></a>
+</section>
+{% endblock %}

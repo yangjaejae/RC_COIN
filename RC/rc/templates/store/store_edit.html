@@ -1,0 +1,31 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<section id="hero">
+    {% if store.id %}
+    <form action="{% url 'store:edit' store_id=store.id %}" method="POST">
+    {% else %}
+    <form action="{% url 'store:add' %}" method="POST">
+    {% endif %}
+        {% csrf_token %}
+        <fieldset class="aligned">
+            <br/><br/>
+            {{ form.name.label_tag }} {{ form.name }}<br/>
+            {{ form.corporate_number.label_tag }} {{ form.corporate_number }}<br/>
+            {{ form.category.label_tag }} {{ form.category }}<br/>
+            {{ form.location.label_tag }} {{ form.location }}<br/>
+            {{ form.address.label_tag }} {{ form.address }}<br/>
+            {{ form.phone_number.label_tag }} {{ form.phone_number }}<br/>
+            {{ form.url.label_tag }} {{ form.url }}<br/>
+            {{ form.opening_hour.label_tag }} {{ form.opening_hour }}<br/>
+            {{ form.opening_minute.label_tag }} {{ form.opening_minute }}<br/>
+            {{ form.closing_hour.label_tag }} {{ form.closing_hour }}<br/>
+            {{ form.closing_minute.label_tag }} {{ form.closing_minute }}<br/>
+            {{ form.description.label_tag }} {{ form.description }}
+        </fieldset>
+        <input type="submit" class="btn" value="제출">
+        <a href="{% url 'profile:account_myInfo' user.id %}"><input type="button" class="btn" value="취소"></a>
+    </form>
+</section>
+{% endblock %}

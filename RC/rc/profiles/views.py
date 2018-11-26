@@ -45,7 +45,6 @@ def account_edit(request, account_id=None):
             context['title'] = '회원가입 완료'
             context['messages'] = ['환영합니다.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
         else:
-            print(1)
             user = get_object_or_404(User, pk=account_id)
             user.set_password(form.cleaned_data.get('password1'))
             user.email = form.cleaned_data.get('email')

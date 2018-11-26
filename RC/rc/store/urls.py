@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from .views import *
 
 app_name = 'store'
 
 urlpatterns = [
+    path('apply/', store_edit, name='add'),
+    path('list/', StoreLV.as_view(), name='myList'),
+    path('read/<int:pk>/',StoreDV.as_view(), name='read'),
+    path('edit/<int:store_id>/', store_edit, name='edit'),
+    path('delete/<int:store_id>/', store_remove, name='delete')
 ]
