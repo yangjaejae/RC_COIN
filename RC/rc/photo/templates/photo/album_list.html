@@ -7,6 +7,7 @@
 {% block content %}
 {% block extrastyle %}{% static "photo/photo.css" %}{% endblock %}
 
+<!--검색창 + 지역 TAB -->
 <section id="newsletter" class="newsletter text-center">
     <BR>
       <div class="container">
@@ -26,23 +27,21 @@
       </div>
     </section>
 
-<section id="team">
+<section id="blog">
+    {% for item in object_list %}
     <div class="container">
         <br>
-        {% for item in object_list %}
 
-        <div class="clear_float">
-            <h2 id="a" style="display:inline"><a href="{% url 'photo:album_detail' item.id %}"> {{ item.name }}</a></h2>
-            <b><i>{{ item.description }}</i></b>
-        </div>
+
+        <!--북면/서면/울릉읍-->
 
         <hr/>
-        <div class="album-list">
-            <div class="row">
+        <div >
+            <div>
 
                 {% comment %} {% for photo in item.photo_set.all|slice:":5" %}
                 &nbsp;&nbsp;&nbsp;
-                <div class="album-list-photo">
+                <div>
                     <a href="{{ photo.get_absolute_url }}">
                     <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
                     </a>
@@ -50,17 +49,16 @@
                 &nbsp;&nbsp;&nbsp;
                 {% endfor %} {% endcomment %}
 
-                <div class = "owl-carousel owl-theme">
+                <div class="row">
                     {% for photo in item.photo_set.all %}
                     &nbsp;&nbsp;&nbsp;
-                    <div class="col-md-12 col-md-12 col-lg-12">
-                        <div class="team-block bottom">
+                    <div class="col-md-12 col-lg-2">
+                        <div>
                         <a href="{{ photo.get_absolute_url }}">
                         <img class="thumbnail" src="{{ photo.image.thumb_url }}" />
                         </a>
-                        <div class="team-content">
                             <h4 align="center">{{photo.title}}</h4>
-                        </div>
+                            <h5 align="center">{{photo.album}}</h5>
                         </div>
                     </div>
                     &nbsp;&nbsp;&nbsp;
