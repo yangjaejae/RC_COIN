@@ -2,42 +2,67 @@
 {% load staticfiles %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
 {% endblock head %}
 
 {% block content %}
+
 <section id="hero">
-    <form action="{% url 'profile:search_username' %}" method="POST">
-        {% csrf_token %}
+    <br/>
+    <div class="container">
         <div class="con_tit">
-            <h3>아이디 찾기</h3>
+            <h3>RCCoin</h3>
         </div>
+
         <div class="sm_wrap">
-            <ul>
-                <li><h3>등록된 이메일을 입력해주세요.</h3></li>
-                <li><input type="email" name="email" placeholder="이메일을 입력해 주세요." required autocomplete="off" autofocus/></li>
-            </ul>
-            <ul align="center">
-                {% if error %}
-                    <li class="txt_red">{{ error }}</li>
-                {% elif user_list %}
-                    <li><h3>검색된 아이디</h3></li>
-                    {% for user in user_list %}
-                        <li>{{ user }}</li>
-                    {% endfor %}
-                {% endif %}
-            </ul>
-            <div class="one_btn pb10">
-                <div class="one_green">
-                    <button type="submit">검색</button>
+            <form action="{% url 'profile:search_username' %}" method="POST">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header text-success">
+                        <strong>아이디 찾기</strong>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="alert alert-success" role="alert">
+                                등록된 이메일로 아이디를 검색합니다.
+                            </div>
+                        </div>
+
+                        <div class="card-block row">
+                            <div class="col-sm input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">이메일</span>
+                                </div>
+                                <input type="text" id="email" name="email" class="form-control"
+                                       placeholder="이메일 주소를 입력해 주세요." autocomplete="off" autofocus/>
+                            </div>
+                        </div>
+
+                        <div class="card-block">
+                            <div id="msg" class="alert alert-warning" role="alert" align="center">
+                                {% if user_list %}
+                                    {% for user in user_list %}
+                                    <li>{{ user }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="card-block row">
+                            <br/>
+                            <div class="col-sm input-group mb-3">
+                                <button type="submit" class="one_green form-control">찾기</button>
+                            </div>
+                            <div class="col-sm input-group mb-3">
+                                <a href="{% url 'login' %}" class="one_gray form-control">취소</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="one_btn">
-                <div class="one_gray">
-                    <a href="{% url 'login' %}">취소</a>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </section>
+
 {% endblock content %}

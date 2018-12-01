@@ -94,14 +94,16 @@ def search_password(request):
         if user:
             new_pwd = BaseUserManager().make_random_password(length=10, allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789')
             # user[0].set_password(new_pwd)
-            #     user[0].save()
-            #     send_mail(
-            #         '[RC: 발신전용] 비밀번호 안내 메일',
-            #         '비밀번호가 [ ' + new_pwd + ' ]로 초기화 되었습니다.',
-            #         'doradora46@naver.com',
-            #         [user[0].email],
-            #         fail_silently=False,
-            #     )
+            # user[0].save()
+            # print(user[0])
+            # print(new_pwd)
+            # send_mail(
+            #     '[RC: 발신전용] 비밀번호 안내 메일',
+            #     '비밀번호가 [ ' + new_pwd + ' ]로 초기화 되었습니다.',
+            #     'doradora46@naver.com',
+            #     [user[0].email],
+            #     fail_silently=False,
+            # )
             context['title'] = '비밀번호 초기화'
             context['messages']= ['임시 비밀번호가 등록된 이메일로 발송 되었습니다.', '로그인 후, 비밀번호를 변경해 주세요.']
             return render(request, 'registration/done.html', context)

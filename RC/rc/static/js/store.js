@@ -56,7 +56,7 @@ $(function() {
     setLocation();
     setTime();
 
-    $("#btn_modify").click(function(event) {
+    $("#btn_modify").click( function(event) {
         var name = $("#name").val();
         var corporate_number = $("#corporate_number").val();
         var description = $("#description").val();

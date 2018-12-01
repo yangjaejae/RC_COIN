@@ -2,49 +2,79 @@
 {% load staticfiles %}
 
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}"/>
 {% endblock head %}
 
 {% block content %}
+
 <section id="hero">
-    <form action="." method="POST">
-        {% csrf_token %}
+    <br/>
+    <div class="container">
         <div class="con_tit">
-            <h3>로그인</h3>
+            <h3>RCCoin</h3>
         </div>
+
         <div class="sm_wrap">
-            <ul>
-                <li><input type="text" name="username" value="" placeholder="아이디를 입력해 주세요." required autocomplete="off" autofocus/></li>
-            </ul>
-            <ul>
-                <li><input type="password" name="password" value="" placeholder="비밀번호를 입력해 주세요." required autocomplete="off"/></li>
-            </ul>
-            <ul>
-                <li class="txt_red">{% if form.errors %}아이디 또는 비밀번호가 올바르지 않습니다.{% endif %}</li>
-            </ul>
-            <ul>
-                <li>
-                    <div>
-                        <input type="checkbox" id="remember_me" name="remember_me"><label for="remember_me">로그인 유지</label>
+            <form id="signup" action="." method="POST">
+                {% csrf_token %}
+                <div class="card">
+                    <div class="card-header text-success">
+                        <strong>로그인</strong>
                     </div>
-                </li>
-            </ul>
-            <div class="one_btn pb10">
-                <div class="one_green">
-                    <button type="submit">로그인</button>
+
+                    <div class="card-body">
+                        <div class="card-block">
+                            {% if form.errors %}
+                            <div id="msg" class="alert alert-danger" role="alert">
+                                아이디 또는 비밀번호가 올바르지 않습니다.
+                            </div>
+                            {% else %}
+                            <div id="msg" class="alert alert-success" role="alert">
+                                사용자 정보를 입력해주세요.
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="card-block row">
+                            <div class="col-sm input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">아&nbsp;이&nbsp;디&nbsp;</span>
+                                </div>
+                                <input type="text" id="username" name="username" class="form-control" placeholder="아이디를 입력해 주세요." autocomplete="off" autofocus/>
+                            </div>
+                        </div>
+
+                        <div class="card-block row">
+                            <div class="col-sm input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">비밀번호</span>
+                                </div>
+                                <input type="password" id="password" name="password" class="form-control" placeholder="비밀번호를 입력해 주세요." autocomplete="off"/>
+                            </div>
+                        </div>
+
+                        <div class="card-block row">
+                            <br/>
+                            <div class="col-sm input-group mb-3">
+                                <button type="submit" id="btn_login" class="one_green form-control">로그인</button>
+                            </div>
+                            <div class="col-sm input-group mb-3">
+                                <a href="{% url 'index' %}" class="one_gray form-control">취소</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="one_btn">
-                <div class="one_gray">
-                    <a href="{% url 'index' %}">취소</a>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+
     <div class="pass_src">
         <a href="{% url 'profile:search_username' %}">아이디 찾기</a> |
         <a href="{% url 'profile:search_password' %}">비밀번호 찾기</a> |
         <a href="{% url 'profile:signup' %}">회원가입</a>
     </div>
 </section>
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/login.js' %}"></script>
 {% endblock content %}

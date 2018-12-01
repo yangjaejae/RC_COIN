@@ -1,0 +1,43 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+{% endblock head %}
+
+{% block content %}
+<section id="hero">
+    <form action="{% url 'profile:search_username' %}" method="POST">
+        {% csrf_token %}
+        <div class="con_tit">
+            <h3>아이디 찾기</h3>
+        </div>
+        <div class="sm_wrap">
+            <ul>
+                <li><h3>등록된 이메일을 입력해주세요.</h3></li>
+                <li><input type="email" name="email" placeholder="이메일을 입력해 주세요." required autocomplete="off" autofocus/></li>
+            </ul>
+            <ul align="center">
+                {% if error %}
+                    <li class="txt_red">{{ error }}</li>
+                {% elif user_list %}
+                    <li><h3>검색된 아이디</h3></li>
+                    {% for user in user_list %}
+                        <li>{{ user }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+            <div class="one_btn pb10">
+                <div class="one_green">
+                    <button type="submit">검색</button>
+                </div>
+            </div>
+            <div class="one_btn">
+                <div class="one_gray">
+                    <a href="{% url 'login' %}">취소</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock content %}
