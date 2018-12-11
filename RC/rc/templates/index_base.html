@@ -83,8 +83,8 @@
                 {% if user.is_authenticated %}
                 <li class="menu-has-children"><a href="#myInfo">마이페이지</a>
                     <ul>
-                        <li><a href="{% url 'withdraw' %}">송금/결제</a></li>
-                        <li><a href="{% url 'history' %}">거래내역</a></li>
+                        <li><a href="{% url 'payment:withdraw' %}">송금/결제</a></li>
+                        <li><a href="{% url 'payment:history' %}">거래내역</a></li>
                         <li><a href="{% url 'profile:account_myInfo' user.id %}">정보수정</a></li>
                         <li><a href="{% url 'logout' %}">로그아웃</a></li>
                     </ul>

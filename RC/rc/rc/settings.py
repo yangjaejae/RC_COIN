@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'board',
     'store.apps.StoreConfig',
     'info',
-    'payment'
+    'payment',
+    'api'
 ]
 
 MIDDLEWARE = [
