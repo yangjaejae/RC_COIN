@@ -2,9 +2,161 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad321286-9513-498f-8828-6b7df1ecee04" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/photo/templates/photo/album_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/photo/templates/photo/album_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/1490133253_eac8552a399d96cbdb70101944411e57.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/1490133253_eac8552a399d96cbdb70101944411e57.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_4rax7wZ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_4rax7wZ.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_6wqAUAP.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_6wqAUAP.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_8tFw7b3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_8tFw7b3.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_ACYi2d6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_ACYi2d6.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_GOuHiF7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_GOuHiF7.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_GU1Q7n0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_GU1Q7n0.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_HQByKKD.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_HQByKKD.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_QFRQR5O.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_QFRQR5O.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_c02HWmG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_c02HWmG.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_fHCmKrS.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_fHCmKrS.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_gjGKAAf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_gjGKAAf.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_qr6ExyL.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/662140-img-1362487177-12_qr6ExyL.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/IMG_7228.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/IMG_7228.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/Screen_Shot_2016-01-31_at_4.18.46_PM_pxx4jp.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/Screen_Shot_2016-01-31_at_4.18.46_PM_pxx4jp.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/Screenshot_2018-10-23_디스켓아껴쓰자_on_Twitter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/Screenshot_2018-10-23_디스켓아껴쓰자_on_Twitter.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/dlwodns1234.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/dlwodns1234.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/food1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/food1.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/food2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/food2.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/ledger1.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/ledger1.thumb.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/ledger2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/ledger2.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/maxresdefault.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/maxresdefault.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/seurat-asnieres.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/seurat-asnieres.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/shopping1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/shopping1.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/shopping2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/shopping2.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel1.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2_8dOKVgX.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2_8dOKVgX.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2_Z352DSi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travel2_Z352DSi.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travis-scott-memes.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/travis-scott-memes.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_AXQEVSN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_AXQEVSN.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_OSSmOeF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_OSSmOeF.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_ahGwrPe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_ahGwrPe.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_qrPXJr6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_qrPXJr6.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_r66YMCf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/다운로드_r66YMCf.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3_JQKmiUg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3_JQKmiUg.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3_YzVPxVb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저3_YzVPxVb.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4_EvU6T5r.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4_EvU6T5r.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4_sNLYyQb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/레저4_sNLYyQb.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3_EqU3mCX.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3_EqU3mCX.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3_Y3qBaJK.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑3_Y3qBaJK.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4_FGXgpht.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4_FGXgpht.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4_eXh2EXp.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/쇼핑4_eXh2EXp.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3_HXtmtpf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3_HXtmtpf.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3_ZI0SM50.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박3_ZI0SM50.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4_FnPVVBg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4_FnPVVBg.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4_nZGNjFo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/숙박4_nZGNjFo.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3.thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3_d9xhqO0.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3_d9xhqO0.thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3_idOqQXf.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식3_idOqQXf.thumb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4_Ic2ELc7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4_Ic2ELc7.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4_x9nDPjy.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/photo/2018/11/외식4_x9nDPjy.thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/fields.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/templates/photo/album_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/templates/photo/album_list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/templates/photo/photo_base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/templates/photo/photo_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/templates/photo/static/photo/photo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/photo/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/1forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/1views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rc/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/rc/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rc/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/rc/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/indexEnglishOriginal/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/indexEnglishOriginal/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/indexEnglishOriginal/indexOrigin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/indexEnglishOriginal/indexOrigin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index_base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/store/store_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/store/store_edit.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,147 +168,55 @@
     <session id="869528665">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="16" />
+          <entry key="project.closed" value="26" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="5" />
-          <entry key="project.open.time.7" value="5" />
-          <entry key="project.open.time.8" value="2" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.open.time.6" value="8" />
+          <entry key="project.open.time.7" value="10" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.opened" value="26" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="10" />
-          <entry key="html" value="101" />
-          <entry key="js" value="13" />
-          <entry key="py" value="160" />
+          <entry key="html" value="108" />
+          <entry key="js" value="14" />
+          <entry key="py" value="205" />
           <entry key="rnc" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="10" />
-          <entry key="HTML" value="101" />
-          <entry key="JavaScript" value="13" />
-          <entry key="Python" value="160" />
+          <entry key="HTML" value="108" />
+          <entry key="JavaScript" value="14" />
+          <entry key="Python" value="205" />
           <entry key="RNG Compact" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="858" />
-          <entry key="html" value="5899" />
-          <entry key="js" value="2310" />
-          <entry key="py" value="5272" />
+          <entry key="html" value="5975" />
+          <entry key="js" value="2317" />
+          <entry key="py" value="6834" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="858" />
-          <entry key="HTML" value="5899" />
-          <entry key="JavaScript" value="2310" />
-          <entry key="Python" value="5272" />
+          <entry key="HTML" value="5975" />
+          <entry key="JavaScript" value="2317" />
+          <entry key="Python" value="6834" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/profiles/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/photo/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/index_base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="204" column="13" selection-start-line="204" selection-start-column="13" selection-end-line="204" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/store/store_detail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/store/store_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="34" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -167,11 +227,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>one_gray</find>
-      <find>one_btn</find>
-      <find>hover</find>
-      <find>a {</find>
-      <find>right</find>
       <find>started</find>
       <find>신청일</find>
       <find>pattern</find>
@@ -197,6 +252,11 @@
       <find>==</find>
       <find>HEAD</find>
       <find>f9170e1c040458764d91920fcfb5a6ad20b41f63</find>
+      <find>&lt;&lt;&lt;&lt;&lt;</find>
+      <find>fa fa-chevron-up</find>
+      <find>photo</find>
+      <find>PostForm</find>
+      <find>password</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,13 +266,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/templates/intro.html" />
-        <option value="$PROJECT_DIR$/photo/admin.py" />
-        <option value="$PROJECT_DIR$/photo/models.py" />
         <option value="$PROJECT_DIR$/rc/views.py" />
-        <option value="$PROJECT_DIR$/photo/views.py" />
         <option value="$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/PIL/JpegImagePlugin.py" />
-        <option value="$PROJECT_DIR$/photo/fields.py" />
-        <option value="$PROJECT_DIR$/photo/urls.py" />
         <option value="$PROJECT_DIR$/photo/templates/photo/static/photo/photo.css" />
         <option value="$PROJECT_DIR$/photo/templates/photo/album_list.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
@@ -223,39 +278,48 @@
         <option value="$PROJECT_DIR$/profiles/urls.py" />
         <option value="$PROJECT_DIR$/templates/registration/search_password.html" />
         <option value="$PROJECT_DIR$/templates/registration/check_password.html" />
-        <option value="$PROJECT_DIR$/rc/urls.py" />
         <option value="$PROJECT_DIR$/templates/registration/done.html" />
         <option value="$PROJECT_DIR$/profiles/models.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/registration/profile_register.html" />
-        <option value="$PROJECT_DIR$/static/js/profile.js" />
-        <option value="$PROJECT_DIR$/store/admin.py" />
         <option value="$PROJECT_DIR$/templates/store/applyToStore.html" />
         <option value="$PROJECT_DIR$/board/views.py" />
         <option value="$PROJECT_DIR$/templates/registration/profile_myInfo.html" />
-        <option value="$PROJECT_DIR$/store/models.py" />
-        <option value="$PROJECT_DIR$/store/forms.py" />
         <option value="$PROJECT_DIR$/templates/store/store_list.html" />
         <option value="$PROJECT_DIR$/profiles/forms.py" />
         <option value="$PROJECT_DIR$/templates/store/store_detail.html" />
-        <option value="$PROJECT_DIR$/templates/store/store_edit.html" />
         <option value="$PROJECT_DIR$/static/css/store.css" />
         <option value="$PROJECT_DIR$/static/js/store.js" />
         <option value="$PROJECT_DIR$/static/js/login.js" />
         <option value="$PROJECT_DIR$/static/css/profile.css" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/templates/registration/search_username.html" />
-        <option value="$PROJECT_DIR$/rc/settings.py" />
         <option value="$PROJECT_DIR$/profiles/views.py" />
-        <option value="$PROJECT_DIR$/store/urls.py" />
-        <option value="$PROJECT_DIR$/store/views.py" />
+        <option value="$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html" />
+        <option value="$PROJECT_DIR$/templates/indexEnglishOriginal/index.html" />
+        <option value="$PROJECT_DIR$/templates/indexEnglishOriginal/indexOrigin.html" />
+        <option value="$PROJECT_DIR$/photo/templates/photo/photo_base.html" />
+        <option value="$PROJECT_DIR$/photo/urls.py" />
+        <option value="$PROJECT_DIR$/photo/admin.py" />
+        <option value="$PROJECT_DIR$/photo/fields.py" />
+        <option value="$PROJECT_DIR$/photo/views.py" />
+        <option value="$PROJECT_DIR$/photo/models.py" />
+        <option value="$PROJECT_DIR$/rc/settings.py" />
         <option value="$PROJECT_DIR$/templates/index_base.html" />
+        <option value="$PROJECT_DIR$/store/urls.py" />
+        <option value="$PROJECT_DIR$/rc/urls.py" />
+        <option value="$PROJECT_DIR$/store/forms.py" />
+        <option value="$PROJECT_DIR$/store/admin.py" />
+        <option value="$PROJECT_DIR$/templates/store/store_edit.html" />
+        <option value="$PROJECT_DIR$/store/views.py" />
+        <option value="$PROJECT_DIR$/store/models.py" />
+        <option value="$PROJECT_DIR$/static/js/profile.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
-    <option name="width" value="974" />
+    <option name="width" value="1149" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -267,6 +331,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,18 +342,7 @@
             <path>
               <item name="rc" type="b2602c69:ProjectViewProjectNode" />
               <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="board" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="photo" type="462c0819:PsiDirectoryNode" />
+              <item name="media" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="rc" type="b2602c69:ProjectViewProjectNode" />
@@ -309,18 +363,7 @@
               <item name="rc" type="b2602c69:ProjectViewProjectNode" />
               <item name="rc" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="rc" type="b2602c69:ProjectViewProjectNode" />
@@ -333,17 +376,10 @@
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="registration" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="rc" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="store" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -351,10 +387,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yslee\Desktop\RegionCurrency\RC\rc\store" />
       <recent name="C:\Users\yslee\Desktop\RegionCurrency\RC\rc\templates\registration" />
       <recent name="C:\Users\yslee\Desktop\RegionCurrency\RC\rc\profiles" />
       <recent name="C:\Users\yslee\Desktop\RegionCurrency\RC\rc\templates\store" />
-      <recent name="C:\Users\yslee\Desktop\RegionCurrency\RC\rc\store" />
       <recent name="C:\Users\baek\Documents\sisy\RC\rc\photo\templates\photo" />
     </key>
   </component>
@@ -386,7 +422,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11485775" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15806112" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -428,81 +464,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/store/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rc/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="7" column="43" selection-start-line="7" selection-start-column="43" selection-end-line="7" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/photo/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="52" column="72" lean-forward="true" selection-start-line="52" selection-start-column="72" selection-end-line="52" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="30" lean-forward="true" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="35" lean-forward="true" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/forms/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="234" selection-start-line="234" selection-end-line="234" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/templates/board/board_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1166">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/views/generic/list.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board/forms.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/search_password.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/store/1store_detail.html" />
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/web-forms.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
@@ -551,51 +512,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/profiles/1views.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/profiles/1forms.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/store/store_edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="75" column="34" lean-forward="true" selection-start-line="75" selection-start-column="34" selection-end-line="75" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="13" column="27" lean-forward="true" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
           <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
         </state>
       </provider>
     </entry>
@@ -635,13 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/profiles/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="96" column="32" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/board/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
@@ -656,24 +575,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rc/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="142" column="12" selection-start-line="142" selection-start-column="12" selection-end-line="142" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/registration/search_username.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1034">
           <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rc/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -684,19 +589,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/photo/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+        <state relative-caret-position="19162">
+          <caret line="871" selection-start-line="871" selection-end-line="871" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/indexEnglishOriginal/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18216">
+          <caret line="828" selection-start-line="828" selection-end-line="828" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/indexEnglishOriginal/indexOrigin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18216">
+          <caret line="828" selection-start-line="828" selection-end-line="828" />
         </state>
       </provider>
     </entry>
@@ -707,13 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/store/store_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -721,31 +631,127 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="20" column="17" lean-forward="true" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/photo/templates/photo/photo_base.html" />
+    <entry file="file://$PROJECT_DIR$/photo/apps.py" />
+    <entry file="file://$PROJECT_DIR$/photo/tests.py" />
+    <entry file="file://$PROJECT_DIR$/photo/urls.py" />
+    <entry file="file://$PROJECT_DIR$/photo/fields.py" />
+    <entry file="file://$PROJECT_DIR$/store/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/indexEnglishOriginal/index - 복사본.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/store/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/photo/admin.py" />
+    <entry file="file://$PROJECT_DIR$/photo/models.py" />
+    <entry file="file://$PROJECT_DIR$/photo/views.py" />
+    <entry file="file://$PROJECT_DIR$/store/fields.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/index_base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="204" column="13" selection-start-line="204" selection-start-column="13" selection-end-line="204" selection-end-column="13" />
+        <state relative-caret-position="296">
+          <caret line="86" column="57" lean-forward="true" selection-start-line="86" selection-start-column="57" selection-end-line="86" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1791">
+          <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rc/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="32" column="60" lean-forward="true" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profiles/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/store/store_edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="92" selection-start-line="22" selection-start-column="92" selection-end-line="22" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profiles/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/profiles/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="47" column="34" lean-forward="true" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
         </state>
       </provider>
     </entry>

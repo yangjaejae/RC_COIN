@@ -1,17 +1,21 @@
 from django.contrib import admin
-from .models import Store, Location, Category
+from .models import Store, Location, Category, Photo
 
 # Register your models here.
 
 class LocationAdmin(admin.ModelAdmin):
     model = Location
-    list_display = ('loc',)
+    list_display = ['loc',]
     verbose_name_plural = 'location'
 
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
-    list_display = ('domain',)
+    list_display = ['domain',]
     verbose_name_plural = 'category'
+
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ['store', 'image', 'upload_date',]
+    verbose_name_plural = 'photo'
 
 class StoreAdmin(admin.ModelAdmin):
     model = Store
@@ -22,4 +26,5 @@ class StoreAdmin(admin.ModelAdmin):
 
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Photo, PhotoAdmin)
 admin.site.register(Store, StoreAdmin)

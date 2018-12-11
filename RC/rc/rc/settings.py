@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'board',
     'store.apps.StoreConfig',
-    'info',
-    'photo.apps.PhotoConfig'
+    'info'
 ]
 
 MIDDLEWARE = [

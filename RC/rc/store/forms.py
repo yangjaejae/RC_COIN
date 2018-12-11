@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User
-from .models import Location, Category, Store
+from .models import Location, Category, Store, Photo
 
 class LocationForm(ModelForm):
     class Meta:
@@ -12,6 +12,11 @@ class CategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = ['domain']
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ['image']
 
 class StoreForm(ModelForm):
 

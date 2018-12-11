@@ -1,6 +1,11 @@
+from __future__ import unicode_literals
 from django.db import models
-from photo.fields import ThumbnailImageField
+from django.utils.encoding import python_2_unicode_compatible
 from django.contrib.auth.models import User
+from django.urls import reverse
+import os
+
+from .fields import ThumbnailImageField
 
 # Create your models here.
 
@@ -15,6 +20,21 @@ class Category(models.Model):
 
     def __str__(self):
         return self.domain
+
+def upload_path_handler(instance, filename):
+    return "store/store_{id}/{file}".format(id=instance.store.id, file=filename)
+
+@python_2_unicode_compatible
+class Photo(models.Model):
+    store = models.ForeignKey('Store', on_delete=models.CASCADE)
+    image = ThumbnailImageField(upload_to=upload_path_handler, null=True)
+    upload_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['store']
+
+    def __str__(self):
+        return self.store.name
 
 class Store(models.Model):
     name = models.CharField(max_length=100, null=True)

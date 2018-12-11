@@ -2,9 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
 from django.http import JsonResponse
-from .models import Store, Category, Location
-from .forms import StoreForm
-
+from .models import Store, Category, Location, Photo
+from .forms import StoreForm, PhotoForm
 
 # Create your views here.
 
@@ -31,11 +30,14 @@ def store_edit(request, store_id=None):
 
     if store_id:
         store = get_object_or_404(Store, pk=store_id)
+        photo = get_object_or_404(Photo, store=store)
     else:
         store = Store()
+        photo = Photo()
 
     if request.method == "POST":
         form = StoreForm(request.POST, instance=store)
+        photo_form = PhotoForm(request.POST, request.FILES)
 
         if form.is_valid():
             store = form.save(commit=False)
@@ -43,13 +45,19 @@ def store_edit(request, store_id=None):
             store.representative = User(user)
             store.status = "w"
             store.save()
+
+            if photo_form.is_valid():
+                photo = Photo(store=store, image=request.FILES['image'])
+                photo.save()
+
         return redirect('store:myList')
 
     else:
         form = StoreForm(instance=store)
+        photo_form = PhotoForm(instance=photo);
         category = Category.objects.all().order_by('id')
         location = Location.objects.all().order_by('id')
-        return render(request, 'store/store_edit.html', dict(form=form, store=store, categorys=category, locations=location))
+        return render(request, 'store/store_edit.html', dict(form=form, photo_form=photo_form, categorys=category, locations=location, store=store))
 
 
 def store_remove(request, store_id=None):
