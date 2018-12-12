@@ -6,19 +6,23 @@ import json
 import hfc
 from hfc.fabric import Client
 
+
 ## get connection
 def get_connection():
     print(hfc.VERSION)
-    cli = Client(net_profile="./network.json")
+    client = Client(net_profile="text/fixtures/network.json")
     org1_admin = cli.get_user(org_name = 'org1.example.com', name='Admin')
     print("###################")
     print(org1_admin)
-    
+    return client
 
 def get_connection():
     pass
 ## invoke
 def init_wallet ( id ):
+    client = get_connection()
+    
+
     lis = []
     dic = {}
     dic['test'] = "test"
