@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 import json
-
+    
 import hfc
 from hfc.fabric import Client
 
