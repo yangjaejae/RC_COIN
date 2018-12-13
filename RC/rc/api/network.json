@@ -5,9 +5,9 @@
   "client":{
     "organization":"Org1",
     "credentialStore":{
-      "path":"./.hfc-key-stores",
+      "path":".hfc-key-stores",
       "cryptoStore":{
-        "path":"./.hfc-key-stores"
+        "path":".hfc-key-stores"
       },
       "wallet":"wallet-name"
     }
@@ -23,8 +23,8 @@
       ],
       "users": {
         "Admin": {
-          "cert": "./crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem",
-          "private_key": "./crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/0876a308639cb873ea1ab787b41450e5bee19c080d6206d995841c476bfa115e_sk"}
+          "cert": "crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/Admin@example.com-cert.pem",
+          "private_key": "crypto-config/ordererOrganizations/example.com/users/Admin@example.com/msp/keystore/0876a308639cb873ea1ab787b41450e5bee19c080d6206d995841c476bfa115e_sk"}
       }
     },
     "org1.example.com":{
@@ -37,15 +37,15 @@
         "ca-org1"
       ],
       "users": {
-        "admin": {
-          "cert": "./crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/f3a066b161b4b156e9461907afd0afd79791d345c91b51e08d1448eddce7d937_sk"
+        "Admin": {
+          "cert": "crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem",
+          "private_key": "crypto-config/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/f3a066b161b4b156e9461907afd0afd79791d345c91b51e08d1448eddce7d937_sk"
         },
         "serveruser": {
-          "cert": "./crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/f3a066b161b4b156e9461907afd0afd79791d345c91b51e08d1448eddce7d937_sk"
+          "cert": "crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts/User1@org1.example.com-cert.pem",
+          "private_key": "crypto-config/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore/6df04a473142f3dae3e5d89198da3279fb71095fbdd884cde75bf2715629b208_sk"
         }
-      }
+      }      
     },
     "org2.example.com":{
       "mspid":"Org2MSP",
@@ -55,17 +55,7 @@
       ],
       "certificateAuthorities":[
         "ca-org2"
-      ],
-      "users": {
-        "Admin": {
-          "cert": "./crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/signcerts/Admin@org2.example.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp/keystore/03c340a4fe51f3cc1a9822ebd70068b33cb2bc45b176495c9425514f7bcc2af5_sk"
-        },
-        "serveruser": {
-          "cert": "./crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/signcerts/User1@org2.example.com-cert.pem",
-          "private_key": "./crypto-config/peerOrganizations/org2.example.com/users/User1@org2.example.com/msp/keystore/ede98d698a232b33a7c6dfdc9135c48e5d8a935f102e1abbb49ae265839495cf_sk"
-        }
-      }
+      ]
     }
   },
   "orderers":{
@@ -76,7 +66,7 @@
         "grpc-max-send-message-length":15
       },
       "tlsCACerts":{
-        "path":"./crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem"
+        "path":"crypto-config/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem"
       }
     }
   },
@@ -89,7 +79,7 @@
         "grpc.http2.keepalive_time":15
       },
       "tlsCACerts":{
-        "path":"./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem"
+        "path":"crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem"
       }
     },
     "peer1.org1.example.com":{
@@ -99,7 +89,7 @@
         "ssl-target-name-override":"peer1.org1.example.com"
       },
       "tlsCACerts":{
-        "path":"./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem"
+        "path":"crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem"
       }
     },
     "peer0.org2.example.com":{
@@ -110,7 +100,7 @@
         "grpc.http2.keepalive_time":15
       },
       "tlsCACerts":{
-        "path":"./crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem"
+        "path":"crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp/tlscacerts/tlsca.org2.example.com-cert.pem"
       }
     },
     "peer1.org2.example.com":{
@@ -131,7 +121,7 @@
         "verify":true
       },
       "tlsCACerts":{
-        "path":"./crypto-config/peerOrganizations/org1.example.com/ca/org1.example.com-cert.pem"
+        "path":"crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem"
       },
       "registrar":[
         {
@@ -146,7 +136,7 @@
         "verify":true
       },
       "tlsCACerts":{
-        "path":"./crypto-config/peerOrganizations/org2.example.com/ca/org2.example.com-cert.pem"
+        "path":"crypto-config/peerOrganizations/org2.example.com/ca/org2.example.com-cert.pem"
       },
       "registrar":[
         {

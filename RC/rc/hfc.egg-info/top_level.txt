@@ -1,2 +1,9 @@
+api
+board
 hfc
+info
+payment
+profiles
+rc
+store
 test
