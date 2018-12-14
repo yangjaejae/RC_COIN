@@ -33,7 +33,7 @@
   display: block;
   padding: .5em;
   background: #eee;
-  border: 1px solid #ddd;
+  border: 1.5px solid #fff;
   text-align: center;
   color: #000;
   text-decoration: none;
@@ -44,7 +44,8 @@
 #tab-button li a:hover,
 #tab-button .is-active a {
   border-bottom-color: transparent;
-  background: #fff;
+  background: #23bab5;
+  color: #fff;
 }
 .tab-contents {
   padding: .5em 2em 1em;
@@ -64,6 +65,7 @@
     position: relative;
     z-index: 2;
     display: block;
+    width: 500px;
   }
   .tab-select-outer {
     display: none;
@@ -72,6 +74,7 @@
     position: relative;
     top: -1px;
     margin-top: 0;
+    border:none;
   }
 }
         .top_tag{
@@ -289,10 +292,10 @@ $(function() {
 </div>
 
 <div class="tabs">
-  <div class="tab-button-outer">
+  <div class="tab-button-outer top_tag" >
     <ul id="tab-button">
-      <li><a href="#tab01">결제</a></li>
-      <li><a href="#tab02">송금</a></li>
+      <li><a href="#tab01" class="font-weight-bold">결제</a></li>
+      <li><a href="#tab02" class="font-weight-bold">송금</a></li>
     </ul>
   </div>
   <div class="tab-select-outer">
@@ -306,38 +309,38 @@ $(function() {
         <div class="row">
         <div class="col-sm-13 col-sm-offset-3 mobile-pull">
             <article role="login">
-            <h3 class="text-center"><i class="glyphicon glyphicon-qrcode"></i> 결제 시스템</h3>
+            <h2 class="text-center" style="color:#23bab5"><i class="glyphicon glyphicon-qrcode"></i> 결제 시스템</h2><br>
             <form class="signup" action="index.html" method="post">
                 <div class="form-group">
-                <h4 class="font-weight-bold" style="color:#23bab5">잔액조회</h4>
+                <h5 class="font-weight-bold" style="color:#23bab5">잔액조회</h5>
                 <input type="text" class="form-control" readonly>
                 <button type="button" class="btn-default btn-sm btn-success float-right">조회</button>
                 </div><br>
                 <div class="form-group">
-                <h4 class="font-weight-bold" style="color:#23bab5" >보낼금액</h4>
+                <h5 class="font-weight-bold" style="color:#23bab5" >보낼금액</h5>
                 <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
                 </div>
                 <div class="form-group">
-                <h4 class="font-weight-bold" style="color:#23bab5" >남는금액</h4>
+                <h5 class="font-weight-bold" style="color:#23bab5" >남는금액</h5>
                 <input type="text" class="form-control" readonly>
                 </div>
                 <div class="form-group">
-                <h4 class="font-weight-bold" style="color:#23bab5" >송금할계정</h4>
+                <h5 class="font-weight-bold" style="color:#23bab5" >송금할계정</h5>
                 <input type="text" class="form-control" placeholder="ex) RegionCurrency">
                 </div>
                 <div class="form-group">
-                <h4 class="font-weight-bold" style="color:#23bab5" >비밀번호</h4>
+                <h5 class="font-weight-bold" style="color:#23bab5" >비밀번호</h5>
                 <input type="password" class="form-control" placeholder="결제비밀번호">
                 </div>
                 <div class="form-group">
                 <div class="checkbox">
                     <label>
-                    <input type="checkbox"> <div style="color:blanchedalmond"> 잘못 송금하였을시 책임은 전적으로 본인에게 있음을 인지하였습니다.</div>
+                    <div style="color:blanchedalmond"><input type="checkbox"> 송금시 책임은 전적으로 본인에게 있음에 동의합니다.</div>
                     </label>
                 </div>
                 </div>
                 <div class="form-group">
-                <input type="submit" class="btn btn-success btn-block"  value="SUBMIT">
+                <input type="submit" class="btn btn-success btn-block"  value="결제하기">
                 </div>
             </form>
             </article>
@@ -351,38 +354,38 @@ $(function() {
         <div class="row">
             <div class="col-sm-13 col-sm-offset-3 mobile-pull">
             <article role="login">
-                <h3 class="text-center"><i class="glyphicon glyphicon-usd"></i> 송금 시스템</h3>
+                <h2 class="text-center" style="color:#23bab5"><i class="glyphicon glyphicon-usd"></i> 송금 시스템</h2></br>
                 <form class="signup" action="index.html" method="post">
                     <div class="form-group">
-                        <h4 class="font-weight-bold" style="color:#23bab5">잔액조회</h4>
+                        <h5 class="font-weight-bold" style="color:#23bab5">잔액조회</h5>
                         <input type="text" class="form-control" readonly>
                         <button type="button" class="btn-default btn-sm btn-success float-right"> 조회</button>
                     </div><br>
                     <div class="form-group">
-                        <h4 class="font-weight-bold" style="color:#23bab5" >보낼금액</h4>
+                        <h5 class="font-weight-bold" style="color:#23bab5" >보낼금액</h5>
                         <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
                     </div>
                     <div class="form-group">
-                        <h4 class="font-weight-bold" style="color:#23bab5" >남는금액</h4>
+                        <h5 class="font-weight-bold" style="color:#23bab5" >남는금액</h5>
                         <input type="text" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <h4 class="font-weight-bold" style="color:#23bab5" >송금할계정</h4>
+                        <h5 class="font-weight-bold" style="color:#23bab5" >송금할계정</h5>
                         <input type="text" class="form-control" placeholder="ex) RegionCurrency">
                     </div>
                     <div class="form-group">
-                        <h4 class="font-weight-bold" style="color:#23bab5" >비밀번호</h4>
+                        <h5 class="font-weight-bold" style="color:#23bab5" >비밀번호</h5>
                         <input type="password" class="form-control" placeholder="결제비밀번호">
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
                         <label>
-                            <input type="checkbox"> <div style="color:blanchedalmond"> 잘못 송금하였을시 책임은 전적으로 본인에게 있음을 인지하였습니다.</div>
+                            <div style="color:blanchedalmond"><input type="checkbox"> 송금시 책임은 전적으로 본인에게 있음에 동의합니다.</div>
                         </label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-success btn-block"  value="SUBMIT">
+                        <input type="submit" class="btn btn-success btn-block"  value="송금하기">
                     </div>
                 </form>
             </article>
