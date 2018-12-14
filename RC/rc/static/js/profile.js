@@ -115,9 +115,6 @@ $("#password1").keyup(function (event) {
     if ( $("#password1").val().length < 8 )  {
         $("#pwdErrorMsg1").text("비밀번호는 8자 이상의 길이이어야 합니다.").css("color", "#d84461");
         isValidPassword1 = false;
-    } else if( !pattern.test($("#password1").val()) ) {
-        $("#pwdErrorMsg1").text("비밀번호는 알파벳 대소문자, 숫자, 특수문자(!@#$)를 최소 하나씩 포함해야합니다.").css("color", "#d84461");
-        isValidPassword1 = false;
     } else if ( ( $("#username").val().length != 0 ) &&
             ( $("#password1").val().includes($("#username").val()) || $("#username").val().includes($("#password1").val()) ) ) {
         $("#pwdErrorMsg1").text("아이디와 유사한 비밀번호는 사용할 수 없습니다.").css("color", "#d84461");
