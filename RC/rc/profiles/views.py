@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from .forms import ProfileForm
+from api.views import init_wallet
 import json
 
 # Create your views here.
@@ -37,6 +38,8 @@ def my_info(request, account_id=None):
 
 def account_edit(request, account_id=None):
     context = {}
+    isSignup = False
+    
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
 
@@ -44,6 +47,7 @@ def account_edit(request, account_id=None):
             user = form.save()
             context['title'] = '회원가입 완료'
             context['messages'] = ['환영합니다.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
+            isSignup = True
         else:
             user = get_object_or_404(User, pk=account_id)
             user.set_password(form.cleaned_data.get('password1'))
@@ -57,6 +61,11 @@ def account_edit(request, account_id=None):
         user.profile.birth_month = form.cleaned_data.get('birth_month')
         user.profile.birth_date = form.cleaned_data.get('birth_date')
         user.save()
+
+        if isSignup:
+            usertmp = get_object_or_404(User, username=user.username)
+            userid = str(usertmp.pk)
+            result = init_wallet(userid)
         return render(request, 'registration/done.html', context)
     else:
         if account_id:

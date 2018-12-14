@@ -9,7 +9,6 @@ from hfc.fabric_ca import CAClient
 
 import os
 
-
 ## get connection
 def get_connection():
     base_dir = os.path.dirname(os.path.realpath(__file__))
@@ -27,15 +26,27 @@ def get_connection():
     return client
 
 ## invoke
-def init_wallet ( request ):
+def init_wallet ( id ):
     client = get_connection()
+    print("###############",client, "###############")
+
+    # response = client.chaincode_invoke(
+    #            requestor=org1_admin,
+    #            channel_name='mychannel',
+    #            peer_names=['peer0.org1.example.com'],
+    #            args=["init_wallet", id],
+    #            cc_name='rc',
+    #            cc_version='v1.0'
+    #            )
+
     lis = []
     dic = {}
-    dic['test'] = "test"
+    dic['result'] = "TEST"
     lis.append(dic)
     json_format = json.dumps(lis)
     get_connection()
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8")
+    # return response
 
 def publish( id , value ):
     pass
