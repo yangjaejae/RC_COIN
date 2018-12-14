@@ -1,20 +1,280 @@
-
 {% extends 'index_base.html' %}
 {% load staticfiles %}
 
 
 {% block content %}
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.css?actvie" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
+    body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+.tabs {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+#tab-button {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#tab-button li {
+  display: table-cell;
+  width: 20%;
+}
+#tab-button li a {
+  display: block;
+  padding: .5em;
+  background: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+#tab-button li:not(:first-child) a {
+  border-left: none;
+}
+#tab-button li a:hover,
+#tab-button .is-active a {
+  border-bottom-color: transparent;
+  background: #fff;
+}
+.tab-contents {
+  padding: .5em 2em 1em;
+  border: 1px solid #ddd;
+}
+
+
+
+.tab-button-outer {
+  display: none;
+}
+.tab-contents {
+  margin-top: 20px;
+}
+@media screen and (min-width: 768px) {
+  .tab-button-outer {
+    position: relative;
+    z-index: 2;
+    display: block;
+  }
+  .tab-select-outer {
+    display: none;
+  }
+  .tab-contents {
+    position: relative;
+    top: -1px;
+    margin-top: 0;
+  }
+}
         .top_tag{
             padding-right: 0px !important;
             padding-left: 30px !important;
         }
+        .login-signup {
+  padding: 0 0 25px;
+}
+
+.btn-success {
+  background: #71c55d;
+  border-radius:0;
+  border: 2px solid #71c55d;
+  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+  transition: all 400ms cubic-bezier(.4,0,.2,1);
+}
+
+.btn-success:hover,.btn-success:focus {
+  background: rgba(26, 161, 157, 0);
+  border: 2px solid #1aa19d;
+  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+  transition: all 400ms cubic-bezier(.4,0,.2,1);
+  color: #23BAB5;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+article[role="login"] {
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+  webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 30px 50px;
+  margin-bottom: 20px;
+}
+
+article[role="login"] input[type="submit"] {
+  padding: 10px 15px;
+  font-size: 16px;
+}
+
+article[role="login"]:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(0, 0, 0, 0.23);
+  webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+article[role="login"] h3 {
+  font-size: 26px;
+  font-weight: 300;
+  color: #23bab5;
+  margin-bottom: 20px;
+}
+
+article[role="login"] p {
+  font-size: 16px;
+  padding: 5px 15px;
+}
+
+.nav-tab-holder {
+  padding: 0 0 0 30px;
+  float: right;
+}
+
+.nav-tab-holder .nav-tabs {
+  border: 0;
+  float: none;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.nav-tab-holder .nav-tabs > li {
+  margin-bottom: -3px;
+  text-align: center;
+  padding: 0;
+  display: table-cell;
+  float: none;
+  padding: 0;
+}
+
+.nav-tab-holder .nav-tabs > li > a {
+  background: #d9d9d9;
+  color: #6c6c6c;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+  color: #FFF;
+  background-color: #23bab5;
+  border: 0;
+  border-radius: 0;
+}
+
+.mobile-pull {
+  float: right;
+}
+
+article[role="manufacturer"] {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+  padding: 0 0 40px;
+  max-width: 420px;
+  margin: -45px auto 0;
+}
+
+article[role="manufacturer"] header {
+  background: #23bab5;
+  color: #fff;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+article[role="manufacturer"] h1 {
+  font-size: 26px;
+  font-weight: 300;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 25px 15px;
+}
+
+article[role="manufacturer"] ul {
+  padding: 0 25px;
+}
+
+article[role="manufacturer"] ul li {
+  font-size: 16px;
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 15px;
+  color:#404040;
+}
+
+article[role="manufacturer"] ul li i {
+  color: #23bab5;
+}
+
+.login-signup {
+  padding: 0 0 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  .mobile-pull {
+    float: none;
+  }
+
+  .nav-tab-holder {
+    float: none;
+    overflow: hidden;
+  }
+
+  .nav-tabs > li > a {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-tabs > li {
+    width: 50%;
+  }
+}
 </style>
+<script>
+$(function() {
+  var $tabButtonItem = $('#tab-button li'),
+      $tabSelect = $('#tab-select'),
+      $tabContents = $('.tab-contents'),
+      activeClass = 'is-active';
+
+  $tabButtonItem.first().addClass(activeClass);
+  $tabContents.not(':first').hide();
+
+  $tabButtonItem.find('a').on('click', function(e) {
+    var target = $(this).attr('href');
+
+    $tabButtonItem.removeClass(activeClass);
+    $(this).parent().addClass(activeClass);
+    $tabSelect.val(target);
+    $tabContents.hide();
+    $(target).show();
+    e.preventDefault();
+  });
+
+  $tabSelect.on('change', function() {
+    var target = $(this).val(),
+        targetSelectNum = $(this).prop('selectedIndex');
+
+    $tabButtonItem.removeClass(activeClass);
+    $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+    $tabContents.hide();
+    $(target).show();
+  });
+});</script>
+
 <br><br><br><br>
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
 <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
@@ -28,31 +288,31 @@
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_4" href="{% url 'logout' %}" value="4" onclick="chg_board( 4, 1 )" style="text-align: center; font-weight: bold;">로그아웃</a></div>
 </div>
 
-
-
-<div class="container">
-<div class="login-signup">
-    <div class="row">
-    <div class="col-sm-6 nav-tab-holder top_tag">
-    <ul class="nav nav-tabs row" role="tablist">
-        <li role="presentation" class="active col-sm-6"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">결제</a></li>
-        <li role="presentation" class="col-sm-6"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">송금</a></li>
+<div class="tabs">
+  <div class="tab-button-outer">
+    <ul id="tab-button">
+      <li><a href="#tab01">결제</a></li>
+      <li><a href="#tab02">송금</a></li>
     </ul>
-    </div>
-    </div>
+  </div>
+  <div class="tab-select-outer">
+    <select id="tab-select">
+      <option value="#tab01">Tab 1</option>
+      <option value="#tab02">Tab 2</option>
+    </select>
+  </div>
 
-    <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+  <div id="tab01" class="tab-contents">
         <div class="row">
-        <div class="col-sm-6 mobile-pull">
+        <div class="col-sm-13 col-sm-offset-3 mobile-pull">
             <article role="login">
             <h3 class="text-center"><i class="glyphicon glyphicon-qrcode"></i> 결제 시스템</h3>
             <form class="signup" action="index.html" method="post">
                 <div class="form-group">
                 <h4 class="font-weight-bold" style="color:#23bab5">잔액조회</h4>
                 <input type="text" class="form-control" readonly>
-                <button type="button" class="btn btn-success btn-block float-right"> 조회</button>
-                </div>
+                <button type="button" class="btn-default btn-sm btn-success float-right">조회</button>
+                </div><br>
                 <div class="form-group">
                 <h4 class="font-weight-bold" style="color:#23bab5" >보낼금액</h4>
                 <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
@@ -86,20 +346,18 @@
         </div>
         <!-- end of row -->
     </div>
-    <!-- end of home -->
 
-    <div role="tabpanel" class="tab-pane" id="profile">
+  <div id="tab02" class="tab-contents">
         <div class="row">
-
-            <div class="col-sm-6 mobile-pull">
+            <div class="col-sm-13 col-sm-offset-3 mobile-pull">
             <article role="login">
                 <h3 class="text-center"><i class="glyphicon glyphicon-usd"></i> 송금 시스템</h3>
                 <form class="signup" action="index.html" method="post">
                     <div class="form-group">
                         <h4 class="font-weight-bold" style="color:#23bab5">잔액조회</h4>
                         <input type="text" class="form-control" readonly>
-                        <button type="button" class="btn btn-success btn-block btn float-right">조회</button>
-                    </div>
+                        <button type="button" class="btn-default btn-sm btn-success float-right"> 조회</button>
+                    </div><br>
                     <div class="form-group">
                         <h4 class="font-weight-bold" style="color:#23bab5" >보낼금액</h4>
                         <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
@@ -131,12 +389,17 @@
             </div>
 
             
-        </div>
+
     </div>
-</div>
+  </div>
 </div>
 
+
+
+
+
 <br><br><br><br>
+
 
 <script type="text/javascript">
 var getCookie = function(name) {
