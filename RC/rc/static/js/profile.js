@@ -99,8 +99,8 @@ $("#password1").keyup(function (event) {
 
 //    if ( $("#password1").val().length < 8 )  {
 //        $("#pwdErrorMsg1").text("비밀번호는 8자 이상의 길이이어야 합니다.").css("color", "#d84461");
-//        isValidPassword1 = false;
-//    } else if( !pattern.test($("#password1").val()) ) {
+//        isValidPassword = false;
+//    } else if( !pattern.test($("#passwor").val()) ) {
 //        $("#pwdErrorMsg1").text("비밀번호는 알파벳 대소문자, 숫자, 특수문자(!@#$)를 최소 하나씩 포함해야합니다.").css("color", "#d84461");
 //        isValidPassword1 = false;
 //    } else if ( ( $("#username").val().length != 0 ) &&
@@ -113,14 +113,14 @@ $("#password1").keyup(function (event) {
 //    }
 
     if ( $("#password1").val().length < 8 )  {
-        $("#pwdErrorMsg1").text("비밀번호는 8자 이상의 길이이어야 합니다.").css("color", "#d84461");
+        $("#pwdErrorMsg").text("비밀번호는 8자 이상의 길이이어야 합니다.").css("color", "#d84461");
         isValidPassword1 = false;
     } else if ( ( $("#username").val().length != 0 ) &&
             ( $("#password1").val().includes($("#username").val()) || $("#username").val().includes($("#password1").val()) ) ) {
-        $("#pwdErrorMsg1").text("아이디와 유사한 비밀번호는 사용할 수 없습니다.").css("color", "#d84461");
+        $("#pwdErrorMsg").text("아이디와 유사한 비밀번호는 사용할 수 없습니다.").css("color", "#d84461");
         isValidPassword1 = false;
     } else {
-        $("#pwdErrorMsg1").empty();
+        $("#pwdErrorMsg").empty();
         isValidPassword1 = true;
     }
 });
@@ -128,13 +128,13 @@ $("#password1").keyup(function (event) {
 function invalidCheckPwd2() {
     $("#formErrorMsg").empty();
     if ( $("#password1").val() != $("#password2").val() )  {
-        $("#pwdErrorMsg2").text("비밀번호가 일치하지 않습니다.").css("color", "#d84461");
+        $("#pwdErrorMsg1").text("비밀번호가 일치하지 않습니다.").css("color", "#d84461");
         isValidPassword2 = false;
     } else if ( $("#password1").val().length == 0 ) {
-        $("#pwdErrorMsg2").empty();
+        $("#pwdErrorMsg1").empty();
         isValidPassword2 = false;
     } else {
-        $("#pwdErrorMsg2").text("비밀번호 일치").css("color","#00c73c");
+        $("#pwdErrorMsg1").text("비밀번호 일치").css("color","#00c73c");
         isValidPassword2 = true;
     }
 }

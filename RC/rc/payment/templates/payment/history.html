@@ -2,33 +2,27 @@
 {% load staticfiles %}
 
 {% block head %}
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<script src='{% static "lib/jquery/jquery.min.js" %}'></script>
 <script>
 $(document).ready(function () {
-
     $('.ckbox label').on('click', function () {
       $(this).parents('tr').toggleClass('selected');
     });
-
     $('.btn-filter').on('click', function () {
         var $target = $(this).data('target');
         console.log("onclick", $target);
         $('input[name=filter]').val($target);
         <!--$('form').submit();-->
-
-
       if ($target != 'all') {
         $('.table tr').css('display', 'none');
         $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
       } else {
         $('.table tr').css('display', 'none').fadeIn('slow');
       }
-
     });
-
  });
 </script>
 {% endblock head %}
@@ -62,13 +56,12 @@ body {
 	color: inherit;
 	font-weight: bold;
 }
-
 /*	--------------------------------------------------
 	:: Table Filter
 	-------------------------------------------------- */
 .panel {
-	border: 1px solid #ddd;
-	background-color: #fcfcfc;
+	border: none;
+	background-color: #fff;
 }
 .panel .btn-group {
 	margin: 15px 0 30px;
@@ -174,7 +167,6 @@ body {
 	color: inherit;
 	font-weight: bold;
 }
-
 /*	--------------------------------------------------
 	:: Table Filter
 	-------------------------------------------------- */
@@ -282,13 +274,12 @@ body {
 	color: inherit;
 	font-weight: bold;
 }
-
 /*	--------------------------------------------------
 	:: Table Filter
 	-------------------------------------------------- */
 .panel {
-	border: 1px solid #ddd;
-	background-color: #fcfcfc;
+	border: none;
+	background-color: #fff;
 }
 .panel .btn-group {
 	margin: 15px 0 30px;
@@ -461,17 +452,22 @@ body {
 .table-filter .media .summary {
 	font-size: 14px;
 }
+.btn-primary.custom-btn.btn-filter {
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
 </style>
+
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
-    <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
-    <div style="border: 1px solid white;"></div>
-    <div id="btn_board_type_1" style="padding: 20px; background-color: #71c55d;"><a class="btn_board_type_1" value="1" href="{% url 'payment:withdraw' %}" onclick="chg_board( 1, 1 )" style="text-align: center; font-weight: bold;">송금/결제</a></div>
-    <div style="border: 1px solid white;"></div>
-    <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'payment:history' %}" value="2" onclick="chg_board( 2, 1 )" style="text-align: center; font-weight: bold;">거래내역</a></div>
-    <div style="border: 1px solid white;"></div>
-    <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_3" href="{% url 'profile:account_myInfo' user.id %}" value="3" onclick="chg_board( 3, 1 )" style="text-align: center; font-weight: bold;">정보수정</a></div>
-    <div style="border: 1px solid white;"></div>
-    <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_4" href="{% url 'logout' %}" value="4" onclick="chg_board( 4, 1 )" style="text-align: center; font-weight: bold;">로그아웃</a></div>
+<div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
+<div style="border: 1px solid white;"></div>
+<div id="btn_board_type_1" style="padding: 20px; background-color: #71c55d;"><a class="btn_board_type_1" value="1" href="{% url 'payment:withdraw' %}" onclick="chg_board( 1, 1 )" style="text-align: center; font-weight: bold;">송금/결제</a></div>
+<div style="border: 1px solid white;"></div>
+<div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'payment:history' %}" value="2" onclick="chg_board( 2, 1 )" style="text-align: center; font-weight: bold;">거래내역</a></div>
+<div style="border: 1px solid white;"></div>
+<div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_3" href="{% url 'profile:account_myInfo' user.id %}" value="3" onclick="chg_board( 3, 1 )" style="text-align: center; font-weight: bold;">정보수정</a></div>
+<div style="border: 1px solid white;"></div>
+<div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_4" href="{% url 'logout' %}" value="4" onclick="chg_board( 4, 1 )" style="text-align: center; font-weight: bold;">로그아웃</a></div>
 </div>
 
 
@@ -479,16 +475,17 @@ body {
 
     <div class="container">
         <div class="row">
-            <div class="col-md-9 col-md-offset-2">
+            <div class="col-md-12 col-md-offset-3">
                 <div class="panel panel-default">
                     <h1 align="center">거래 내역</h1>
-                        <div class="panel-body">
+					<br>
+                       
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">발행</button>
                                     <button type="button" class="btn btn-success btn-filter" data-target="pagado">송금</button>
                                     <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">결제</button>
-                                    <button type="button" class="btn btn-default btn-filter" data-target="all">종합</button>
+                                    <button type="button" class="btn btn-primary custom-btn btn-filter" data-target="all">종합</button>
                                 </div>
                             </div>
                             <div class="table-container">
@@ -522,9 +519,10 @@ body {
                                         </tr>
                                     {% endfor %}
 
-                                    </tbody>
-                                      {% if withdraws.has_other_pages %}
-                                <ul class="pagination">
+                                    </tbody>                            
+                                </table>
+								 {% if withdraws.has_other_pages %}
+                                <ul class="pagination pagination-lg pager">
                                     {% if withdraws.has_previous %}
                                       <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
                                     {% else %}
@@ -543,22 +541,21 @@ body {
                                       <li class="disabled"><span>&raquo;</span></li>
                                     {% endif %}
                                     </ul>
+							
                                 {% endif %}
-
-                                </table>
                             </div>
                         </div>
                 </div>
             </div>
-             <div class="col-md-12 text-center">
+
                 <ul class="pagination pagination-lg pager" id="myPager"></ul>
-             </div>
+
         </div>
     </div>
 </section>
 
 <!--페이지네이션 시험-->
-<section class="content">
+{% comment %} <section class="content">
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -600,26 +597,20 @@ body {
     {% endif %}
   </ul>
 {% endif %}
-</section>
+</section> {% endcomment %}
 <script type="text/javascript">
     var getCookie = function(name) {
       var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
       return value? value[2] : null;
     };
-
     function search_board_by_word(){
-
         var board_type = getCookie('current_board')
         var page = $('.active > a').text()
         chg_board(board_type,page)
     }
-
     document.addEventListener("DOMContentLoaded", function(){
-
         var board_type = getCookie('current_board')
-
         if( board_type == null ){
-
             ctl_cookie(1)
             chg_board(1)
         }else{
