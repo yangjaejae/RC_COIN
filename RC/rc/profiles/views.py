@@ -5,7 +5,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from .forms import ProfileForm
-from api.views import init_wallet
 import json
 
 # Create your views here.
@@ -62,18 +61,14 @@ def account_edit(request, account_id=None):
         user.profile.birth_date = form.cleaned_data.get('birth_date')
         user.save()
 
-        if isSignup:
-            usertmp = get_object_or_404(User, username=user.username)
-            userid = str(usertmp.pk)
-            result = init_wallet(userid)
         return render(request, 'registration/done.html', context)
     else:
         if account_id:
             context = getContext(account_id)
-            return render(request, 'registration/profile_register.html', context)
+            return render(request, 'registration/profile_edit.html', context)
         else:
             form = ProfileForm()
-            return render(request, 'registration/profile_register.html', { 'form' : form })
+            return render(request, 'registration/profile_edit.html', { 'form' : form })
 
 
 def search_username(request):

@@ -38,11 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'profiles.apps.ProfilesConfig',
-    'board',
+    'board.apps.BoardConfig',
     'store.apps.StoreConfig',
-    'info',
-    'payment',
-    'api'
+    'info.apps.InfoConfig',
+    'payment.apps.PaymentConfig'
 ]
 
 MIDDLEWARE = [
@@ -81,8 +80,17 @@ WSGI_APPLICATION = 'rc.wsgi.application'
 
 DATABASES = {
     'default': {
+        # Sqlite3
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        
+        # MariaDB
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'rcdb',
+        # 'USER': 'root',
+        # 'PASSWORD': 'rcadmin',
+        # 'HOST': 'localhost',
+        # 'PORT': '3306'
     }
 }
 
