@@ -30,6 +30,12 @@ class StorePV(ListView):
     paginate_by = 12
     context_object_name = 'photos'
     model = Photo
+    template_name = 'store_list.html'
+
+    # def store_list(request):
+    #     print(1234, "##########################")
+    #     return render(request, "store_list.html",({}))
+    
 
 class StoreDPV(DetailView):
     model = Photo
@@ -77,3 +83,5 @@ def store_remove(request, store_id=None):
     store.status = "d"
     store.save()
     return redirect('store:myList')
+
+

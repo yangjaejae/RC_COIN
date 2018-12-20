@@ -13,9 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['domain',]
     verbose_name_plural = 'category'
 
-class PhotoAdmin(admin.ModelAdmin):
-    list_display = ['store', 'image', 'upload_date',]
-    verbose_name_plural = 'photo'
+
 
 class StoreAdmin(admin.ModelAdmin):
     model = Store
@@ -23,6 +21,10 @@ class StoreAdmin(admin.ModelAdmin):
                     'phone_number', 'url', 'opening_hour', 'opening_minute', 'closing_hour', 'closing_minute',
                     'description', 'registered_date', 'modified_date', 'status']
     verbose_name_plural = 'store'
+
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ['store', 'image', 'upload_date','location']
+    verbose_name_plural = 'photo'
 
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Category, CategoryAdmin)

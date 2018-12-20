@@ -1,0 +1,130 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<style>
+.gallery-title
+{
+    font-size: 40px;
+    color: #71c55d;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+.gallery-title:after {
+    content: "";
+    /* position: absolute; */
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #71c55d;
+    border-radius: 5px;
+    text-align: center;
+    color: #71c55d;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #71c55d;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #71c55d;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #71c55d;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+
+    $(".filter-button").click(function(){
+        var value = $(this).attr('data-filter');
+        
+        if(value == "all")
+        {
+            //$('.filter').removeClass('hidden');
+            $('.filter').show('1000');
+        }
+        else
+        {
+//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+            $(".filter").not('.'+value).hide('3000');
+            $('.filter').filter('.'+value).show('3000');
+            
+        }
+    });
+    
+    if ($(".filter-button").removeClass("active")) {
+$(this).removeClass("active");
+}
+$(this).addClass("active");
+
+});
+</script>
+{% endblock head %}
+
+{% block content %}
+
+
+
+
+
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h2 class="gallery-title"><b>가맹점</b></h2>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
+                <button class="btn btn-default filter-button" data-filter="all">전체지역</button>
+                <button class="btn btn-default filter-button" data-filter="북면">북면</button>
+                <button class="btn btn-default filter-button" data-filter="서면">서면</button>
+                <button class="btn btn-default filter-button" data-filter="울릉읍">울릉읍</button>
+            </div>
+            
+            
+            {% for photo in photos %}
+            
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {{ photo.location }}">
+                <!-- <img src="http://fakeimg.pl/365x365/" class="img-responsive"> -->
+                <!-- <img src="/media/{{ photo.image.thumb_url }}" class="img-responsive"> -->
+                <img src="{{ photo.image.url }}" class="img-responsive">
+                <p>{{ photo.store }}</p>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

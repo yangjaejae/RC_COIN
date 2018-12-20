@@ -13,6 +13,10 @@ urlpatterns = [
     path('read/<int:pk>/',StoreDV.as_view(), name='read'),
     path('edit/<int:store_id>/', store_edit, name='edit'),
     path('delete/<int:store_id>/', store_remove, name='delete'),
-    path('view/', StorePV.as_view(), name='photoView'),
-    path('view/<int:store_id>/', StoreDPV.as_view(), name='detailPhotoView')
+    # path('view/', StorePV.as_view(), name='photoView'),
+    # path('view/<int:store_id>/', StoreDPV.as_view(), name='detailPhotoView'),
+    # path('history/', views.history, name='history'),
+
+    path('store_list/', StorePV.as_view(), name='store_list'),
+    # path('view/<int:store_id>/', StoreDPV.as_view(), name='view_detail')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

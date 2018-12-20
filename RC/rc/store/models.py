@@ -25,16 +25,6 @@ def upload_path_handler(instance, filename):
     return "store/store_{id}/{file}".format(id=instance.store.id, file=filename)
 
 @python_2_unicode_compatible
-class Photo(models.Model):
-    store = models.ForeignKey('Store', on_delete=models.CASCADE)
-    image = ThumbnailImageField(upload_to=upload_path_handler, null=True)
-    upload_date = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['store']
-
-    def __str__(self):
-        return self.store.name
 
 class Store(models.Model):
     name = models.CharField(max_length=100, null=True)
@@ -56,3 +46,15 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name
+
+class Photo(models.Model):
+    store = models.ForeignKey('Store', on_delete=models.CASCADE)
+    image = ThumbnailImageField(upload_to=upload_path_handler, null=True)
+    upload_date = models.DateTimeField(auto_now_add=True)
+    location = models.ForeignKey(Location, null=True, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['store']
+
+    def __str__(self):
+        return self.store.name
