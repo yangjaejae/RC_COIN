@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-from django.views.generic import ListView, DetailView
-from django.http import JsonResponse
+from django.views.generic import ListView, DetailView, View
+from django.http import JsonResponse, HttpResponse
 from .models import Store, Category, Location, Photo
 from .forms import StoreForm, PhotoForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.template import loader
 
 # Create your views here.
 
@@ -27,14 +30,75 @@ class StoreDV(DetailView):
         return context
         
 class StorePV(ListView):
+    model=Photo
     paginate_by = 12
     context_object_name = 'photos'
-    model = Photo
     template_name = 'store_list.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(StorePV, self).get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5  # Display only 5 page numbers
+        max_index = len(paginator.page_range)
+
+        page = self.request.GET.get('page')
+        current_page = int(page) if page else 1
+
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
+
+class filteredStoresPV(ListView):
+    model=Photo
+    paginate_by = 12
+    context_object_name = 'photos'
+    template_name = 'store_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(filteredStoresPV, self).get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5  # Display only 5 page numbers
+        max_index = len(paginator.page_range)
+
+        page = self.request.GET.get('page')
+        current_page = int(page) if page else 1
+
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
+
+    def get_queryset(self, **kwargs):
+        loc = self.kwargs.get('loc',None)
+        queryset = Photo.objects.filter(location=loc)
+        return queryset
+    
+
+
     # def store_list(request):
-    #     print(1234, "##########################")
-    #     return render(request, "store_list.html",({}))
+    #     photo_list = User.objects.all()
+    #     print("##########################")
+    #     page = request.GET.get('page', 1)
+    #     paginator = Paginator(photo_list, 12)
+    #     photos = paginator.page(1)
+
+    #     try:
+    #         photos = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         photos = paginator.page(1)
+    #     except EmptyPage:
+    #         photos = paginator.page(paginator.num_pages)
+
+    #     return render(request, "store/store_list.html",{'photos': photos})    
     
 
 class StoreDPV(DetailView):

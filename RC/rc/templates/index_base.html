@@ -74,7 +74,7 @@
                         <input type="hidden" id="board_type_2" value="2">
                     </ul>
                 </li>
-                <li><a href="">가맹점</a>
+                <li><a href="{% url 'store:store_list' %}">가맹점</a>
                 </li>
                 {% if user.is_authenticated %}
                 <li class="menu-has-children"><a href="#myInfo">마이페이지</a>

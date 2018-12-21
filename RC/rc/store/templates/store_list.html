@@ -9,95 +9,93 @@
 
 
 <style>
-.gallery-title
-{
-    font-size: 40px;
-    color: #71c55d;
-    text-align: center;
-    font-weight: 500;
-    margin-top: 100px;
-    margin-bottom: 30px;
-}
-.gallery-title:after {
-    content: "";
-    /* position: absolute; */
-    width: 7.5%;
-    left: 46.5%;
-    height: 45px;
-    border-bottom: 1px solid #5e5e5e;
-}
-.filter-button
-{
-    font-size: 18px;
-    border: 1px solid #71c55d;
-    border-radius: 5px;
-    text-align: center;
-    color: #71c55d;
-    margin-bottom: 30px;
+    .gallery-title
+    {
+        font-size: 40px;
+        color: #71c55d;
+        text-align: center;
+        font-weight: 500;
+        margin-top: 100px;
+        margin-bottom: 30px;
+    }
+    .gallery-title:after {
+        content: "";
+        /* position: absolute; */
+        width: 7.5%;
+        left: 46.5%;
+        height: 45px;
+        border-bottom: 1px solid #5e5e5e;
+    }
+    .filter-button
+    {
+        font-size: 18px;
+        border: 1px solid #71c55d;
+        border-radius: 5px;
+        text-align: center;
+        color: #71c55d;
+        margin-bottom: 30px;
 
-}
-.filter-button:hover
-{
-    font-size: 18px;
-    border: 1px solid #71c55d;
-    border-radius: 5px;
-    text-align: center;
-    color: #ffffff;
-    background-color: #71c55d;
+    }
+    .filter-button:hover
+    {
+        font-size: 18px;
+        border: 1px solid #71c55d;
+        border-radius: 5px;
+        text-align: center;
+        color: #ffffff;
+        background-color: #71c55d;
 
-}
-.btn-default:active .filter-button:active
-{
-    background-color: #71c55d;
-    color: white;
-}
+    }
+    .btn-default:active .filter-button:active
+    {
+        background-color: #71c55d;
+        color: white;
+    }
 
-.port-image
-{
-    width: 100%;
-}
+    .port-image
+    {
+        width: 100%;
+    }
 
-.gallery_product
-{
-    margin-bottom: 30px;
-}
+    .gallery_product
+    {
+        margin-bottom: 5px;
+        border: 1px solid #71c55d;
+
+    }
 </style>
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
 
-    $(".filter-button").click(function(){
-        var value = $(this).attr('data-filter');
-        
-        if(value == "all")
-        {
-            //$('.filter').removeClass('hidden');
-            $('.filter').show('1000');
-        }
-        else
-        {
-//            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-//            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-            $(".filter").not('.'+value).hide('3000');
-            $('.filter').filter('.'+value).show('3000');
+        $(".filter-button").click(function(){
+            var value = $(this).attr('data-filter');
             
-        }
-    });
-    
-    if ($(".filter-button").removeClass("active")) {
-$(this).removeClass("active");
-}
-$(this).addClass("active");
+            if(value == "all")
+            {
+                //$('.filter').removeClass('hidden');
+                $('.filter').show('1000');
+            }
+            else
+            {
+    //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+    //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+                $(".filter").not('.'+value).hide('3000');
+                $('.filter').filter('.'+value).show('3000');
+                
+            }
+        });
+        
+        if ($(".filter-button").removeClass("active")) {
+    $(this).removeClass("active");
+    }
+    $(this).addClass("active");
 
-});
+    });
 </script>
 {% endblock head %}
 
 {% block content %}
-
-
-
-
 
 <section class="content">
     <div class="container">
@@ -107,24 +105,166 @@ $(this).addClass("active");
             </div>
 
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
-                <button class="btn btn-default filter-button" data-filter="all">전체지역</button>
-                <button class="btn btn-default filter-button" data-filter="북면">북면</button>
-                <button class="btn btn-default filter-button" data-filter="서면">서면</button>
-                <button class="btn btn-default filter-button" data-filter="울릉읍">울릉읍</button>
+                <div class="row" text-align="center">
+                    <form action="{% url 'store:store_list' %}" method="GET">
+                        <button type="submit" class="btn btn-default filter-button">전체지역</button>
+                    </form>
+                    <form action="{% url 'store:filteredStores' 3 %}" method="GET">
+                        <button type="submit" class="btn btn-default filter-button">북면</button>
+                    </form>
+                    <form action="{% url 'store:filteredStores' 2 %}" method="GET">
+                        <button type="submit" class="btn btn-default filter-button">서면</button>
+                    </form>
+                    <form action="{% url 'store:filteredStores' 1 %}" method="GET">
+                        <button type="submit" class="btn btn-default filter-button">울릉읍</button>
+                    </form>
+                <div>
             </div>
             
-            
+            <div class="container" style="margin-right:0%">
+                <div class="row pull-right">
+                    <div class="span4">
+                    <form class="form-search">
+                        <div class="input-append">
+                            <input type="text" class="span2">
+                            <button type="submit" class="btn" style="background-color:#71c55d">Search</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
             {% for photo in photos %}
-            
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {{ photo.location }}">
+            <div class="gallery_product col-lg-3 col-md-4 col-sm-4 col-xs-6 filter {{ photo.location }}">
+                <div align="middle">
                 <!-- <img src="http://fakeimg.pl/365x365/" class="img-responsive"> -->
                 <!-- <img src="/media/{{ photo.image.thumb_url }}" class="img-responsive"> -->
-                <img src="{{ photo.image.url }}" class="img-responsive">
-                <p>{{ photo.store }}</p>
+                {% comment %} <img src="{{ photo.image.url }}" class="img-responsive"> {% endcomment %}
+                <img src="{{ photo.image.thumb_url }}" class="img-responsive">
+                <h4>{{ photo.store }}</h4>
+                {{ photo.location }}
+                </div>
             </div>
-            {% endfor %}
-            
+            {% endfor %}   
         </div>
+    
+
+
+
+{% comment %} pagination code {% endcomment %}
+    {% if is_paginated %}
+    <nav>
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li>
+            <a href="?page={{ page_obj.previous_page_number }}">
+                <span>Prev</span>
+            </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+            <a href="#">
+                <span>Previous</span>
+            </a>
+            </li>
+        {% endif %}
+
+        {% for page in page_range %}
+            <li {% if page == page_obj.number %}class="active"{% endif %}>
+            <a href="?page={{ page }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li>
+            <a href="?page={{ page_obj.next_page_number }}">
+                <span>Next</span>
+            </a>
+            </li>
+        {% else %}
+            <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
+            <a href="#">
+                <span>Next</span>
+            </a>
+            </li>
+        {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
     </div>
 </section>
+{% comment %} 
+    <div class="container search-table">
+            <div class="search-box">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Search All Fields</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields e.g. HTML">
+                        <script>
+                            $(document).ready(function () {
+                                $("#myInput").on("keyup", function () {
+                                    var value = $(this).val().toLowerCase();
+                                    $("#myTable tr").filter(function () {
+                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+                        </script>
+                    </div> 
+                </div>
+            </div>
+            <div class="search-list">
+                <h3>Search List</h3>
+                <table class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    
+                    <tr>
+                        <td>HTML</td>
+                        <td>Web Development</td>
+                    </tr>
+                    <tr>
+                        <td>PHP</td>
+                        <td>Web Development</td>
+                    </tr>
+                    <tr>
+                        <td>C#</td>
+                        <td>Programming Language</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Web Development</td>
+                    </tr>
+                    <tr>
+                        <td>Bootstrap</td>
+                        <td>Web Design</td>
+                    </tr>
+                    <tr>
+                        <td>Python</td>
+                        <td>Programming Language</td>
+                    </tr>
+                    <tr>
+                        <td>Android</td>
+                        <td>App Development</td>
+                    </tr>
+                    <tr>
+                        <td>Angular JS</td>
+                        <td>Web Delopment</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div> {% endcomment %}
+
 {% endblock %}
