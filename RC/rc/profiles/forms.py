@@ -27,7 +27,7 @@ class ProfileForm(UserCreationForm):
         user.birth_month = self.cleaned_data["birth_month"]
         user.birth_date = self.cleaned_data["birth_date"]
         user.type = 2
-        user.status = "allowed"
+        user.status = "a"
         if commit:
             user.save()
         return user

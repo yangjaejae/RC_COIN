@@ -25,6 +25,9 @@ urlpatterns = [
     path('signup/check_username/', views.check_username, name='check_username'),
     path('myInfo/<int:account_id>/check_password/', views.check_password, name='check_password'),
     path('search_username/', views.search_username, name='search_username'),
+    path('search_username/getUserList/', views.getUserList, name='getUserList'),
     path('search_password/', views.search_password, name='search_password'),
-    path('done/', views.done, name='done')
+    path('search_password/initPassword/', views.initPassword, name='initPassword'),
+    path('done/', views.done, name='done'),
+    path('agreement/', views.agreement, name='agreement')
 ]

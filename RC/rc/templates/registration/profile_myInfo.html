@@ -2,54 +2,91 @@
 {% load staticfiles %}
 
 {% block head %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
+<script>
+$(function() {
+  var $tabButtonItem = $('#tab-button li'),
+      $tabSelect = $('#tab-select'),
+      $tabContents = $('.tab-contents'),
+      activeClass = 'is-active';
+
+  $tabButtonItem.first().addClass(activeClass);
+  $tabContents.not(':first').hide();
+
+  $tabButtonItem.find('a').on('click', function(e) {
+    var target = $(this).attr('href');
+
+    $tabButtonItem.removeClass(activeClass);
+    $(this).parent().addClass(activeClass);
+    $tabSelect.val(target);
+    $tabContents.hide();
+    $(target).show();
+    e.preventDefault();
+  });
+
+  $tabSelect.on('change', function() {
+    var target = $(this).val(),
+        targetSelectNum = $(this).prop('selectedIndex');
+
+    $tabButtonItem.removeClass(activeClass);
+    $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+    $tabContents.hide();
+    $(target).show();
+  });
+});</script>
+
 {% endblock head %}
 
 {% block content %}
+
 <section id="hero">
-    <div class="con_tit">
-        <h3>My Info</h3>
-    </div>
-    <div class="sm_wrap">
-        <ul>
-            <li><h3>아이디</h3></li>
-            <li><input type="text" name="username" value="{{ username }}" readonly></li>
-        </ul>
-        <ul>
-            <li><h3>이메일</h3></li>
-            <li><input type="text" name="email" value="{{ email }}" readonly></li>
-        </ul>
-        <ul>
-            <li><h3>성별</h3></li>
-            <li>
-                {% if gender == "m" %}
-                    <input type="text" name="gender" value="남성" readonly>
+    <div class="container">
+        <div class="con_tit">
+            <h3>My Info</h3>
+        </div>
+        <div class="sm_wrap">
+            <ul>
+                <li><h3>아이디</h3></li>
+                <li><input type="text" name="username" value="{{ username }}" readonly></li>
+            </ul>
+            <ul>
+                <li><h3>이메일</h3></li>
+                <li><input type="text" name="email" value="{{ email }}" readonly></li>
+            </ul>
+            <ul>
+                <li><h3>성별</h3></li>
+                <li>
+                    {% if gender == "m" %}
+                        <input type="text" name="gender" value="남성" readonly>
+                    {% else %}
+                        <input type="text" name="gender" value="여성" readonly>
+                    {% endif %}
+                </li>
+            </ul>
+            <ul class="birthday">
+                <li><h3>생년월일</h3></li>
+                <li><input type="text" name="gender" value="{{ birth_year }} 년  {{ birth_month }} 월  {{ birth_date }} 일" readonly></li>
+            </ul>
+            <div class="one_btn pb10">
+                <div class="one_green">
+                    <a href="{% url 'profile:check_password' user.id %}">정보수정</a>
+                </div>
+            </div>
+            <div class="one_btn">
+                <div class="one_gray">
+                    <a href="{% url 'index' %}">확인</a>
+                </div>
+            </div>
+            <div>
+                {% if user.profile.type == 1 %}
+                <a href="{% url 'store:myList' %}">가맹점 관리</a>
                 {% else %}
-                    <input type="text" name="gender" value="여성" readonly>
+                <a href="{% url 'store:add' %}">가맹점 신청</a>
                 {% endif %}
-            </li>
-        </ul>
-        <ul class="birthday">
-            <li><h3>생년월일</h3></li>
-            <li><input type="text" name="gender" value="{{ birth_year }} 년  {{ birth_month }} 월  {{ birth_date }} 일" readonly></li>
-        </ul>
-        <div class="one_btn pb10">
-            <div class="one_green">
-                <a href="{% url 'profile:check_password' user.id %}">정보수정</a>
             </div>
-        </div>
-        <div class="one_btn">
-            <div class="one_gray">
-                <a href="{% url 'index' %}">확인</a>
-            </div>
-        </div>
-        <div>
-            {% if user.profile.type == 1 %}
-            <a href="{% url 'store:myList' %}">가맹점 관리</a>
-            {% else %}
-            <a href="{% url 'store:add' %}">가맹점 신청</a>
-            {% endif %}
         </div>
     </div>
 </section>
+
 {% endblock content %}
