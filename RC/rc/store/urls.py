@@ -18,6 +18,6 @@ urlpatterns = [
     # path('history/', views.history, name='history'),
 
     path('store_list/', StorePV.as_view(), name='store_list'),
-    path('store_list/filter/<int:loc>/',filteredStoresPV.as_view(), name='filteredStores')
+    path('store_list/filter/<int:loc>/',filteredStoresPV.as_view(), name='filteredStores'),
     # path('view/<int:store_id>/', StoreDPV.as_view(), name='view_detail')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

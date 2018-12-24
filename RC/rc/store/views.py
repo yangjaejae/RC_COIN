@@ -79,7 +79,11 @@ class filteredStoresPV(ListView):
 
     def get_queryset(self, **kwargs):
         loc = self.kwargs.get('loc',None)
-        queryset = Photo.objects.filter(location=loc)
+        if loc == 4:
+            search_query = self.request.GET.get('search_box', None)
+            queryset = Photo.objects.filter(store__name__icontains=search_query) # filter returns a list so you might consider skip except part
+        else:
+            queryset = Photo.objects.filter(location=loc)
         return queryset
     
 

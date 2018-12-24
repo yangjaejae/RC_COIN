@@ -124,12 +124,12 @@
             <div class="container" style="margin-right:0%">
                 <div class="row pull-right">
                     <div class="span4">
-                    <form class="form-search">
-                        <div class="input-append">
-                            <input type="text" class="span2">
-                            <button type="submit" class="btn" style="background-color:#71c55d">Search</button>
-                        </div>
-                    </form>
+                        <form action="{% url 'store:filteredStores' 4 %}" class="form-search" method="GET">
+                            <div class="input-append">
+                                <input id="search_box" type="text" name="search_box"  placeholder="가맹점 검색" class="span2">
+                                <button id="search_submit" type="submit" class="btn" style="background-color:#71c55d">Search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
