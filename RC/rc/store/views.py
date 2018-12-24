@@ -85,6 +85,11 @@ class filteredStoresPV(ListView):
         else:
             queryset = Photo.objects.filter(location=loc)
         return queryset
+
+def detailView (request, store_id=None):
+    store = get_object_or_404(Store, pk=store_id)
+    photo = get_object_or_404(Photo, store_id=store.pk)
+    return render(request, 'store_list_detail.html', dict(store=store, photo=photo))
     
 
 

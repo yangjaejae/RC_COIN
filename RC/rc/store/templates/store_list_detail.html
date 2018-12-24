@@ -1,0 +1,106 @@
+{% extends 'index_base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+{% endblock head %}
+
+{% block content %}
+<style>
+    ul > li{margin-right:25px;font-weight:lighter;cursor:pointer}
+    li.active{border-bottom:3px solid #71c55d;}
+
+    .item-photo{display:flex;justify-content:center;align-items:center;border-right:1px solid #71c55d;}
+    .menu-items{list-style-type:none;font-size:11px;display:inline-flex;margin-bottom:0;margin-top:20px}
+    .btn-success{width:100%;border-radius:0;}
+    .section{width:100%;margin-left:-15px;padding:2px;padding-left:15px;padding-right:15px;background:#f8f9f9}
+    .title-price{margin-top:30px;margin-bottom:0;color:black}
+    .title-attr{margin-top:0;margin-bottom:0;color:black;}
+    .btn-minus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-right:0;}
+    .btn-plus{cursor:pointer;font-size:7px;display:flex;align-items:center;padding:5px;padding-left:10px;padding-right:10px;border:1px solid gray;border-radius:2px;border-left:0;}
+    div.section > div {width:100%;display:inline-flex;}
+    div.section > div > input {margin:0;padding-left:5px;font-size:10px;padding-right:5px;max-width:18%;text-align:center;}
+    .attr,.attr2{cursor:pointer;margin-right:5px;height:20px;font-size:10px;padding:2px;border:1px solid gray;border-radius:2px;}
+    .attr.active,.attr2.active{ border:1px solid orange;}
+
+    @media (max-width: 426px) {
+        .container {margin-top:0px !important;}
+        .container > .row{padding:0 !important;}
+        .container > .row > .col-xs-12.col-sm-5{
+            padding-right:0 ;    
+        }
+        .container > .row > .col-xs-12.col-sm-9 > div > p{
+            padding-left:0 !important;
+            padding-right:0 !important;
+        }
+        .container > .row > .col-xs-12.col-sm-9 > div > ul{
+            padding-left:10px !important;
+            
+        }            
+        .section{width:104%;}
+        .menu-items{padding-left:0;}
+    }
+        .container > row justify-content-center > col-xs-5 > h3 {
+            color:#71c55d;
+        }
+</style>
+<br><br>
+<section id="content">
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+        	<div class="row justify-content-center">
+               <div class="col-xs-4 item-photo">
+                    <img style="max-width:100%;" src="{{ photo.image.url }}" />
+                </div>
+                <div class="col-xs-5" style="border:0px solid gray">
+                    <!-- Datos del vendedor y titulo del producto -->
+                    <h3 style="color:#71c55d;">{{ store.name }}</h3>    
+                    <h4>{{ store.location }}</h4>
+                    <!-- Precios -->
+                    <br>
+                    <!-- Detalles especificos del producto -->
+
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6 class="title-attr" >주소</h6>
+                        <h6 class="title-attr"><small>{{ store.address }}</small></h6>               
+                    </div>   
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6 class="title-attr">전화번호</h6>                    
+                        <h6 class="title-attr"><small>{{ store.phone_number }}</small></h6> 
+                    </div>
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6 class="title-attr">홈페이지</h6>
+                        <h6 class="title-attr"><small>{{ store.url }}</small></h6>               
+                    </div>
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6 class="title-attr">영업 시간</h6>
+                        <h6 class="title-attr"><small>{{ store.opening_hour }}:{{ store.opening_minute }} ~ {{ store.closing_hour }}:{{ store.closing_minute }}</small></h6>               
+                    </div>            
+                                       
+                </div>                              
+        
+                <div class="col-xs-9">
+                    <ul class="menu-items">
+                        <li class="active">상세 정보</li>
+                    </ul>
+                    <div style="width:100%;border-top:1px solid #71c55d;">
+                        <p style="padding:15px;">
+                            <small>
+                           {{ store.description}}
+                            </small>
+                        </p>
+                    </div>
+                </div>		
+            </div>
+        </div>        
+    </body>
+</html>
+
+</section>
+{% endblock %}

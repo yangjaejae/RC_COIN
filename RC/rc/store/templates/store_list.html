@@ -4,8 +4,8 @@
 {% block head %}
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
 <style>
@@ -65,34 +65,6 @@
     }
 </style>
 
-<script>
-    $(document).ready(function(){
-
-        $(".filter-button").click(function(){
-            var value = $(this).attr('data-filter');
-            
-            if(value == "all")
-            {
-                //$('.filter').removeClass('hidden');
-                $('.filter').show('1000');
-            }
-            else
-            {
-    //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
-    //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
-                $(".filter").not('.'+value).hide('3000');
-                $('.filter').filter('.'+value).show('3000');
-                
-            }
-        });
-        
-        if ($(".filter-button").removeClass("active")) {
-    $(this).removeClass("active");
-    }
-    $(this).addClass("active");
-
-    });
-</script>
 {% endblock head %}
 
 {% block content %}
@@ -104,21 +76,21 @@
                 <h2 class="gallery-title"><b>가맹점</b></h2>
             </div>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" align="center">
-                <div class="row" text-align="center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container-fluid" align="center">
+                <div class="row justify-content-center" text-align="center">
                     <form action="{% url 'store:store_list' %}" method="GET">
                         <button type="submit" class="btn btn-default filter-button">전체지역</button>
-                    </form>
+                    </form>&nbsp;
                     <form action="{% url 'store:filteredStores' 3 %}" method="GET">
                         <button type="submit" class="btn btn-default filter-button">북면</button>
-                    </form>
+                    </form>&nbsp;
                     <form action="{% url 'store:filteredStores' 2 %}" method="GET">
                         <button type="submit" class="btn btn-default filter-button">서면</button>
-                    </form>
+                    </form>&nbsp;
                     <form action="{% url 'store:filteredStores' 1 %}" method="GET">
                         <button type="submit" class="btn btn-default filter-button">울릉읍</button>
-                    </form>
-                <div>
+                    </form>&nbsp;
+                </div>
             </div>
             
             <div class="container" style="margin-right:0%">
@@ -137,134 +109,64 @@
             <br><br>
 
             {% for photo in photos %}
+            
             <div class="gallery_product col-lg-3 col-md-4 col-sm-4 col-xs-6 filter {{ photo.location }}">
+                <a href="{% url 'store:filteredStoresDetail' photo.id %}">
                 <div align="middle">
-                <!-- <img src="http://fakeimg.pl/365x365/" class="img-responsive"> -->
-                <!-- <img src="/media/{{ photo.image.thumb_url }}" class="img-responsive"> -->
-                {% comment %} <img src="{{ photo.image.url }}" class="img-responsive"> {% endcomment %}
-                <img src="{{ photo.image.thumb_url }}" class="img-responsive">
-                <h4>{{ photo.store }}</h4>
-                {{ photo.location }}
+                    <!-- <img src="http://fakeimg.pl/365x365/" class="img-responsive"> -->
+                    <!-- <img src="/media/{{ photo.image.thumb_url }}" class="img-responsive"> -->
+                    {% comment %} <img src="{{ photo.image.url }}" class="img-responsive"> {% endcomment %}
+                    <img src="{{ photo.image.thumb_url }}" class="img-responsive">
+                    <h4>{{ photo.store }}</h4>
+                    {{ photo.location }}
                 </div>
+                </a>
             </div>
+            
             {% endfor %}   
         </div>
-    
+        <div class="row justify-content-center">
+            {% if is_paginated %}
+                    <nav>
+                        <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                            <li>
+                            <a href="?page={{ page_obj.previous_page_number }}">
+                                <span>Prev</span>
+                            </a>
+                            </li>
+                        {% else %}
+                            <li class="disabled">
+                            <a href="#">
+                                <span>Previous</span>
+                            </a>
+                            </li>
+                        {% endif %}
 
+                        {% for page in page_range %}
+                            <li {% if page == page_obj.number %}class="active"{% endif %}>
+                            <a href="?page={{ page }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
 
-
-{% comment %} pagination code {% endcomment %}
-    {% if is_paginated %}
-    <nav>
-        <ul class="pagination">
-        {% if page_obj.has_previous %}
-            <li>
-            <a href="?page={{ page_obj.previous_page_number }}">
-                <span>Prev</span>
-            </a>
-            </li>
-        {% else %}
-            <li class="disabled">
-            <a href="#">
-                <span>Previous</span>
-            </a>
-            </li>
-        {% endif %}
-
-        {% for page in page_range %}
-            <li {% if page == page_obj.number %}class="active"{% endif %}>
-            <a href="?page={{ page }}">{{ page }}</a>
-            </li>
-        {% endfor %}
-
-        {% if page_obj.has_next %}
-            <li>
-            <a href="?page={{ page_obj.next_page_number }}">
-                <span>Next</span>
-            </a>
-            </li>
-        {% else %}
-            <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
-            <a href="#">
-                <span>Next</span>
-            </a>
-            </li>
-        {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
+                        {% if page_obj.has_next %}
+                            <li>
+                            <a href="?page={{ page_obj.next_page_number }}">
+                                <span>Next</span>
+                            </a>
+                            </li>
+                        {% else %}
+                            <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
+                            <a href="#">
+                                <span>Next</span>
+                            </a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    </nav>
+            {% endif %}
+        </div>
     </div>
 </section>
-{% comment %} 
-    <div class="container search-table">
-            <div class="search-box">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Search All Fields</h5>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Search all fields e.g. HTML">
-                        <script>
-                            $(document).ready(function () {
-                                $("#myInput").on("keyup", function () {
-                                    var value = $(this).val().toLowerCase();
-                                    $("#myTable tr").filter(function () {
-                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                                    });
-                                });
-                            });
-                        </script>
-                    </div> 
-                </div>
-            </div>
-            <div class="search-list">
-                <h3>Search List</h3>
-                <table class="table" id="myTable">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    
-                    <tr>
-                        <td>HTML</td>
-                        <td>Web Development</td>
-                    </tr>
-                    <tr>
-                        <td>PHP</td>
-                        <td>Web Development</td>
-                    </tr>
-                    <tr>
-                        <td>C#</td>
-                        <td>Programming Language</td>
-                    </tr>
-                    <tr>
-                        <td>JavaScript</td>
-                        <td>Web Development</td>
-                    </tr>
-                    <tr>
-                        <td>Bootstrap</td>
-                        <td>Web Design</td>
-                    </tr>
-                    <tr>
-                        <td>Python</td>
-                        <td>Programming Language</td>
-                    </tr>
-                    <tr>
-                        <td>Android</td>
-                        <td>App Development</td>
-                    </tr>
-                    <tr>
-                        <td>Angular JS</td>
-                        <td>Web Delopment</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </div> {% endcomment %}
 
 {% endblock %}

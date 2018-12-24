@@ -461,11 +461,11 @@ body {
 <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
 <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
 <div style="border: 1px solid white;"></div>
+<div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_3" href="{% url 'profile:account_myInfo' user.id %}" value="3" onclick="chg_board( 3, 1 )" style="text-align: center; font-weight: bold;">계정관리</a></div>
+<div style="border: 1px solid white;"></div>
 <div id="btn_board_type_1" style="padding: 20px; background-color: #71c55d;"><a class="btn_board_type_1" value="1" href="{% url 'payment:withdraw' %}" onclick="chg_board( 1, 1 )" style="text-align: center; font-weight: bold;">송금/결제</a></div>
 <div style="border: 1px solid white;"></div>
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'payment:history' %}" value="2" onclick="chg_board( 2, 1 )" style="text-align: center; font-weight: bold;">거래내역</a></div>
-<div style="border: 1px solid white;"></div>
-<div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_3" href="{% url 'profile:account_myInfo' user.id %}" value="3" onclick="chg_board( 3, 1 )" style="text-align: center; font-weight: bold;">정보수정</a></div>
 <div style="border: 1px solid white;"></div>
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_4" href="{% url 'logout' %}" value="4" onclick="chg_board( 4, 1 )" style="text-align: center; font-weight: bold;">로그아웃</a></div>
 </div>
