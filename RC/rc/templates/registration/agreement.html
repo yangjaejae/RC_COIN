@@ -39,7 +39,11 @@
 
                     <div class="row col-lg-12 col-md-12 col-sm-12">
                         <a href="{% url 'profile:signup' %}" id="btn_submit" class="col-sm btn submitButton">확인</a>
-                        <a href="{% url 'index' %}" class="col-sm btn cancelButton">취소</a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'profile:account_myInfo' user.id %}" class="col-sm btn cancelButton">취소</a>
+                        {% else %}
+                            <a href="{% url 'index' %}" class="col-sm btn cancelButton">취소</a>
+                        {% endif %}
                     </div>
                 </div>
             {% comment %} </div> {% endcomment %}

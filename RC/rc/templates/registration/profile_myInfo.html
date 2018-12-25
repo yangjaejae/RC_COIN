@@ -3,90 +3,126 @@
 
 {% block head %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
-<script>
-$(function() {
-  var $tabButtonItem = $('#tab-button li'),
-      $tabSelect = $('#tab-select'),
-      $tabContents = $('.tab-contents'),
-      activeClass = 'is-active';
-
-  $tabButtonItem.first().addClass(activeClass);
-  $tabContents.not(':first').hide();
-
-  $tabButtonItem.find('a').on('click', function(e) {
-    var target = $(this).attr('href');
-
-    $tabButtonItem.removeClass(activeClass);
-    $(this).parent().addClass(activeClass);
-    $tabSelect.val(target);
-    $tabContents.hide();
-    $(target).show();
-    e.preventDefault();
-  });
-
-  $tabSelect.on('change', function() {
-    var target = $(this).val(),
-        targetSelectNum = $(this).prop('selectedIndex');
-
-    $tabButtonItem.removeClass(activeClass);
-    $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
-    $tabContents.hide();
-    $(target).show();
-  });
-});</script>
+{% comment %} <link href="{% static 'css/account.css' %}" rel="stylesheet"> {% endcomment %}
+<link href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/myinfo.css' %}" rel="stylesheet">
 
 {% endblock head %}
 
 {% block content %}
 
 <section id="hero">
-    <div class="container">
-        <div class="con_tit">
-            <h3>My Info</h3>
-        </div>
-        <div class="sm_wrap">
-            <ul>
-                <li><h3>아이디</h3></li>
-                <li><input type="text" name="username" value="{{ username }}" readonly></li>
-            </ul>
-            <ul>
-                <li><h3>이메일</h3></li>
-                <li><input type="text" name="email" value="{{ email }}" readonly></li>
-            </ul>
-            <ul>
-                <li><h3>성별</h3></li>
-                <li>
-                    {% if gender == "m" %}
-                        <input type="text" name="gender" value="남성" readonly>
-                    {% else %}
-                        <input type="text" name="gender" value="여성" readonly>
-                    {% endif %}
-                </li>
-            </ul>
-            <ul class="birthday">
-                <li><h3>생년월일</h3></li>
-                <li><input type="text" name="gender" value="{{ birth_year }} 년  {{ birth_month }} 월  {{ birth_date }} 일" readonly></li>
-            </ul>
-            <div class="one_btn pb10">
-                <div class="one_green">
-                    <a href="{% url 'profile:check_password' user.id %}">정보수정</a>
+    <section id="content">
+        
+        <div class="container">
+           <div class="submitbox">
+                           
+                <span class="boxtitle">l 계정관리</span>
+
+                <div class="row margin-top">
+                    <div class="card margin-left">
+                        <img src="{% static 'img/account/wallet.png' %}" class="margin-left" alt="보유잔액">
+                        <div class="top-right">보유 금액</div>
+                        <div class="centered-left">1200 rc</div>
+                        <div class="bottom-right">
+                            <a href="">결제하기</a>&nbsp;/&nbsp;
+                            <a href="">송금하기</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                {{ username }}
+                                <a href="{% url 'profile:agreement' %}" class="profile-edit-btn" name="btnAddMore">정보수정</a>
+                            </h5>
+                            <p class="proile-rating">
+                                <div class="row margin-left margin-right">
+                                    <img src="{% static 'img/account/email.png' %}" class="icon" alt="email"/>
+                                    <span class="icon_txt">{{ email }}</span>
+                                </div>
+                                <div class="row margin-left margin-right">
+                                    <img src="{% static 'img/account/gender.png' %}" class="icon" alt="성별"/>
+                                    <span class="icon_txt">
+                                    {% if gender == "m" %}
+                                        남자
+                                    {% else %}
+                                        여자
+                                    {% endif %}
+                                    </span>
+                                </div>
+                                <div class="row margin-left margin-right">
+                                    <img src="{% static 'img/account/birthday.png' %}" class="icon" alt="생년월일"/>
+                                    <span class="icon_txt">{{ birth_year }}.{{ birth_month }}.{{ birth_date }}</span>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="one_btn">
-                <div class="one_gray">
-                    <a href="{% url 'index' %}">확인</a>
+
+                <div class="row profile-head margin-left margin-right">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="myHistory-tab" data-toggle="tab" href="#myHistory" role="tab" aria-controls="myHistory" aria-selected="false">거래내역</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="myBoard-tab" data-toggle="tab" href="#myBoard" role="tab" aria-controls="myBoard" aria-selected="true">게시글 관리</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="myStore-tab" data-toggle="tab" href="#myStore" role="tab" aria-controls="myStore" aria-selected="false">가맹점 관리</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div>
-                {% if user.profile.type == 1 %}
-                <a href="{% url 'store:myList' %}">가맹점 관리</a>
-                {% else %}
-                <a href="{% url 'store:add' %}">가맹점 신청</a>
-                {% endif %}
+
+                <div class="row margin-left margin-right">
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+
+                            <div class="tab-pane fade show active" id="myHistory" role="tabpanel" aria-labelledby="myHistory-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>거래내역</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade show" id="myBoard" role="tabpanel" aria-labelledby="myBoard-tab">
+                                <div class="row card">
+                                    <table class="table table-hover shopping-cart-wrap">
+                                        <thead class="text-muted">
+                                            <tr>
+                                                <th scope="col">Product</th>
+                                                <th scope="col" width="120">Quantity</th>
+                                                <th scope="col" width="120">Price</th>
+                                                <th scope="col" width="200" class="text-right">Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="myStore" role="tabpanel" aria-labelledby="myStore-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>가맹점</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            
             </div>
         </div>
-    </div>
+
+    </section>
 </section>
 
 {% endblock content %}
