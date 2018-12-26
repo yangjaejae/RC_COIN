@@ -1,15 +1,37 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 import random
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+import json, requests
+from django.http import JsonResponse, HttpResponse
 # Create your views here.
+host = 'http://192.168.0.28:8000/'
+def getContext(user_id):
+    user = get_object_or_404(User, pk=user_id)
+    context = {
+        "username" : user.username,
+        "email" : user.email,
+        "image" : user.profile.image,
+        "gender" : user.profile.gender,
+        'birth_year': user.profile.birth_year,
+        'birth_month': user.profile.birth_month,
+        'birth_date': user.profile.birth_date,
+        "type" : user.profile.type,
+        "status" : user.profile.status
+    }
+    return context
 
-def withdraw(request):
-
-    print(1234, "##########################")
-
-    return render(request, "payment/withdraw.html",({}))
+def withdraw(request, account_id=None):
+    template_name = "payment/withdraw.html"
+    context = getContext(account_id)
+    url = host +"get_account/" + str(account_id)
+    response = requests.get(url)
+    res = json.loads(response.text)
+    data = {
+        "context" : context,
+        "balance" : res['value']
+    }
+    return render(request, template_name, data)
 
 def history(request):
     print("#############################")

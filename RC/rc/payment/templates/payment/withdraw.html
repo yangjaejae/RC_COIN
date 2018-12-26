@@ -8,278 +8,279 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-    body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-}
-.tabs {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-#tab-button {
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-#tab-button li {
-  display: table-cell;
-  width: 20%;
-}
-#tab-button li a {
-  display: block;
-  padding: .5em;
-  background: #eee;
-  border: 1.5px solid #fff;
-  text-align: center;
-  color: #000;
-  text-decoration: none;
-}
-#tab-button li:not(:first-child) a {
-  border-left: none;
-}
-#tab-button li a:hover,
-#tab-button .is-active a {
-  border-bottom-color: transparent;
-  background: #23bab5;
-  color: #fff;
-}
-.tab-contents {
-  padding: .5em 2em 1em;
-  border: 1px solid #ddd;
-}
-
-
-
-.tab-button-outer {
-  display: none;
-}
-.tab-contents {
-  margin-top: 20px;
-}
-@media screen and (min-width: 768px) {
-  .tab-button-outer {
-    position: relative;
-    z-index: 2;
-    display: block;
-    width: 500px;
+      body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
   }
-  .tab-select-outer {
+  .tabs {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  #tab-button {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  #tab-button li {
+    display: table-cell;
+    width: 20%;
+  }
+  #tab-button li a {
+    display: block;
+    padding: .5em;
+    background: #eee;
+    border: 1.5px solid #fff;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+  }
+  #tab-button li:not(:first-child) a {
+    border-left: none;
+  }
+  #tab-button li a:hover,
+  #tab-button .is-active a {
+    border-bottom-color: transparent;
+    background: #23bab5;
+    color: #fff;
+  }
+  .tab-contents {
+    padding: .5em 2em 1em;
+    border: 1px solid #ddd;
+  }
+
+
+
+  .tab-button-outer {
     display: none;
   }
   .tab-contents {
-    position: relative;
-    top: -1px;
-    margin-top: 0;
-    border:none;
+    margin-top: 20px;
   }
-}
-        .top_tag{
-            padding-right: 0px !important;
-            padding-left: 30px !important;
-        }
-        .login-signup {
-  padding: 0 0 25px;
-}
+  @media screen and (min-width: 768px) {
+    .tab-button-outer {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 500px;
+    }
+    .tab-select-outer {
+      display: none;
+    }
+    .tab-contents {
+      position: relative;
+      top: -1px;
+      margin-top: 0;
+      border:none;
+    }
+  }
+          .top_tag{
+              padding-right: 0px !important;
+              padding-left: 30px !important;
+          }
+          .login-signup {
+    padding: 0 0 25px;
+  }
 
-.btn-success {
-  background: #71c55d;
-  border-radius:0;
-  border: 2px solid #71c55d;
-  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
-  transition: all 400ms cubic-bezier(.4,0,.2,1);
-}
+  .btn-success {
+    background: #71c55d;
+    border-radius:0;
+    border: 2px solid #71c55d;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+  }
 
-.btn-success:hover,.btn-success:focus {
-  background: rgba(26, 161, 157, 0);
-  border: 2px solid #1aa19d;
-  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
-  transition: all 400ms cubic-bezier(.4,0,.2,1);
-  color: #23BAB5;
-}
+  .btn-success:hover,.btn-success:focus {
+    background: rgba(26, 161, 157, 0);
+    border: 2px solid #1aa19d;
+    webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+    transition: all 400ms cubic-bezier(.4,0,.2,1);
+    color: #23BAB5;
+  }
 
 
-ul {
-  list-style-type: none;
-}
+  ul {
+    list-style-type: none;
+  }
 
-article[role="login"] {
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
-  webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 30px 50px;
-  margin-bottom: 20px;
-}
+  article[role="login"] {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+    webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 30px 50px;
+    margin-bottom: 20px;
+  }
 
-article[role="login"] input[type="submit"] {
-  padding: 10px 15px;
-  font-size: 16px;
-}
+  article[role="login"] input[type="submit"] {
+    padding: 10px 15px;
+    font-size: 16px;
+  }
 
-article[role="login"]:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(0, 0, 0, 0.23);
-  webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+  article[role="login"]:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 1px 15px rgba(0, 0, 0, 0.23);
+    webkit-transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-article[role="login"] h3 {
-  font-size: 26px;
-  font-weight: 300;
-  color: #23bab5;
-  margin-bottom: 20px;
-}
+  article[role="login"] h3 {
+    font-size: 26px;
+    font-weight: 300;
+    color: #23bab5;
+    margin-bottom: 20px;
+  }
 
-article[role="login"] p {
-  font-size: 16px;
-  padding: 5px 15px;
-}
-
-.nav-tab-holder {
-  padding: 0 0 0 30px;
-  float: right;
-}
-
-.nav-tab-holder .nav-tabs {
-  border: 0;
-  float: none;
-  display: table;
-  table-layout: fixed;
-  width: 100%;
-}
-
-.nav-tab-holder .nav-tabs > li {
-  margin-bottom: -3px;
-  text-align: center;
-  padding: 0;
-  display: table-cell;
-  float: none;
-  padding: 0;
-}
-
-.nav-tab-holder .nav-tabs > li > a {
-  background: #d9d9d9;
-  color: #6c6c6c;
-  margin: 0;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-.nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: #FFF;
-  background-color: #23bab5;
-  border: 0;
-  border-radius: 0;
-}
-
-.mobile-pull {
-  float: right;
-}
-
-article[role="manufacturer"] {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
-  padding: 0 0 40px;
-  max-width: 420px;
-  margin: -45px auto 0;
-}
-
-article[role="manufacturer"] header {
-  background: #23bab5;
-  color: #fff;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: 300;
-}
-
-article[role="manufacturer"] h1 {
-  font-size: 26px;
-  font-weight: 300;
-  border-bottom: 1px solid #f2f2f2;
-  padding: 25px 15px;
-}
-
-article[role="manufacturer"] ul {
-  padding: 0 25px;
-}
-
-article[role="manufacturer"] ul li {
-  font-size: 16px;
-  border-bottom: 1px solid #eaeaea;
-  padding: 20px 15px;
-  color:#404040;
-}
-
-article[role="manufacturer"] ul li i {
-  color: #23bab5;
-}
-
-.login-signup {
-  padding: 0 0 25px;
-}
-
-@media only screen and (max-width: 767px) {
-  .mobile-pull {
-    float: none;
+  article[role="login"] p {
+    font-size: 16px;
+    padding: 5px 15px;
   }
 
   .nav-tab-holder {
+    padding: 0 0 0 30px;
+    float: right;
+  }
+
+  .nav-tab-holder .nav-tabs {
+    border: 0;
     float: none;
-    overflow: hidden;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
   }
 
-  .nav-tabs > li > a {
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .nav-tab-holder .nav-tabs > li {
+    margin-bottom: -3px;
+    text-align: center;
+    padding: 0;
+    display: table-cell;
+    float: none;
+    padding: 0;
   }
 
-  .nav-tabs > li {
-    width: 50%;
+  .nav-tab-holder .nav-tabs > li > a {
+    background: #d9d9d9;
+    color: #6c6c6c;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 300;
   }
-}
+
+  .nav-tab-holder .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #FFF;
+    background-color: #23bab5;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .mobile-pull {
+    float: right;
+  }
+
+  article[role="manufacturer"] {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 10px rgba(0, 0, 0, 0.24);
+    padding: 0 0 40px;
+    max-width: 420px;
+    margin: -45px auto 0;
+  }
+
+  article[role="manufacturer"] header {
+    background: #23bab5;
+    color: #fff;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  article[role="manufacturer"] h1 {
+    font-size: 26px;
+    font-weight: 300;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 25px 15px;
+  }
+
+  article[role="manufacturer"] ul {
+    padding: 0 25px;
+  }
+
+  article[role="manufacturer"] ul li {
+    font-size: 16px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 20px 15px;
+    color:#404040;
+  }
+
+  article[role="manufacturer"] ul li i {
+    color: #23bab5;
+  }
+
+  .login-signup {
+    padding: 0 0 25px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .mobile-pull {
+      float: none;
+    }
+
+    .nav-tab-holder {
+      float: none;
+      overflow: hidden;
+    }
+
+    .nav-tabs > li > a {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-tabs > li {
+      width: 50%;
+    }
+  }
 </style>
 <script>
-$(function() {
-  var $tabButtonItem = $('#tab-button li'),
-      $tabSelect = $('#tab-select'),
-      $tabContents = $('.tab-contents'),
-      activeClass = 'is-active';
+  $(function() {
+    var $tabButtonItem = $('#tab-button li'),
+        $tabSelect = $('#tab-select'),
+        $tabContents = $('.tab-contents'),
+        activeClass = 'is-active';
 
-  $tabButtonItem.first().addClass(activeClass);
-  $tabContents.not(':first').hide();
+    $tabButtonItem.first().addClass(activeClass);
+    $tabContents.not(':first').hide();
 
-  $tabButtonItem.find('a').on('click', function(e) {
-    var target = $(this).attr('href');
+    $tabButtonItem.find('a').on('click', function(e) {
+      var target = $(this).attr('href');
 
-    $tabButtonItem.removeClass(activeClass);
-    $(this).parent().addClass(activeClass);
-    $tabSelect.val(target);
-    $tabContents.hide();
-    $(target).show();
-    e.preventDefault();
+      $tabButtonItem.removeClass(activeClass);
+      $(this).parent().addClass(activeClass);
+      $tabSelect.val(target);
+      $tabContents.hide();
+      $(target).show();
+      e.preventDefault();
+    });
+
+    $tabSelect.on('change', function() {
+      var target = $(this).val(),
+          targetSelectNum = $(this).prop('selectedIndex');
+
+      $tabButtonItem.removeClass(activeClass);
+      $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
+      $tabContents.hide();
+      $(target).show();
+    });
   });
-
-  $tabSelect.on('change', function() {
-    var target = $(this).val(),
-        targetSelectNum = $(this).prop('selectedIndex');
-
-    $tabButtonItem.removeClass(activeClass);
-    $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
-    $tabContents.hide();
-    $(target).show();
-  });
-});</script>
+</script>
 
 <br><br><br><br>
-<div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
+{% comment %} <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
 <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
 <div style="border: 1px solid white;"></div>
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_3" href="{% url 'profile:account_myInfo' user.id %}" value="3" onclick="chg_board( 3, 1 )" style="text-align: center; font-weight: bold;">계정관리</a></div>
@@ -289,33 +290,20 @@ $(function() {
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_2" href="{% url 'payment:history' %}" value="2" onclick="chg_board( 2, 1 )" style="text-align: center; font-weight: bold;">거래내역</a></div>
 <div style="border: 1px solid white;"></div>
 <div id="btn_board_type_2" style="padding: 20px;"><a class="btn_board_type_4" href="{% url 'logout' %}" value="4" onclick="chg_board( 4, 1 )" style="text-align: center; font-weight: bold;">로그아웃</a></div>
-</div>
+</div> {% endcomment %}
 
 <div class="tabs">
-  <div class="tab-button-outer top_tag" >
-    <ul id="tab-button">
-      <li><a href="#tab01" class="font-weight-bold">결제</a></li>
-      <li><a href="#tab02" class="font-weight-bold">송금</a></li>
-    </ul>
-  </div>
-  <div class="tab-select-outer">
-    <select id="tab-select">
-      <option value="#tab01">Tab 1</option>
-      <option value="#tab02">Tab 2</option>
-    </select>
-  </div>
 
   <div id="tab01" class="tab-contents">
         <div class="row">
         <div class="col-sm-13 col-sm-offset-3 mobile-pull">
             <article role="login">
-            <h2 class="text-center" style="color:#23bab5"><i class="glyphicon glyphicon-qrcode"></i> 결제 시스템</h2><br>
+            <h2 class="text-center" style="color:#23bab5"><i class="glyphicon glyphicon-qrcode"></i> 송금 시스템</h2><br>
             <form class="signup" action="index.html" method="post">
                 <div class="form-group">
-                <h5 class="font-weight-bold" style="color:#23bab5">잔액조회</h5>
-                <input type="text" class="form-control" readonly>
-                <button type="button" class="btn-default btn-sm btn-success float-right">조회</button>
-                </div><br>
+                <h5 class="font-weight-bold" style="color:#23bab5">잔액</h5>
+                <div class="form-control">{{ balance }}&nbsp;rc</div>
+                </div>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >보낼금액</h5>
                 <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
@@ -326,7 +314,8 @@ $(function() {
                 </div>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >송금할계정</h5>
-                <input type="text" class="form-control" placeholder="ex) RegionCurrency">
+                <input type="text" class="form-control" placeholder="ex) RegionCurrency" readonly>
+                <button type="button" class="btn-default btn-sm btn-success float-right">조회</button>
                 </div>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >비밀번호</h5>
@@ -340,7 +329,8 @@ $(function() {
                 </div>
                 </div>
                 <div class="form-group">
-                <input type="submit" class="btn btn-success btn-block"  value="결제하기">
+                <input type="submit" class="btn btn-success btn-block"  value="송금하기"><br>
+                <a href="{% url 'profile:account_myInfo' user.id %}"><input class="btn btn-success btn-block"  value="취소하기"></a>
                 </div>
             </form>
             </article>
@@ -350,51 +340,6 @@ $(function() {
         <!-- end of row -->
     </div>
 
-  <div id="tab02" class="tab-contents">
-        <div class="row">
-            <div class="col-sm-13 col-sm-offset-3 mobile-pull">
-            <article role="login">
-                <h2 class="text-center" style="color:#23bab5"><i class="glyphicon glyphicon-usd"></i> 송금 시스템</h2></br>
-                <form class="signup" action="index.html" method="post">
-                    <div class="form-group">
-                        <h5 class="font-weight-bold" style="color:#23bab5">잔액조회</h5>
-                        <input type="text" class="form-control" readonly>
-                        <button type="button" class="btn-default btn-sm btn-success float-right"> 조회</button>
-                    </div><br>
-                    <div class="form-group">
-                        <h5 class="font-weight-bold" style="color:#23bab5" >보낼금액</h5>
-                        <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
-                    </div>
-                    <div class="form-group">
-                        <h5 class="font-weight-bold" style="color:#23bab5" >남는금액</h5>
-                        <input type="text" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <h5 class="font-weight-bold" style="color:#23bab5" >송금할계정</h5>
-                        <input type="text" class="form-control" placeholder="ex) RegionCurrency">
-                    </div>
-                    <div class="form-group">
-                        <h5 class="font-weight-bold" style="color:#23bab5" >비밀번호</h5>
-                        <input type="password" class="form-control" placeholder="결제비밀번호">
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                        <label>
-                            <div style="color:blanchedalmond"><input type="checkbox"> 송금시 책임은 전적으로 본인에게 있음에 동의합니다.</div>
-                        </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-success btn-block"  value="송금하기">
-                    </div>
-                </form>
-            </article>
-            </div>
-
-            
-
-    </div>
-  </div>
 </div>
 
 

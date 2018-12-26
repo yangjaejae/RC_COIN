@@ -25,7 +25,7 @@
                     <div class="centered-left">{{ balance }}&nbsp;rc</div>
                     <div class="bottom-right">
                         <a href="">결제하기</a>&nbsp;/&nbsp;
-                        <a href="{% url 'payment:withdraw' %}">송금하기</a>
+                        <a href="{% url 'payment:withdraw' user.id %}">송금하기</a>
                     </div>
                 </div>
 
@@ -43,7 +43,7 @@
                             <div class="row margin-left margin-right">
                                 <img src="{% static 'img/account/gender.png' %}" class="icon" alt="성별"/>
                                 <span class="icon_txt">
-                                {% if gender == "m" %}
+                                {% if context.gender == "m" %}
                                     남자
                                 {% else %}
                                     여자

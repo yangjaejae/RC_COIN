@@ -70,7 +70,7 @@ def done(request):
 
 def account_edit(request, account_id=None):
     context = {}
-
+    isSignup = False
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
 
@@ -78,6 +78,7 @@ def account_edit(request, account_id=None):
             user = form.save()
             context['title'] = '회원가입 완료'
             context['messages'] = ['환영합니다.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
+            isSignup = True
         else:
             user = get_object_or_404(User, pk=account_id)
             user.set_password(form.cleaned_data.get('password1'))
@@ -91,11 +92,12 @@ def account_edit(request, account_id=None):
         user.profile.birth_date = form.cleaned_data.get('birth_date')
         user.save()
         
-        target = get_object_or_404(User, username=request.POST.get("username"))
-        url = host + "init_wallet/" + str(target.pk)
-        res = requests.get(url)
-        if res == "fail":
-            context['messages'] = ['계좌 생성에 실패했습니다.', '관리자에게 문의하세요.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
+        if isSignup:
+            target = get_object_or_404(User, username=request.POST.get("username"))
+            url = host + "init_wallet/" + str(target.pk)
+            res = requests.get(url)
+            if res == "fail":
+                context['messages'] = ['계좌 생성에 실패했습니다.', '관리자에게 문의하세요.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
         
         return render(request, 'registration/done.html', context)
     else:

@@ -19,6 +19,6 @@ from . import views
 app_name = 'payment'
 
 urlpatterns = [
-    path('withdraw/', views.withdraw, name='withdraw'),
+    path('withdraw/<int:account_id>/', views.withdraw, name='withdraw'),
     path('history/', views.history, name='history'),
 ]
