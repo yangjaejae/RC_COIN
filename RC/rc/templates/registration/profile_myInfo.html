@@ -22,7 +22,7 @@
                 <div class="card margin-left">
                     <img src="{% static 'img/account/wallet.png' %}" class="margin-left" alt="보유잔액">
                     <div class="top-right">보유 금액</div>
-                    <div class="centered-left">{{ balance }}&nbsp;rc</div>
+                    <div class="centered-right">{{ balance }}&nbsp;rc</div>
                     <div class="bottom-right">
                         <a href="">결제하기</a>&nbsp;/&nbsp;
                         <a href="{% url 'payment:withdraw' user.id %}">송금하기</a>
@@ -36,11 +36,11 @@
                             <a href="{% url 'profile:check_password' user.id %}" class="profile-edit-btn" name="btnAddMore">정보수정</a>
                         </h5>
                         <p class="proile-rating">
-                            <div class="row margin-left margin-right">
+                            <div class="row margin-left margin-right margin-top">
                                 <img src="{% static 'img/account/email.png' %}" class="icon" alt="email"/>
                                 <span class="icon_txt">{{ context.email }}</span>
                             </div>
-                            <div class="row margin-left margin-right">
+                            <div class="row margin-left margin-right margin-top">
                                 <img src="{% static 'img/account/gender.png' %}" class="icon" alt="성별"/>
                                 <span class="icon_txt">
                                 {% if context.gender == "m" %}
@@ -50,7 +50,7 @@
                                 {% endif %}
                                 </span>
                             </div>
-                            <div class="row margin-left margin-right">
+                            <div class="row margin-left margin-right margin-top">
                                 <img src="{% static 'img/account/birthday.png' %}" class="icon" alt="생년월일"/>
                                 <span class="icon_txt">{{ context.birth_year }}.{{ context.birth_month }}.{{ context.birth_date }}</span>
                             </div>
