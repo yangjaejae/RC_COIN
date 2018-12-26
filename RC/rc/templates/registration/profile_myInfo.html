@@ -23,23 +23,23 @@
                     <div class="card margin-left">
                         <img src="{% static 'img/account/wallet.png' %}" class="margin-left" alt="보유잔액">
                         <div class="top-right">보유 금액</div>
-                        <div class="centered-left">1200 rc</div>
+                        <div class="centered-left">{{ balance }}&nbsp;rc</div>
                         <div class="bottom-right">
                             <a href="">결제하기</a>&nbsp;/&nbsp;
-                            <a href="">송금하기</a>
+                            <a href="{% url 'payment:withdraw' %}">송금하기</a>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="profile-head">
                             <h5>
-                                {{ username }}
-                                <a href="{% url 'profile:agreement' %}" class="profile-edit-btn" name="btnAddMore">정보수정</a>
+                                {{ context.username }}
+                                <a href="{% url 'profile:check_password' user.id %}" class="profile-edit-btn" name="btnAddMore">정보수정</a>
                             </h5>
                             <p class="proile-rating">
                                 <div class="row margin-left margin-right">
                                     <img src="{% static 'img/account/email.png' %}" class="icon" alt="email"/>
-                                    <span class="icon_txt">{{ email }}</span>
+                                    <span class="icon_txt">{{ context.email }}</span>
                                 </div>
                                 <div class="row margin-left margin-right">
                                     <img src="{% static 'img/account/gender.png' %}" class="icon" alt="성별"/>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="row margin-left margin-right">
                                     <img src="{% static 'img/account/birthday.png' %}" class="icon" alt="생년월일"/>
-                                    <span class="icon_txt">{{ birth_year }}.{{ birth_month }}.{{ birth_date }}</span>
+                                    <span class="icon_txt">{{ context.birth_year }}.{{ context.birth_month }}.{{ context.birth_date }}</span>
                                 </div>
                             </p>
                         </div>

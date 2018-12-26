@@ -6,9 +6,11 @@ from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
 from .forms import ProfileForm
 from docx import Document
-import json
+import json, requests
 
 # Create your views here.
+
+host = 'http://192.168.0.28:8000/'
 
 def agreement(request):
     f = None
@@ -88,6 +90,13 @@ def account_edit(request, account_id=None):
         user.profile.birth_month = form.cleaned_data.get('birth_month')
         user.profile.birth_date = form.cleaned_data.get('birth_date')
         user.save()
+        
+        target = get_object_or_404(User, username=request.POST.get("username"))
+        url = host + "init_wallet/" + str(target.pk)
+        res = requests.get(url)
+        if res == "fail":
+            context['messages'] = ['계좌 생성에 실패했습니다.', '관리자에게 문의하세요.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
+        
         return render(request, 'registration/done.html', context)
     else:
         if account_id:
@@ -101,7 +110,14 @@ def account_edit(request, account_id=None):
 def my_info(request, account_id=None):
     template_name = "registration/profile_myInfo.html"
     context = getContext(account_id)
-    return render(request, template_name, context)
+    url = host +"get_account/" + str(account_id)
+    response = requests.get(url)
+    res = json.loads(response.text)
+    data = {
+        "context" : context,
+        "balance" : res['value']
+    }
+    return render(request, template_name, data)
 
 
 
