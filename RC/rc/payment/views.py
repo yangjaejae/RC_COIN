@@ -5,7 +5,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json, requests
 from django.http import JsonResponse, HttpResponse
 # Create your views here.
-host = 'http://192.168.0.28:8000/'
+
+host = 'http://210.107.78.166:8000/'
+
 def getContext(user_id):
     user = get_object_or_404(User, pk=user_id)
     context = {
@@ -32,6 +34,14 @@ def withdraw(request, account_id=None):
         "balance" : res['value']
     }
     return render(request, template_name, data)
+
+def transfer(request, account_id=None):
+    template_name = "payment/withdraw.html"
+    context = getContext(account_id)
+    url = host +"transfer/" + str(from_id) + "/" + str(to_id) + "/" + str(amount) + "/" + str(type) + "/" + str(current)
+    response = requests.get(url)
+    print(response)
+
 
 def history(request):
     print("#############################")

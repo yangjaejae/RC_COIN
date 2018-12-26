@@ -10,7 +10,7 @@ import json, requests
 
 # Create your views here.
 
-host = 'http://192.168.0.28:8000/'
+host = 'http://210.107.78.166:8000/'
 
 def agreement(request):
     f = None
@@ -176,6 +176,21 @@ def check_username(request):
     return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
 
 
+def check_username2(request):
+    username = request.GET.get('username', None)
+    res = User.objects.filter(username=username).exists()
+    to_id = 0
+
+    if res:
+        user = get_object_or_404(User, username=username)
+        to_id = user.pk;
+    data = {
+        'result' : to_id
+    }
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
+
+
 def check_password(request, account_id=None):
     context = {}
     if request.method == 'POST':
@@ -187,6 +202,16 @@ def check_password(request, account_id=None):
         else:
             context['error'] = 'true'
     return render(request, 'registration/check_password.html', context)
+
+
+def check_password2(request):
+    password = request.GET.get('password', None)
+    res = request.user.check_password(password)
+    data = {
+        'result' : res
+    }
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
 
 
 # --- @login_required

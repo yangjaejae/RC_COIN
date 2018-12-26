@@ -1,12 +1,12 @@
 {% extends 'index_base.html' %}
 {% load staticfiles %}
 
+{% block head %}
 
-{% block content %}
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <style>
       body {
     font-family: 'Open Sans', sans-serif;
@@ -247,38 +247,41 @@
   }
 </style>
 <script>
-  $(function() {
-    var $tabButtonItem = $('#tab-button li'),
-        $tabSelect = $('#tab-select'),
-        $tabContents = $('.tab-contents'),
-        activeClass = 'is-active';
 
-    $tabButtonItem.first().addClass(activeClass);
-    $tabContents.not(':first').hide();
+  $(document).ready(function() {
+  var total = $('.box input, .box select').on('change', function() {
+    var sum = 0,
+      point = parseInt($('#point').val().replace(/,/g, '') || '0'),
+      discount = parseInt($('#discount').val());
+    installment = $('#installment').val();
 
-    $tabButtonItem.find('a').on('click', function(e) {
-      var target = $(this).attr('href');
-
-      $tabButtonItem.removeClass(activeClass);
-      $(this).parent().addClass(activeClass);
-      $tabSelect.val(target);
-      $tabContents.hide();
-      $(target).show();
-      e.preventDefault();
+    $('.box input:checked').each(function() {
+      sum += parseInt($(this).val());
     });
 
-    $tabSelect.on('change', function() {
-      var target = $(this).val(),
-          targetSelectNum = $(this).prop('selectedIndex');
+    var _add = sum + point; //총 합계 구하기
 
-      $tabButtonItem.removeClass(activeClass);
-      $tabButtonItem.eq(targetSelectNum).addClass(activeClass);
-      $tabContents.hide();
-      $(target).show();
+    total = (_add * (1 - discount / 100) / installment)
+
+    var _result = Math.ceil(total).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,'); //소수점 반올림 하고 comma 찍기
+
+    $('#price').text(_result);
+  });
+
+  // 포인트 숫자만 입력, comma 찍기
+  $(function() {
+    $('#point').on('keyup', function() {
+      if ($(this).val() != null && $(this).val() != '') {
+        var tmps = parseInt($(this).val().replace(/[^0-9]/g, '')) || '0';
+        var tmps2 = tmps.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+        $(this).val(tmps2);
+      }
     });
   });
+});
 </script>
-
+{% endblock head %}
+{% block content %}
 <br><br><br><br>
 {% comment %} <div class="side_bar" style="float: left; border-top: 1px solid #71c55d; border-bottom: 1px solid #71c55d; margin-left: 40px; background-color: white">
 <div style="padding: 20px; background-color: #71c55d;"><div class="" href="{% url 'board:list' %}" style="text-align: center; color: white; font-weight: bold;"> 마이페이지</div></div>
@@ -293,7 +296,7 @@
 </div> {% endcomment %}
 
 <div class="tabs">
-
+  <input type="text" id="from" value="{{ user.id }}" hidden />
   <div id="tab01" class="tab-contents">
         <div class="row">
         <div class="col-sm-13 col-sm-offset-3 mobile-pull">
@@ -302,24 +305,28 @@
             <form class="signup" action="index.html" method="post">
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5">잔액</h5>
-                <div class="form-control">{{ balance }}&nbsp;rc</div>
-                </div>
+                <p class="form-control">
+                  <input type="text" id="balance" style="border:none;" class="point" value="{{ balance }}" readonly />rc
+                </p>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >보낼금액</h5>
-                <input type="text" class="form-control" placeholder="소숫점은 사용할 수 없습니다.">
+                <p class="form-control">
+                  <input style="border:none;"type="text" name="point" id="point" class="point" placeholder="소숫점 사용불가"/>rc
+                </p>
                 </div>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >남는금액</h5>
-                <input type="text" class="form-control" readonly>
-                </div>
+                <p class="form-control">
+                <input style="border:none;"type="text" id="rest_balance" value="0" readonly />rc
+                </p>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >송금할계정</h5>
-                <input type="text" class="form-control" placeholder="ex) RegionCurrency" readonly>
-                <button type="button" class="btn-default btn-sm btn-success float-right">조회</button>
-                </div>
+                <input type="text" id="target" class="form-control" placeholder="ex) RegionCurrency"/>
+                <button type="button" id="btn_chk_id" class="btn-default btn-sm btn-success float-right">조회</button>
+                </div><br>
                 <div class="form-group">
                 <h5 class="font-weight-bold" style="color:#23bab5" >비밀번호</h5>
-                <input type="password" class="form-control" placeholder="결제비밀번호">
+                <input type="password" id="password" class="form-control" placeholder="비밀번호"/>
                 </div>
                 <div class="form-group">
                 <div class="checkbox">
@@ -329,7 +336,7 @@
                 </div>
                 </div>
                 <div class="form-group">
-                <input type="submit" class="btn btn-success btn-block"  value="송금하기"><br>
+                <input type="submit" id="btn_submit" class="btn btn-success btn-block"  value="송금하기"><br>
                 <a href="{% url 'profile:account_myInfo' user.id %}"><input class="btn btn-success btn-block"  value="취소하기"></a>
                 </div>
             </form>
@@ -342,39 +349,29 @@
 
 </div>
 
-
-
-
-
 <br><br><br><br>
 
 
 <script type="text/javascript">
-var getCookie = function(name) {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null;
-};
 
-function search_board_by_word(){
-
-    var board_type = getCookie('current_board')
-    var page = $('.active > a').text()
-    chg_board(board_type,page)
+function getRestBalance() {
+  var balance = $("#balance").val();
+  var amount = parseInt($("#point").val().replace(/[^0-9]/g, '')) || 0;
+  var restBalance = balance - amount;
+  console.log(balance)
+  $("#rest_balance").empty();
+  $("#rest_balance").attr("value", restBalance);
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+$(function() {
+  $("#point").change(function() {
+    console.log($("#point").val());
+    getRestBalance();
+  });
 
-    var board_type = getCookie('current_board')
+})
 
-    if( board_type == null ){
-
-        ctl_cookie(1)
-        chg_board(1)
-    }else{
-        chg_board(board_type,1)
-    }
-    ctl_btn_by_board_type(board_type)
-});
 </script>
 
-{% endblock %}
+<script src="{% static 'js/withdraw.js' %}"></scirpt>
+{% endblock content %}
