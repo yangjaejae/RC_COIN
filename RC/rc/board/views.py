@@ -95,12 +95,18 @@ def get_comment(request):
     comments = Comment.objects.filter(board_id=board_id)
     time_diff = ''
 
-    print(now.timetuple().tm_year)
+    # print(now.timetuple().tm_year)
     print(now.utctimetuple())
 
     # print(now.date() - comments[0].modify_date.date())
     data_list = []
     for li in comments:
+        
+        print(li.modify_date.utctimetuple().tm_year)
+        print(li.modify_date.utctimetuple().tm_mon)
+        print(li.modify_date.utctimetuple().tm_mday)
+        print(li.modify_date.utctimetuple().tm_hour)
+        print(li.modify_date.utctimetuple().tm_min)
         temp = {}
         temp['board_id'] = li.board_id.id
         temp['writer'] = str(li.writer.profile.user)
