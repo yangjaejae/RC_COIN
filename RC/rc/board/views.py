@@ -18,21 +18,28 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 class BoardLV(ListView):
-    # model = Board
-    # context_object_name = 'boards'
-    paginate_by = 10
-
-    def __init__(self):
-        self.user_type = 1
 
     def get_queryset(self):
+        print("classclassclassclass")
         if self.request.user.username == '':
             queryset = Board.objects.filter(category=1)
+            try:
+                if self.request.COOKIES['from'] != 'not_intro':
+                    self.request.COOKIES['is_intro'] = 'intro'
+                    self.request.COOKIES['from'] = ''
+            except:
+                self.request.COOKIES['is_intro'] = 'intro'
+
         else:
             user = get_object_or_404(User, username=self.request.user.username)
-
             self.user_type = user.profile.type
-            queryset = Board.objects.filter(category=self.user_type)
+            queryset = Board.objects.filter(category=1)
+            try:
+                if self.request.COOKIES['from'] != 'not_intro':
+                    self.request.COOKIES['is_intro'] = 'intro'
+                    self.request.COOKIES['from'] = ''
+            except:
+                self.request.COOKIES['is_intro'] = 'intro'
         return queryset
 
 class BoardDV(DetailView):
@@ -49,11 +56,12 @@ class BoardDV(DetailView):
         comment_cnt = 0
 
         try:
-            comment = get_object_or_404(Comment, board_id=self.object.id)
+            comment = Comment.objects.filter(board_id=self.object.id)
             comment_cnt = len(comment)
-        except:
+        except Exception as e:
             comment_cnt = 0
 
+        print(comment_cnt)
         context['object'] = self.object
         context['comment_cnt'] = comment_cnt
         return context
@@ -61,6 +69,7 @@ class BoardDV(DetailView):
 def board_edit(request, board_id=None):
 
     user = request.user.pk
+    user_type = request.user.profile.type
 
     if board_id:
         board = get_object_or_404(Board, pk=board_id)
@@ -74,6 +83,7 @@ def board_edit(request, board_id=None):
             board = form.save(commit=False)
             board.board_id = Board(board_id)
             board.writer = User(user)
+            board.category = user_type
             board.save()
             # request 없이 페이지 이동만 한다.
         return redirect('board:list')
@@ -93,20 +103,10 @@ def get_comment(request):
     board_id = request.GET.get('board_id', )
 
     comments = Comment.objects.filter(board_id=board_id)
-    time_diff = ''
 
-    # print(now.timetuple().tm_year)
-    print(now.utctimetuple())
-
-    # print(now.date() - comments[0].modify_date.date())
     data_list = []
     for li in comments:
-        
-        print(li.modify_date.utctimetuple().tm_year)
-        print(li.modify_date.utctimetuple().tm_mon)
-        print(li.modify_date.utctimetuple().tm_mday)
-        print(li.modify_date.utctimetuple().tm_hour)
-        print(li.modify_date.utctimetuple().tm_min)
+
         temp = {}
         temp['board_id'] = li.board_id.id
         temp['writer'] = str(li.writer.profile.user)
@@ -121,7 +121,10 @@ def get_comment(request):
             temp['time_diff'] = "{} 시간 전 ".format(now.timetuple().tm_hour - li.modify_date.timetuple().tm_hour)
         elif (now.timetuple().tm_min != li.modify_date.timetuple().tm_min):
             temp['time_diff'] = "{} 분 전 ".format(now.timetuple().tm_min - li.modify_date.timetuple().tm_min)
-        print(temp['time_diff'])
+        else:
+            temp['time_diff'] = "방금"
+        print("now: ", now.timetuple())
+        print("modify: ", li.create_date.timetuple())
         temp['modify_date'] = str(li.modify_date)
         temp['status'] = li.status
         data_list.append(temp)
@@ -130,7 +133,7 @@ def get_comment(request):
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8")
 
 def chg_board(request):
-
+    print("defdef")
     board_type = request.GET.get('board_type', )
     input_page = request.GET.get('page', )
     category = request.GET.get('category')
@@ -144,18 +147,18 @@ def chg_board(request):
     if keyword:
         if category == "":
             board = Board.objects.filter(
-                Q(writer__profile__type=board_type) & Q(title__icontains=keyword) | Q(writer__profile__user__username=keyword) | Q(content__icontains=keyword)).distinct()
+                Q(category=board_type) & Q(title__icontains=keyword) | Q(writer__profile__user__username=keyword) | Q(content__icontains=keyword)).distinct()
         elif category == "title":
             board = Board.objects.filter(
-                Q(writer__profile__type=board_type) & Q(title__icontains=keyword)).distinct()
+                Q(category=board_type) & Q(title__icontains=keyword)).distinct()
         elif category == "writer":
             board = Board.objects.filter(
-                Q(writer__profile__type=board_type) & Q(writer__profile__user__username=keyword)).distinct()
+                Q(category=board_type) & Q(writer__profile__user__username=keyword)).distinct()
         elif category == "content":
             board = Board.objects.filter(
-                Q(writer__profile__type=board_type) & Q(content__icontains=keyword)).distinct()
+                Q(category=board_type) & Q(content__icontains=keyword)).distinct()
     else:
-        board = Board.objects.filter(writer__profile__type=board_type)
+        board = Board.objects.filter(category=board_type)
 
     paginator = Paginator(board, contents_per_page)
     this_page = paginator.page(input_page)
@@ -197,6 +200,7 @@ def chg_board(request):
 def write_comment(request):
     board_id = request.GET.get('board_id', )
     input_comment = request.GET.get('comment', )
+    print(input_comment)
     user = request.user.pk
 
     comment = Comment()
@@ -253,6 +257,3 @@ def add_like(request):
             {'likes' : added }
         ])
         return HttpResponse(result, content_type="application/json:charset=UTF-8")
-
-def test(request):
-    return render(request, "board/test.html", ({}))
