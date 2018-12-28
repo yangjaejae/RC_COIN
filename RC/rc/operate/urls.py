@@ -22,7 +22,6 @@ from django.contrib.auth import views as auth_views
 app_name = 'operate'
 
 urlpatterns = [
-    path('main/', main, name='main'),
     path('dashboard/', dashboard, name='dashboard'),
     path('users/', users, name='users'),
     path('approval/', approval, name='approval'),
@@ -31,6 +30,5 @@ urlpatterns = [
     path('tables/', tables, name='tables'),
 
     ## login
-    path('main/', auth_views.LoginView, {'next_page': 'dashboard/'}),
     path('login_required/', login_required, name='login_required'),
 ]

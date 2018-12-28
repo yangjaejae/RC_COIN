@@ -32,4 +32,7 @@ urlpatterns = [
     path('chg/', chg_board, name='chg'),
     path('write_comment/', write_comment, name='write_comment'),
     path('add_like/', add_like, name='add_like'),
+
+    ## external
+    path('board_each/', board_each, name='board_each'),
 ]

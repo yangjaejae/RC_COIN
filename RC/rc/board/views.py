@@ -20,7 +20,6 @@ from django.core.paginator import Paginator
 class BoardLV(ListView):
 
     def get_queryset(self):
-        print("classclassclassclass")
         if self.request.user.username == '':
             queryset = Board.objects.filter(category=1)
             try:
@@ -257,3 +256,12 @@ def add_like(request):
             {'likes' : added }
         ])
         return HttpResponse(result, content_type="application/json:charset=UTF-8")
+
+def board_each(request):
+    username = request.GET.get('username', )
+    username_user = User(username)
+    board = Board.objects.filter(writer=username_user)
+    result = {}
+    result['board'] = board
+
+    return HttpResponse(result, content_type="application/json:charset=UTF-8")

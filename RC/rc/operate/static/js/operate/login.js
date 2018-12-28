@@ -18,6 +18,7 @@ function modal_toggle() {
 function check_validate() {
     var username = $("#modalLRInput10").val();
     var password = $("#modalLRInput11").val();
+    alert(username)
     if (username.length < 1) {
         modal_setMsg('id');
         // modal_toggle();
