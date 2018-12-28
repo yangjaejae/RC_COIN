@@ -1,7 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponse
 
 from info.models import Notice
 # Create your views here.
+
+def main(request):
+    if request.method == "GET":
+        print(request.POST.get('username', ))
+    if request.method == "POST":
+        print(request.POST.get('username', ))
+        return redirect('operate:dashboard')
+    return render(request, 'operate/manage_main.html', ({}))
+
 def dashboard(request):
     
     context = {}
@@ -22,6 +32,9 @@ def tables(request):
 
 def comments(request):
     return render(request, 'operate/manage_comments.html', ({}))
+
+def login_required(request):
+    return render(request, 'redirect/manage_login_require.html', ({}))
 
 ## utils
 def check_length(string, max_len):

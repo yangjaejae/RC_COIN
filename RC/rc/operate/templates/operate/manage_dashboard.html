@@ -1,4 +1,5 @@
 {% extends './base.html' %}
+{% load staticfiles %}
 {% block content %}
 <style>
     .material-switch > input[type="checkbox"] {
@@ -46,6 +47,7 @@
         left: 20px;
     }
 </style>
+<input type="hidden" id="user_id">
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -104,7 +106,7 @@
             <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
                 <div class="card-icon">
-                <i class="fa fa-twitter"></i>
+                <i class="far fa-comments"></i> 
                 </div>
                 <p class="card-category">Comments</p>
                 <h3 class="card-title">+245</h3>
@@ -198,8 +200,8 @@
                         <li class="list-group-item">
                             peer1.org0.rcNetwork.com
                             <div class="material-switch pull-right">
-                                <input id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox"/>
-                                <label for="someSwitchOptionDefault" class="label-default"></label>
+                                <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox"/>
+                                <label for="someSwitchOptionPrimary" class="label-primary"></label>
                             </div>
                         </li>
                         <li class="list-group-item">

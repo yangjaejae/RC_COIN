@@ -17,13 +17,20 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import *
 
+from django.contrib.auth import views as auth_views
+
 app_name = 'operate'
 
 urlpatterns = [
+    path('main/', main, name='main'),
     path('dashboard/', dashboard, name='dashboard'),
     path('users/', users, name='users'),
     path('approval/', approval, name='approval'),
     path('notice/', notice, name='notice'),
     path('comments/', comments, name='comments'),
     path('tables/', tables, name='tables'),
+
+    ## login
+    path('main/', auth_views.LoginView, {'next_page': 'dashboard/'}),
+    path('login_required/', login_required, name='login_required'),
 ]
