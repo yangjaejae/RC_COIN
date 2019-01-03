@@ -22,12 +22,17 @@ from django.contrib.auth import views as auth_views
 app_name = 'operate'
 
 urlpatterns = [
+    path('main/', main, name='main'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('users/', users, name='users'),
-    path('approval/', approval, name='approval'),
+    path('users/', usersMyLV.as_view(), name='users'),
+    path('approval/', ApprovalLV.as_view(), name='approval'),
     path('notice/', notice, name='notice'),
-    path('comments/', comments, name='comments'),
-    path('tables/', tables, name='tables'),
+    path('publish/', publish, name='publish'),
+    path('discount_rate/', discount_rate, name='discount_rate'),
+    path('network/', network, name='network'),
+    path('statistics/', statistics, name='statistics'),
+    path('get_like/', get_like, name='get_like'),
+    path('get_approval/', get_approval, name='get_approval'),
 
     ## login
     path('login_required/', login_required, name='login_required'),
