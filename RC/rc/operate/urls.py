@@ -24,16 +24,33 @@ app_name = 'operate'
 urlpatterns = [
     path('main/', main, name='main'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('users/', usersMyLV.as_view(), name='users'),
-    path('approval/', ApprovalLV.as_view(), name='approval'),
+   
+    
     path('notice/', notice, name='notice'),
     path('publish/', publish, name='publish'),
     path('discount_rate/', discount_rate, name='discount_rate'),
     path('network/', network, name='network'),
-    path('statistics/', statistics, name='statistics'),
-    path('get_like/', get_like, name='get_like'),
-    path('get_approval/', get_approval, name='get_approval'),
+    
 
+### 유저관리 URL ########################################################
+    path('users/', usersMyLV.as_view(), name='users'),
+    path('get_like/', get_like, name='get_like'),
+########################################################################
+
+#### 가맹점 URL ########################################################
+    path('approval/', ApprovalLV.as_view(), name='approval'),
+    path('get_approval/', get_approval, name='get_approval'),
+########################################################################
+
+
+##### 차트 URL #########################################################
+    path('statistics/', ChartHomeView.as_view(), name='statistics'),
+    path('statistics/chartdata/', ChartData.as_view(), name='chartdata'),
+    path('statistics/regional/',regional.as_view(),name='regional'),
+    path('statistics/gender/',gender.as_view(),name='gender'),
+    path('statistics/store/',store.as_view(),name='store'),
+########################################################################
+    
     ## login
     path('login_required/', login_required, name='login_required'),
 ]

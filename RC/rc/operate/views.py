@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView, DetailView, View,TemplateView
 
 import requests
@@ -8,8 +8,15 @@ from info.models import Notice
 from board.models import Comment, BoardLiker
 from store.models import Photo, Store
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 import json
+
+Userchart = get_user_model()
+
 # Create your views here.
 def main(request):
     return render(request, 'operate/manage_main.html', ({}))
@@ -24,6 +31,7 @@ def dashboard(request):
     context['store_waiting_list']  = get_waiting_store()
     return render(request, 'operate/manage_dashboard.html', (context))
 
+#--------------------------------------사용자관리-----------------------------------------------#
 class usersMyLV(TemplateView):
     paginate_by = 5
     # context_object_name = 'users'
@@ -49,7 +57,9 @@ def get_like(request):
     context['board_cnt'] = len(board)
     json_format = json.dumps(context)
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8") 
+#-------------------------------------------------------------------------------------------#
 
+#--------------------------------------가맹점승인관리-----------------------------------------------#
 class ApprovalLV(TemplateView):
     paginate_by = 5
     template_name = 'operate/manage_approval.html'
@@ -74,19 +84,21 @@ def get_approval(request):
 
     json_format = json.dumps(context)
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8") 
+#-------------------------------------------------------------------------------------------#
+
+#--------------------------------------공지사항관리-----------------------------------------------#
 
 def notice(request):
     return render(request, 'operate/manage_notice.html', ({}))
 
+#--------------------------------------발행이력관리-----------------------------------------------#
 def publish(request):
     context = {}
     publish_list = []
     publish_list = list(get_publish_amount()['publish_list'])
     context['publish_list'] = publish_list
     return render(request, 'operate/manage_publish.html', (context))
-
-def notice(request):
-    return render(request, 'operate/manage_notice.html', ({}))
+#-------------------------------------------------------------------------------------------#
 
 def discount_rate(request):
     return render(request, 'operate/manage_discount_rate.html', ({}))
@@ -94,8 +106,49 @@ def discount_rate(request):
 def network(request):
     return render(request, 'operate/manage_network.html', ({}))
 
-def statistics(request):
-    return render(request, 'operate/manage_statistics.html', ({}))
+
+##----------------------차트관리------------------------------------------------#
+
+class ChartHomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'operate/manage_statistics.html', {"customers": 10})
+
+class ChartData(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+        # qs_count = User.objects.all().count()
+        labels = ["사용자", "숙박", "레저", "음식"]
+        labels_second = ['10대', '20대','30대','40대','50대','60대']
+        default_items = [70, 45, 35, 25]
+        default1_items = [70, 20 ,20, 10, 15,5]
+        data = {
+                "labels": labels,
+                "default": default_items,
+                "labels_second" : labels_second,
+                "default1": default1_items,
+        }
+        return Response(data)
+
+#################region############################################
+class regional(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'operate/manage_statistics_regional.html', {"customers": 10})
+
+
+##################gender#########################################
+class gender(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'operate/manage_statistics_gender.html', {"customers": 10})
+##################store#########################################
+class store(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'operate/manage_statistics_store.html', {"customers": 10})
+
+#-----------------------------------------------------------------------#
+
+
 
 def login_required(request):
     return render(request, 'redirect/manage_login_require.html', ({}))

@@ -22,7 +22,6 @@
                     <th>조회</th>
                   </thead>
                   <tbody>
-                        
                         {% if stores %}
                         {% for store in stores %}
                         <input id="img_url{{store.id}}" type="hidden" val="{{ store.image.thumb_url }}" class='SRC'> 
@@ -54,7 +53,6 @@
         </div>
       </div>
     </div>
-    
   </div>
 
   <div class="dim-layer">
@@ -69,10 +67,8 @@
                   
                   <div class="profile-userpic">
                       <img style="float:left;" src="" class="img-responsive" alt=""> 
-                      <!-- https://image.flaticon.com/icons/svg/236/236832.svg -->
                   </div>
 
-                  
                   <div class="profile-usertitle">
                     <table style="margin-left: 21em">
                       <tr>
@@ -86,9 +82,11 @@
                       <tr>
                         <td class="profile">category</td><td class="profile-usertitle-category"></td>  
                       </tr>
+
                       <tr>
                         <td class="profile">location</td><td class="profile-usertitle-location"></td>  
                       </tr>
+                      
                       <tr>
                         <td class="profile">status</td><td class="profile-usertitle-status"></td>  
                       </tr>
@@ -97,18 +95,10 @@
                   
                    <div class="profile-userbuttons">
                       <button type="button" class="btn btn-success btn-sm status">승인</button> 
-                      
-                      
                     </div>
-                 
-  
-                  
-                  
               </div>
           </div>
       </div>
-
-
 
   <style>
         .profile {
@@ -331,17 +321,6 @@
           display: block;
         }
         
-        /* a.btn-layerClose {
-          display: inline-block;
-          height: 25px;
-          padding: 0 14px 0;
-          border: 1px solid #304a8a;
-          background-color: #3f5a9d;
-          font-size: 13px;
-          color: #fff;
-          line-height: 25px;
-        } */
-        
         a.btn-layerClose:hover {
           border: 1px solid #091940;
           background-color: #1f326a;
@@ -369,11 +348,6 @@
               var category = alltag[2].innerHTML
               var location = alltag[3].innerHTML
               var status = alltag[4].innerHTML
-              
-            
-              // for( var i=0; i < temp.length; i++ ){
-              //   alert(temp[i].innerHTML)
-              // }
               
               $('.profile-usertitle-storename').text(storename)
               $('.profile-usertitle-corporate_number').text(corporate_number)
@@ -444,8 +418,6 @@
               });
       
           }
-          
-  
   
   </script>
 {% endblock content %}
