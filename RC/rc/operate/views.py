@@ -90,6 +90,49 @@ def get_approval(request):
 
 def notice(request):
     return render(request, 'operate/manage_notice.html', ({}))
+class NoticeLV(ListView):
+    model = Notice
+    template_name = 'operate/manage_notice.html'
+    paginate_by = 10
+
+def notice_edit(request, notice_id=None):
+    if notice_id:
+        notice = get_object_or_404(Notice, pk=notice_id)
+    else:
+        notice = Notice()
+    
+    if request.method == 'POST': # POST
+        form = NoticeForm(request.POST, instance=notice) 
+        if form.is_valid():
+            notice = form.save(commit=False)
+            notice.save()
+            return redirect('operate:notice')
+
+    else: # GET 
+        form = NoticeForm(instance=notice) 
+        return render(request, 'operate/manage_notice_edit.html', dict(form=form,))
+
+def notice_activate(request):
+    change_list = []
+    change_list = request.GET.getlist('change_list[]', )
+    
+    context = {}
+    try:
+        for change_id in change_list:
+            notice = get_object_or_404(Notice, id=change_id)
+            if notice.status == "Y":
+                notice.status = "N"
+                notice.save()
+            elif notice.status == "N":
+                notice.status = "Y"
+                notice.save()
+            context['result'] = "success"
+    except Exception as e:
+        print(e)
+        context['result'] = "fail"
+            
+    json_format = json.dumps(context)
+    return HttpResponse(json_format, content_type="application/json:charset=UTF-8") 
 
 #--------------------------------------발행이력관리-----------------------------------------------#
 def publish(request):
