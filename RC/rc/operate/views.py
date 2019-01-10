@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView, DetailView, View,TemplateView
 
@@ -7,8 +7,14 @@ import requests
 from info.models import Notice
 from board.models import Comment, BoardLiker
 from store.models import Photo, Store
+from operate.models import ChartStat
+from django.db.models import Q, Sum
+
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+
+from info.forms import NoticeForm
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -16,11 +22,67 @@ from rest_framework.response import Response
 import json
 
 Userchart = get_user_model()
+#--------------------------------------로그인-----------------------------------------------#
 
-# Create your views here.
+def login_required(fn):
+    def wrapper(*args, **kwargs):
+        request = args[0]
+        print("############################")
+        print(request)
+        key = 'admin_name'
+        context = {}
+        if key in request.session:
+            print("is###################")
+            return fn(request)    
+        elif request.method == "POST":
+            print("not###################")
+            context['main'] = 'main'
+            return render_to_response('operate/manage_main.html', {'main': 'main'})
+        elif request.method == "GET":
+            print("not###################")
+            context['main'] = 'main'
+            return render_to_response('operate/manage_main.html', {'main': 'main'})
+    return wrapper
+
+def admin_logout(request, *args):
+    request.session['admin_name'] = {}
+    request.session.modified = True 
+    logout(request)
+    return redirect('operate:main')
+
+#--------------------------------------메인-----------------------------------------------#
+
 def main(request):
-    return render(request, 'operate/manage_main.html', ({}))
+    context = {}
+    if request.method == 'POST': # POST
+        admin_name = request.POST.get('username', '')
+        admin_pass = request.POST.get('password', '')
+        user = authenticate(request, username=admin_name, password=admin_pass)
+        if user is not None:
+            request.session['admin_name'] = admin_name
+            request.session.modified = True
+            if admin_name == "admin":
+                context['admin_name'] = admin_name
+                return redirect('operate:dashboard')
+            elif admin_name == "admin_server":
+                context['admin_name'] = admin_name
+                return redirect('operate:dashboard')
+            elif admin_name == "admin_govern":
+                context['admin_name'] = admin_name
+                return redirect('operate:dashboard')
+            else:
+                context['main'] = "main"
+                return render(request, 'operate/manage_main.html', (context))
+        else: 
+            context['main'] = "main"
+            return render(request, 'operate/manage_main.html', (context))
+    else: # GET
+        context['main'] = "main"
+        return render(request, 'operate/manage_main.html', (context))
 
+#--------------------------------------대시보드-----------------------------------------------#
+
+@login_required
 def dashboard(request):
     context = {}
     context['notice_list']         = get_notices()
@@ -32,20 +94,12 @@ def dashboard(request):
     return render(request, 'operate/manage_dashboard.html', (context))
 
 #--------------------------------------사용자관리-----------------------------------------------#
-class usersMyLV(TemplateView):
-    paginate_by = 5
-    # context_object_name = 'users'
-    template_name = 'operate/manage_users.html'
-
-    def get_context_data(self, **kwargs):
-        
-        context = super(usersMyLV, self).get_context_data(**kwargs)
-        
-        username = self.request.GET.get('keyword', '')
-        context['users'] = User.objects.filter(username__icontains=username).order_by('-id')
-        
-        # if username:
-        return context
+@login_required
+def manageUser(request):
+    context = {}
+    username = request.GET.get('keyword', '')
+    context['users'] = User.objects.filter(username__icontains=username).order_by('-id')
+    return render(request, 'operate/manage_users.html', (context))
 
 def get_like(request):
     user_id = request.GET.get('user_id', '')
@@ -60,24 +114,23 @@ def get_like(request):
 #-------------------------------------------------------------------------------------------#
 
 #--------------------------------------가맹점승인관리-----------------------------------------------#
-class ApprovalLV(TemplateView):
-    paginate_by = 5
-    template_name = 'operate/manage_approval.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(ApprovalLV, self).get_context_data(**kwargs)
-        context['stores'] = Photo.objects.filter(store__status='w')
-        return context
+@login_required
+def manage_store_approval(request):
+    context = {}
+    context['photos'] = Photo.objects.filter(store__status='w')
+    return render(request, 'operate/manage_approval.html', (context))
 
 def get_approval(request):
-
-    print(request.GET.get('store_id'))
     store_id = request.GET.get('store_id', '')
     store = get_object_or_404(Store, id=store_id)
+    userid = store.representative
+    user = get_object_or_404(User, profile__user=userid)
     context = {}
     if store.status == 'w':
         store.status = 'a'
         store.save()
+        user.profile.type = 1
+        user.save()
         context['result'] = 'y'
     else:
         context['result'] = 'n'
@@ -87,13 +140,11 @@ def get_approval(request):
 #-------------------------------------------------------------------------------------------#
 
 #--------------------------------------공지사항관리-----------------------------------------------#
-
-def notice(request):
-    return render(request, 'operate/manage_notice.html', ({}))
-class NoticeLV(ListView):
-    model = Notice
-    template_name = 'operate/manage_notice.html'
-    paginate_by = 10
+@login_required
+def manage_notice(request):
+    context = {}
+    context['notice_list'] = Notice.objects.all()
+    return render(request, 'operate/manage_notice.html', (context))
 
 def notice_edit(request, notice_id=None):
     if notice_id:
@@ -135,66 +186,97 @@ def notice_activate(request):
     return HttpResponse(json_format, content_type="application/json:charset=UTF-8") 
 
 #--------------------------------------발행이력관리-----------------------------------------------#
+@login_required
 def publish(request):
     context = {}
     publish_list = []
     publish_list = list(get_publish_amount()['publish_list'])
     context['publish_list'] = publish_list
     return render(request, 'operate/manage_publish.html', (context))
-#-------------------------------------------------------------------------------------------#
 
-def discount_rate(request):
-    return render(request, 'operate/manage_discount_rate.html', ({}))
+#--------------------------------------네트워크 관리-----------------------------------------------#
 
 def network(request):
     return render(request, 'operate/manage_network.html', ({}))
 
-
 ##----------------------차트관리------------------------------------------------#
 
-class ChartHomeView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'operate/manage_statistics.html', {"customers": 10})
+@login_required
+def manage_stats(request):
+    return render(request, 'operate/manage_stats.html', ({}))
+
+##################북면#########################################
+@login_required
+def north_stats(request):
+    return render(request, 'operate/manage_stats_north.html', {})
+    
+#################서면############################################
+@login_required
+def west_stats(request):
+    return render(request, 'operate/manage_stats_west.html', {})
+
+##################울릉읍#########################################
+@login_required
+def wooleung_stats(request):
+    return render(request, 'operate/manage_stats_wooleung.html', {})
 
 class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
-
     def get(self, request, format=None):
-        # qs_count = User.objects.all().count()
-        labels = ["사용자", "숙박", "레저", "음식"]
-        labels_second = ['10대', '20대','30대','40대','50대','60대']
-        default_items = [70, 45, 35, 25]
-        default1_items = [70, 20 ,20, 10, 15,5]
+        
+        location = self.request.GET.get("location")
+        ###############polar###########################
+        labels = ['남자','여자']
+        data_list1 = ChartStat.objects.values_list('gender', flat=True).filter(store__location=location)
+        default_items = [0, 0]
+        for data in data_list1:
+            if data == '남':
+                default_items[0] += 1
+            else : default_items[1] += 1
+
+        ###############bar###########################
+        labels_second = ['10대미만','10대', '20대','30대','40대','50대','60대 이상',]
+        data_list2 = ChartStat.objects.values_list('age', flat=True).filter(store__location=location)
+        default1_items = [0, 0, 0, 0, 0, 0, 0]
+        for data in data_list2:
+            if int(data) >= 60:
+                default1_items[6] += 1
+            elif int(data) >= 50:
+                default1_items[5] += 1
+            elif int(data) >= 40:
+                default1_items[4] += 1
+            elif int(data) >= 30:
+                default1_items[3] += 1
+            elif int(data) >= 20:
+                default1_items[2] += 1
+            elif int(data) >= 10:
+                default1_items[1] += 1
+            else:
+                default1_items[0] += 1
+
+        ###############line###########################
+        labels_thard = ['요식업','숙박업','레저','쇼핑']
+       
+        default2_items = [0,0,0,0]
+        default2_items[0] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 1)).aggregate(Sum('amount')))['amount__sum']
+        default2_items[1] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 2)).aggregate(Sum('amount')))['amount__sum']
+        default2_items[2] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 3)).aggregate(Sum('amount')))['amount__sum']
+        default2_items[3] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 4)).aggregate(Sum('amount')))['amount__sum']
+           
+
         data = {
                 "labels": labels,
                 "default": default_items,
                 "labels_second" : labels_second,
                 "default1": default1_items,
+                "labels_thard" : labels_thard,
+                "default2": default2_items,
+                
         }
         return Response(data)
 
-#################region############################################
-class regional(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'operate/manage_statistics_regional.html', {"customers": 10})
-
-
-##################gender#########################################
-class gender(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'operate/manage_statistics_gender.html', {"customers": 10})
-##################store#########################################
-class store(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, 'operate/manage_statistics_store.html', {"customers": 10})
-
-#-----------------------------------------------------------------------#
-
-
-
-def login_required(request):
-    return render(request, 'redirect/manage_login_require.html', ({}))
+#-----------------------------------------------------------------#
 
 ## utils
 def check_length(string, max_len):
@@ -243,6 +325,7 @@ def get_publish_amount():
         publish_data['publish_list'] = data_list
     except Exception as e:
         print(e)
+        publish_data['publish_list'] = ""
     return publish_data
 
 def get_account_cnt():
