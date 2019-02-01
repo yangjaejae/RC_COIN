@@ -8,7 +8,9 @@ from info.models import Notice
 from board.models import Comment, BoardLiker
 from store.models import Photo, Store
 from operate.models import ChartStat
+from payment.models import Cancellation
 from django.db.models import Q, Sum
+from .views import *
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -27,21 +29,32 @@ Userchart = get_user_model()
 def login_required(fn):
     def wrapper(*args, **kwargs):
         request = args[0]
-        print("############################")
-        print(request)
+        request_url = request.resolver_match.url_name
         key = 'admin_name'
         context = {}
         if key in request.session:
-            print("is###################")
-            return fn(request)    
+            if bool(request.session['admin_name'] == 'admin_server') & bool(request_url != 'network') & bool(request_url != 'dashboard'):
+                return redirect('operate:dashboard')
+            elif bool(request.session['admin_name'] == 'admin') & bool(request_url == 'network') & bool(request_url != 'dashboard'):
+                return redirect('operate:dashboard')
+            else:
+                return fn(request)
         elif request.method == "POST":
-            print("not###################")
+            admin_name = request.POST.get('username', '')
+            admin_pass = request.POST.get('password', '')
+            user = authenticate(request, username=admin_name, password=admin_pass)
+            if user is not None:
+                request.session['admin_name'] = admin_name
+                request.session.modified = True
+                if bool(admin_name == 'admin_server') & bool(request_url != 'network') & bool(request_url != 'dashboard'):
+                    return redirect('operate:dashboard')
+                elif bool(admin_name == 'admin') & bool(request_url == 'network') & bool(request_url != 'dashboard'):
+                    return redirect('operate:dashboard')
+                else:
+                    return fn(request)    
+        else:
             context['main'] = 'main'
-            return render_to_response('operate/manage_main.html', {'main': 'main'})
-        elif request.method == "GET":
-            print("not###################")
-            context['main'] = 'main'
-            return render_to_response('operate/manage_main.html', {'main': 'main'})
+            return render(request, 'operate/manage_main.html', {'main': 'main'})
     return wrapper
 
 def admin_logout(request, *args):
@@ -53,52 +66,56 @@ def admin_logout(request, *args):
 #--------------------------------------메인-----------------------------------------------#
 
 def main(request):
+    key = 'admin_name'
     context = {}
-    if request.method == 'POST': # POST
-        admin_name = request.POST.get('username', '')
-        admin_pass = request.POST.get('password', '')
-        user = authenticate(request, username=admin_name, password=admin_pass)
-        if user is not None:
-            request.session['admin_name'] = admin_name
-            request.session.modified = True
-            if admin_name == "admin":
-                context['admin_name'] = admin_name
-                return redirect('operate:dashboard')
-            elif admin_name == "admin_server":
-                context['admin_name'] = admin_name
-                return redirect('operate:dashboard')
-            elif admin_name == "admin_govern":
-                context['admin_name'] = admin_name
-                return redirect('operate:dashboard')
-            else:
-                context['main'] = "main"
+    context['main'] = "main"
+    if key in request.session:
+        return redirect('operate:dashboard')
+    else:
+        if request.method == 'POST': # POST
+            admin_name = request.POST.get('username', '')
+            admin_pass = request.POST.get('password', '')
+            user = authenticate(request, username=admin_name, password=admin_pass)
+            if user is not None:
+                request.session['admin_name'] = admin_name
+                request.session.modified = True
+                if admin_name != "":
+                    return redirect('operate:dashboard')
+                else:
+                    return render(request, 'operate/manage_main.html', (context))
+            else: 
                 return render(request, 'operate/manage_main.html', (context))
-        else: 
-            context['main'] = "main"
+        else: # GET
             return render(request, 'operate/manage_main.html', (context))
-    else: # GET
-        context['main'] = "main"
-        return render(request, 'operate/manage_main.html', (context))
 
 #--------------------------------------대시보드-----------------------------------------------#
 
 @login_required
 def dashboard(request):
     context = {}
-    context['notice_list']         = get_notices()
-    context['publish']       = get_publish_amount()
-    context['account_cnt']         = get_account_cnt()
     context['tx_cnt']              = get_tx_cnt()
     context['store_cnt']           = get_store_cnt()
+    context['account_cnt']         = get_account_cnt()
+    context['publish']             = 0 if get_publish_amount() == None else get_publish_amount()
+
+    context['west_stats']          = 0 if get_total_location_tx(1) == None else get_total_location_tx(1)
+    context['north_stats']         = 0 if get_total_location_tx(2) == None else get_total_location_tx(2)
+    context['wooleung_stats']      = 0 if get_total_location_tx(3) == None else get_total_location_tx(3)
+    context['west_stats']          = 0 if get_total_location_tx(2) == None else get_total_location_tx(2)
+    context['north_stats']         = 0 if get_total_location_tx(3) == None else get_total_location_tx(3)
+    context['wooleung_stats']      = 0 if get_total_location_tx(1) == None else get_total_location_tx(1)
     context['store_waiting_list']  = get_waiting_store()
+    context['notice_list']         = get_notices()
     return render(request, 'operate/manage_dashboard.html', (context))
 
 #--------------------------------------사용자관리-----------------------------------------------#
 @login_required
 def manageUser(request):
     context = {}
+    data_list = []
     username = request.GET.get('keyword', '')
-    context['users'] = User.objects.filter(username__icontains=username).order_by('-id')
+    context['users'] = User.objects.filter(Q(username__icontains=username) & ~Q(profile__type=0) & ~Q(profile__type=3)).order_by('id')
+    
     return render(request, 'operate/manage_users.html', (context))
 
 def get_like(request):
@@ -157,11 +174,11 @@ def notice_edit(request, notice_id=None):
         if form.is_valid():
             notice = form.save(commit=False)
             notice.save()
-            return redirect('operate:notice')
+        return redirect('operate:notice')
 
     else: # GET 
         form = NoticeForm(instance=notice) 
-        return render(request, 'operate/manage_notice_edit.html', dict(form=form,))
+        return render(request, 'operate/manage_notice_edit.html', dict(form=form, notice=notice))
 
 def notice_activate(request):
     change_list = []
@@ -191,11 +208,33 @@ def publish(request):
     context = {}
     publish_list = []
     publish_list = list(get_publish_amount()['publish_list'])
+    total_publish = get_publish_amount()['total_publish']
+    val = total_publish
+    str(val)
+    number = format(val,',')
+    context['total_publish'] = number
     context['publish_list'] = publish_list
     return render(request, 'operate/manage_publish.html', (context))
-
+#--------------------------------------거래취소관리-----------------------------------------------#
+@login_required
+def cancel(request):
+    canceled_data = Cancellation.objects.all().order_by('-removed_date')
+    cancel_data = {}
+    data_list = []
+    
+    for datas in canceled_data:
+        data = {}
+        data['s_id'] = str(datas.s_id)
+        data['txHash'] = datas.txHash
+        data['amount'] = datas.amount
+        data['comment'] = datas.comment
+        data['removed_date'] = datas.removed_date
+        data_list.append(data)
+        
+    cancel_data['cancel_data'] = data_list
+    return render(request, 'operate/manage_cancel.html', (cancel_data))
 #--------------------------------------네트워크 관리-----------------------------------------------#
-
+@login_required
 def network(request):
     return render(request, 'operate/manage_network.html', ({}))
 
@@ -217,6 +256,8 @@ def west_stats(request):
 
 ##################울릉읍#########################################
 @login_required
+
+
 def wooleung_stats(request):
     return render(request, 'operate/manage_stats_wooleung.html', {})
 
@@ -224,14 +265,31 @@ class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
     def get(self, request, format=None):
-        
+
         location = self.request.GET.get("location")
+        
+        ################울릉도 전체#####################
+        all_labels = ['2015','2016','2017','2018','2019']
+        # data_list = ChartStat.objects.values_list('time', flat=True)
+        default = {}
+        default = [0,0,0,0,0]
+        i = -1
+        for label in all_labels:
+            i += 1
+            value = ChartStat.objects.filter(time__icontains=label).aggregate(Sum('amount'))['amount__sum']
+            if value:
+                default[i] = value
+       
+            # 0 if default[label].values() == None else default[label]
+            # if default[label] != None : 
+            # else :
+            #     default[label] = 0
         ###############polar###########################
         labels = ['남자','여자']
         data_list1 = ChartStat.objects.values_list('gender', flat=True).filter(store__location=location)
         default_items = [0, 0]
         for data in data_list1:
-            if data == '남':
+            if data == 'm':
                 default_items[0] += 1
             else : default_items[1] += 1
 
@@ -258,18 +316,29 @@ class ChartData(APIView):
         ###############line###########################
         labels_thard = ['요식업','숙박업','레저','쇼핑']
        
+        
         default2_items = [0,0,0,0]
-        default2_items[0] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 1)).aggregate(Sum('amount')))['amount__sum']
-        default2_items[1] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 2)).aggregate(Sum('amount')))['amount__sum']
-        default2_items[2] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 3)).aggregate(Sum('amount')))['amount__sum']
-        default2_items[3] = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = 4)).aggregate(Sum('amount')))['amount__sum']
-           
+
+        
+        for li in range(4):
+            
+            object_money = (ChartStat.objects.filter(Q(store__location=location) & Q(store__category = li+1)).aggregate(Sum('amount')))['amount__sum']
+            if object_money != None:
+                default2_items[li] = object_money
+            
+
 
         data = {
+
+                "all_labels" : all_labels,
+                "all_default" : default,
+               
                 "labels": labels,
                 "default": default_items,
+
                 "labels_second" : labels_second,
                 "default1": default1_items,
+
                 "labels_thard" : labels_thard,
                 "default2": default2_items,
                 
@@ -287,6 +356,8 @@ def check_length(string, max_len):
         result = str(string)
     return result
 
+host = "http://127.0.0.1:3000/"
+
 ## query
 def get_notices():
     notice = Notice.objects.order_by('-id')
@@ -303,19 +374,19 @@ def get_notices():
     return notice_list
 
 def get_publish_amount():
-    get_publish_url = "http://127.0.0.1:3000/get_total_publish"
+    get_publish_url = host + "get_total_publish"
     publish_data = {}
     publish_amount = 0
 
     try:
         response = requests.get(get_publish_url)
         json_format = json.loads(response.text)
-        print(type(json_format))
+        json_format.reverse()
         data_list = []
         for datas in json_format:
             data = {}
-            publish_amount = datas['balance']
-            data['tx_id'] = check_length(str(datas['tx_id']),7)
+            publish_amount += datas['balance']
+            data['tx_id'] = str(datas['tx_id'])
             data['amount'] = datas['amount']
             data['person'] = datas['trader']
             data['date'] = datas['date']
@@ -325,8 +396,10 @@ def get_publish_amount():
         publish_data['publish_list'] = data_list
     except Exception as e:
         print(e)
+        publish_data['total_publish'] = 0
         publish_data['publish_list'] = ""
     return publish_data
+
 
 def get_account_cnt():
     users = User.objects.all()
@@ -335,7 +408,7 @@ def get_account_cnt():
 
 def get_tx_cnt():
     tx_height = 0
-    get_block_url = "http://127.0.0.1:3000/get_tx_cnt"
+    get_block_url = host + "get_tx_cnt"
     try:
         response = requests.get(get_block_url)
         json_format = json.loads(response.text)
@@ -366,5 +439,13 @@ def get_waiting_store():
         if str(li.category).strip() == "요식업":
             stores['category'] = 4
         store_list.append(stores)
-    print(store_list)
     return store_list
+
+def get_total_location_tx(location):
+    return ChartStat.objects.filter(Q(store__location=location)).aggregate(Sum('amount'))['amount__sum']
+
+def socket_test(request):
+    message = request.GET.get('message')
+    print("socket_test#############")
+    print(message)
+    msg = json.loads(request.body.decode('utf-8'))

@@ -27,11 +27,12 @@ urlpatterns = [
 
     path('intro/', views.intro, name='intro'),
     path('map/', views.map, name='map'),
-    path('notice/', include('info.urls', namespace='info')),
+    path('info/', include('info.urls', namespace='info')),
     path('accounts/', include('profiles.urls', namespace='profile')),
     path('board/', include('board.urls', namespace='board')),
     path('store/', include('store.urls', namespace='store')),
     path('payment/', include('payment.urls', namespace='payment')),
-    ## admin monitor
+    path('publish/', include('publish.urls', namespace='publish')),
+
     path('operate/', include('operate.urls', namespace='operate')),
   ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -4,43 +4,37 @@ from django.contrib.auth.models import User, BaseUserManager
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms import ProfileForm
-from docx import Document
-import json, requests
+from time import sleep
+import json, requests, datetime, docxpy
 
 # Create your views here.
 
-host = 'http://210.107.78.166:8000/'
+host = 'http://127.0.0.1:3000/'
 
 def agreement(request):
     f = None
     context = {}
     
     try:
-        f = open('static/doc/개인정보 수집·이용 동의.docx', 'rb')
+        doc = docxpy.process('static/doc/개인정보 수집·이용 동의.docx')
     except FileNotFoundError:
         context['agreement1'] = '개인정보 수집·이용 약관을 불러오는데 실패했습니다.'
     else:
-        doc = Document(f)
-        fullText = []
-        for para in doc.paragraphs:
-            fullText.append(para.text)
-        context['agreement1'] = '\n'.join(fullText)
+        context['agreement1'] = doc
     finally:
         if not (f is None):
             f.close()
 
 
     try:
-        f = open('static/doc/개인정보 처리 동침 동의.docx', 'rb')
+        doc = docxpy.process('static/doc/개인정보 처리 동침 동의.docx')
     except FileNotFoundError:
         context['agreement2'] = '개인정보 처리 동침 동의 약관을 불러오는데 실패했습니다.'
     else:
-        doc = Document(f)
-        fullText = []
-        for para in doc.paragraphs:
-            fullText.append(para.text)
-        context['agreement2'] = '\n'.join(fullText)
+        context['agreement2'] = doc
     finally:
         if not (f is None):
             f.close()
@@ -68,6 +62,7 @@ def done(request):
     return render(request, 'registration/done.html')
 
 
+@csrf_exempt
 def account_edit(request, account_id=None):
     context = {}
     isSignup = False
@@ -94,11 +89,40 @@ def account_edit(request, account_id=None):
         
         if isSignup:
             target = get_object_or_404(User, username=request.POST.get("username"))
-            url = host + "init_wallet/" + str(target.pk)
-            res = requests.get(url)
-            if res == "fail":
+            today = (datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')
+            headers = {'Content-Type': 'application/json; charset=utf-8'}
+            url = host + "init_wallet"
+            data = {
+                'user_id' : target.username, 
+                'from_id' : 'admin', 
+                'date' : today
+            }
+            param_data = { 'param_data' : json.dumps(data) }
+            response = requests.post(url, params=param_data, headers=headers)
+            msg = response.json()
+            if msg['result'] == 'fail':
                 context['messages'] = ['계좌 생성에 실패했습니다.', '관리자에게 문의하세요.', '메인화면으로 이동합니다.', '로그인을 해주세요.']
-        
+            else:
+                try:
+                    sleep(3)
+                    get_object_or_404(User, email=target.email)    
+                    today = (datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')
+                    headers = {'Content-Type': 'application/json; charset=utf-8'}
+                    url = host + "publish"
+                    data = {
+                        'user_id'   : target.username, 
+                        'from_id'   : 'admin',
+                        'amount'    : "3000",
+                        'date'      : today
+                    }
+                    param_data = { 'param_data' : json.dumps(data) }
+                    response2 = requests.post(url, params=param_data, headers=headers)
+                    msg2 = response2.json()
+                    if msg['result'] == 'success':
+                        context['messages'] = ['환영합니다.', '회원가입 기념 3000RC가 발급되었습니다.', '로그인을 해주세요.']
+                except:
+                    pass
+                    
         return render(request, 'registration/done.html', context)
     else:
         if account_id:
@@ -112,15 +136,30 @@ def account_edit(request, account_id=None):
 def my_info(request, account_id=None):
     template_name = "registration/profile_myInfo.html"
     context = getContext(account_id)
-    url = host +"get_account/" + str(account_id)
-    response = requests.get(url)
-    res = json.loads(response.text)
+    user = get_object_or_404(User, pk=account_id)
+    url = host + "get_account"
+    params = {'user_id' : user.username}
+    response = requests.get(url, params=params)
+    res = response.json()
     data = {
         "context" : context,
         "balance" : res['value']
     }
     return render(request, template_name, data)
 
+
+def get_balance(request):
+    u_id = request.POST.get("u_id", None)
+    user = get_object_or_404(User, pk=u_id)
+    url = host + "get_account"
+    params = {'user_id' : user.username}
+    response = requests.get(url, params=params)
+    res = response.json()
+    data = {
+        "balance" : res['value']
+    }
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
 
 
 def getUserList(request):
@@ -183,7 +222,7 @@ def check_username2(request):
 
     if res:
         user = get_object_or_404(User, username=username)
-        to_id = user.pk;
+        to_id = user.username
     data = {
         'result' : to_id
     }
@@ -195,8 +234,6 @@ def check_password(request, account_id=None):
     context = {}
     if request.method == 'POST':
         user = request.user.check_password(request.POST.get('password'))
-        print(request.POST.get('password'))
-        print(user)
         if user:
             return redirect('profile:account_edit', account_id=account_id)
         else:
@@ -205,7 +242,7 @@ def check_password(request, account_id=None):
 
 
 def check_password2(request):
-    password = request.GET.get('password', None)
+    password = request.POST.get('password', None)
     res = request.user.check_password(password)
     data = {
         'result' : res
@@ -220,4 +257,3 @@ class LoginRequiredMixin(object):
     def as_view(cls, **initkwargs):
         view = super(LoginRequiredMixin, cls).as_view(**initkwargs)
         return login_required(view)
-

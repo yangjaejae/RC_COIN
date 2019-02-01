@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'info.apps.InfoConfig',
     'payment.apps.PaymentConfig',
+    'publish.apps.PublishConfig',
     'operate'
 ]
 
@@ -89,8 +90,8 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.mysql',
         # 'NAME': 'rcdb',
         # 'USER': 'root',
-        # 'PASSWORD': 'rcadmin',
-        # 'HOST': 'localhost',
+        # 'PASSWORD': 'root',
+        # 'HOST': '222.239.231.245',
         # 'PORT': '3306'
     }
 }
@@ -128,13 +129,14 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_ROOT = ''
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ( os.path.join('static'), )
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
@@ -155,3 +157,7 @@ EMAIL_HOST_USER = 'doradora46@naver.com'
 EMAIL_HOST = 'smtp.naver.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# session time setting
+SESSION_COOKIE_AGE = 1200
+SESSION_SAVE_EVERY_REQUEST = True

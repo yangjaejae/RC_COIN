@@ -25,16 +25,15 @@ def upload_path_handler(instance, filename):
     return "store/store_{id}/{file}".format(id=instance.store.id, file=filename)
 
 @python_2_unicode_compatible
-
 class Store(models.Model):
     name = models.CharField(max_length=100, null=True)
     corporate_number = models.CharField(max_length=12, null=True)
     representative = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.CASCADE)
     location = models.ForeignKey(Location, null=True, on_delete=models.CASCADE)
-    address = models.CharField(max_length=100, null=True)
-    phone_number = models.CharField(max_length=15, null=True)
-    url = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True, default='-')
+    phone_number = models.CharField(max_length=15, null=True, default='-')
+    url = models.CharField(max_length=100, null=True, default='-')
     opening_hour = models.CharField(max_length=2, null=True)
     opening_minute = models.CharField(max_length=2, null=True)
     closing_hour = models.CharField(max_length=2, null=True)
@@ -51,7 +50,6 @@ class Photo(models.Model):
     store = models.ForeignKey('Store', on_delete=models.CASCADE)
     image = ThumbnailImageField(upload_to=upload_path_handler, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
-    location = models.ForeignKey(Location, null=True, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['store']

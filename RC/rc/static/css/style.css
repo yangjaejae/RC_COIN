@@ -24,7 +24,7 @@ h2 {
 
 h4 {
   color: #000;
-  font-size: 13px;
+  
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -139,6 +139,55 @@ span {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
+#video  {
+  position: relative;
+  height: 55vh;
+  min-height: 35rem;
+  width: 100%;
+}
+
+#video .A {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#video .container {
+  position: relative;
+  z-index: 2;
+}
+
+#video .overlay {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 86%;
+  width: 100%;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  #video {
+    background: url('../img/대문.png') black no-repeat center center scroll;
+  }
+  #video .A {
+    display: none;
+  }
+}
+
+
 #header {
   background: #fff;
   position: fixed;
@@ -192,8 +241,8 @@ span {
 #hero {
   width: 100%;
   height: calc(100vh - 40px);
-  background: url(../img/hero-bg.png) center bottom no-repeat;
-  background-size: 100%;
+  /* background: url("https://ichef.bbci.co.uk/news/660/cpsprodpb/B7B0/production/_101542074_gettyimages-956391468.jpg") center bottom no-repeat; */
+  /* background-size: 100%; */
   position: relative;
   margin-top: 40px;
 }
@@ -370,15 +419,15 @@ span {
 
 /* Nav Meu Styling */
 .nav-menu a {
-  padding: 8px 8px;
+  padding: 8px 20px;
   text-decoration: none;
   display: inline-block;
   color: #555;
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: bold;
+  font-size: 18px;
   outline: none;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   transition: 0.3s;
 }
 
@@ -572,7 +621,7 @@ body.mobile-nav-active #mobile-nav-toggle i {
 .separator {
   color: #626262;
   font-family: "Roboto", sans-serif;
-  font-size: 15px;
+  /* font-size: 15px; */
   font-weight: 300;
   margin-bottom: 30px;
   text-transform: capitalize;
@@ -653,7 +702,7 @@ margin: 0 0 10px 0;
   color: #71c55d;
 }
 #about-us img {
-  max-width: 100%;
+  max-width: 290px;
 }
 
 #about-us .about-content {
@@ -748,16 +797,11 @@ margin: 0 0 10px 0;
 /* Video Section
 --------------------------------*/
 #video {
-  background: url(../img/video-bg.jpg) center center;
+  /* background: url(../img/video-bg.jpg) center center; */
   background-repeat: no-repeat;
   background-size: cover;
   height: 400px;
   overflow: hidden;
-}
-
-#video .overlay {
-  background: rgba(0, 0, 0, 0.85);
-  height: 100%;
 }
 
 #video .overlay .play-btn {
@@ -1115,8 +1159,6 @@ margin: 0 0 10px 0;
 
 #blog h2 {
   margin: 0 0 10px 0;
-  font-size: 48px;
-  font-weight: 700;
   line-height: 56px;
   font-family: "Philosopher", sans-serif;
   color: #71c55d;
@@ -1146,7 +1188,7 @@ margin: 0 0 10px 0;
   text-transform: capitalize;
   font-weight: normal;
   letter-spacing: 0;
-  font-size: 16px;
+  
 }
 
 #blog .block-blog .content-blog h4 a {
@@ -1397,11 +1439,12 @@ margin: 0 0 10px 0;
 .footer .list-menu > h4 {
   color: #fff;
   padding-bottom: 20px;
+  font-size: 25px;
 }
 
 .footer .list-menu ul li a {
   color: #fff;
-  font-size: 12px;
+  font-size: 17px;
   padding-left: 5px;
   text-decoration: none;
   letter-spacing: 0;
@@ -1485,14 +1528,14 @@ left:0px;
   background: #23bab5;
   border-radius:0;
   border: 2px solid #23bab5;
-  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+  -webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
   transition: all 400ms cubic-bezier(.4,0,.2,1);
 }
 
 .btn-success:hover,.btn-success:focus {
   background: rgba(26, 161, 157, 0);
   border: 2px solid #1aa19d;
-  webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
+  -webkit-transition: all 400ms cubic-bezier(.4,0,.2,1);
   transition: all 400ms cubic-bezier(.4,0,.2,1);
   color: #23BAB5;
 }

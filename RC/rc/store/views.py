@@ -7,18 +7,9 @@ from .forms import StoreForm, PhotoForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.template import loader
+import json, datetime
 
 # Create your views here.
-
-class StoreMyLV(ListView):
-    paginate_by = 10
-    context_object_name = 'stores'
-    template_name = 'store/myStore_list.html'
-
-    def get_queryset(self):
-        queryset = Store.objects.filter(representative=self.request.user.id).order_by('-id')
-        return queryset
-
 
 class StoreDV(DetailView):
     model = Store
@@ -29,6 +20,7 @@ class StoreDV(DetailView):
         context = super(StoreDV, self).get_context_data(**kwargs)
         return context
         
+
 class StorePV(ListView):
     model=Photo
     paginate_by = 12
@@ -40,7 +32,7 @@ class StorePV(ListView):
         paginator = context['paginator']
         page_numbers_range = 5  # Display only 5 page numbers
         max_index = len(paginator.page_range)
-
+        
         page = self.request.GET.get('page')
         current_page = int(page) if page else 1
 
@@ -52,6 +44,11 @@ class StorePV(ListView):
         page_range = paginator.page_range[start_index:end_index]
         context['page_range'] = page_range
         return context
+
+    def get_queryset(self, **kwargs):
+        queryset = Photo.objects.filter(Q(store__status='a')) # filter returns a list so you might consider skip except part
+        return queryset
+
 
 class filteredStoresPV(ListView):
     model=Photo
@@ -81,54 +78,38 @@ class filteredStoresPV(ListView):
         loc = self.kwargs.get('loc',None)
         if loc == 4:
             search_query = self.request.GET.get('search_box', None)
-            queryset = Photo.objects.filter(store__name__icontains=search_query) # filter returns a list so you might consider skip except part
+            queryset = Photo.objects.filter(Q(store__name__icontains=search_query) & Q(store__status='a') ) # filter returns a list so you might consider skip except part
         else:
-            queryset = Photo.objects.filter(location=loc)
+            queryset = Photo.objects.filter(Q(store__status='a') & Q(store__location=loc))
         return queryset
+
 
 def detailView (request, store_id=None):
     store = get_object_or_404(Store, pk=store_id)
     photo = get_object_or_404(Photo, store_id=store.pk)
     return render(request, 'store_list_detail.html', dict(store=store, photo=photo))
-    
 
-
-    # def store_list(request):
-    #     photo_list = User.objects.all()
-    #     print("##########################")
-    #     page = request.GET.get('page', 1)
-    #     paginator = Paginator(photo_list, 12)
-    #     photos = paginator.page(1)
-
-    #     try:
-    #         photos = paginator.page(page)
-    #     except PageNotAnInteger:
-    #         photos = paginator.page(1)
-    #     except EmptyPage:
-    #         photos = paginator.page(paginator.num_pages)
-
-    #     return render(request, "store/store_list.html",{'photos': photos})    
-    
 
 class StoreDPV(DetailView):
     model = Photo
     context_object_name = 'photo'
 
 
-
-def store_edit(request, store_id=None):
+def store_edit(request):
     user = request.user.pk
+    store_id = request.POST.get("store_id", None)
+    op = request.POST.get("op", None)
 
-    if store_id:
+    if store_id != None and store_id != "None":
         store = get_object_or_404(Store, pk=store_id)
         photo = get_object_or_404(Photo, store=store)
     else:
         store = Store()
         photo = Photo()
 
-    if request.method == "POST":
+    if request.method == "POST" and op != "template":
         form = StoreForm(request.POST, instance=store)
-        photo_form = PhotoForm(request.POST, request.FILES)
+        photo_form = PhotoForm(request.POST, request.FILES, instance=photo)
 
         if form.is_valid():
             store = form.save(commit=False)
@@ -138,23 +119,83 @@ def store_edit(request, store_id=None):
             store.save()
 
             if photo_form.is_valid():
-                photo = Photo(store=store, image=request.FILES['image'])
+                photo = ""
+                try:
+                    photo = get_object_or_404(Photo, store_id=store.id)
+                    photo.image = request.FILES['image']
+                except:
+                    photo = Photo(store=store, image=request.FILES['image'])
                 photo.save()
-
-        return redirect('store:myList')
+                
+        return redirect('profile:account_myInfo', request.user.pk)
 
     else:
-        form = StoreForm(instance=store)
-        photo_form = PhotoForm(instance=photo);
         category = Category.objects.all().order_by('id')
+        category_list = []
+        for domain in category:
+            temp = {
+                'id' : domain.id,
+                'domain' : domain.domain
+            }
+            category_list.append(temp)
+        categorys = {
+            'categoty_list' : category_list
+        }
+        json_category = json.dumps(category_list)
+        
         location = Location.objects.all().order_by('id')
-        return render(request, 'store/myStore_edit.html', dict(form=form, photo_form=photo_form, categorys=category, locations=location, store=store))
+        location_list = []
+        for loc in location:
+            temp = {
+                'id' : loc.id,
+                'loc' : loc.loc
+            }
+            location_list.append(temp)
+        locations = {
+            'location_list' : location_list
+        }
+        json_location = json.dumps(location_list)
+        return render(request, 'store/myStore_edit.html', dict(categorys=json_category, locations=json_location, store=store, photo=photo))
 
 
-def store_remove(request, store_id=None):
+def store_remove(request):
+    store_id = request.POST.get("del_id")
     store = get_object_or_404(Store, pk=store_id)
     store.status = "d"
     store.save()
-    return redirect('store:myList')
+    return redirect('profile:account_myInfo', request.user.pk)
 
 
+def get_myStore(request):
+    u_id = request.GET.get('u_id', None)
+    store = Store.objects.filter(Q(representative=u_id) & ~Q(status='d'))
+    photo = None
+
+    data = {}
+    if len(store) != 0:
+        photo = Photo.objects.filter(Q(store_id=store[0].id))
+        data = {
+            'u_id'              : u_id,
+            'id'                : store[0].id,
+            'name'              : store[0].name,
+            'corporate_number'  : store[0].corporate_number,
+            'category'          : get_object_or_404(Category, id=store[0].category_id).domain,
+            'location'          : get_object_or_404(Location, id=store[0].location_id).loc,
+            'address'           : store[0].address,
+            'phone_number'      : store[0].phone_number,
+            'url'               : store[0].url,
+            'opening_time'      : store[0].opening_hour + " : " + store[0].opening_minute,
+            'closing_time'      : store[0].closing_hour + " : " + store[0].closing_minute,
+            'registered_date'   : (store[0].registered_date).strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date'     : (store[0].modified_date).strftime('%Y-%m-%d %H:%M:%S'),
+            'status'            : store[0].status,
+            'photo'             : photo[0].image.thumb_url
+        }
+
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
+
+def get_QRcode(request):
+    s_id = request.POST.get('s_id')
+    store = get_object_or_404(Store, pk=s_id)
+    return render(request, 'store/myStoreQRcode.html', dict(s_id=store.id, s_rid=store.representative_id, s_name=store.name))

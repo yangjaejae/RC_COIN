@@ -1,99 +1,273 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 import random
 from django.contrib.auth.models import User
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-import json, requests
+import json, requests, datetime
 from django.http import JsonResponse, HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
+from store.models import Store
+from payment.models import Cancellation
+from operate.models import ChartStat
+
 # Create your views here.
 
-host = 'http://210.107.78.166:8000/'
+host = "http://127.0.0.1:3000/"
 
-def getContext(user_id):
-    user = get_object_or_404(User, pk=user_id)
-    context = {
-        "username" : user.username,
-        "email" : user.email,
-        "image" : user.profile.image,
-        "gender" : user.profile.gender,
-        'birth_year': user.profile.birth_year,
-        'birth_month': user.profile.birth_month,
-        'birth_date': user.profile.birth_date,
-        "type" : user.profile.type,
-        "status" : user.profile.status
-    }
-    return context
-
-def withdraw(request, account_id=None):
+def withdraw(request,account_id=None):
     template_name = "payment/withdraw.html"
-    context = getContext(account_id)
-    url = host +"get_account/" + str(account_id)
-    response = requests.get(url)
-    res = json.loads(response.text)
-    data = {
-        "context" : context,
-        "balance" : res['value']
+    user = get_object_or_404(User, pk=account_id)
+    url = host +"get_account"
+    params = {'user_id': user.username}
+    response = requests.get(url, params=params)
+    res = response.json()
+    data = {       
+         "balance" : res['value']
     }
     return render(request, template_name, data)
 
-def transfer(request, account_id=None):
-    template_name = "payment/withdraw.html"
-    context = getContext(account_id)
-    url = host +"transfer/" + str(from_id) + "/" + str(to_id) + "/" + str(amount) + "/" + str(type) + "/" + str(current)
-    response = requests.get(url)
-    print(response)
+@csrf_exempt
+def transfer(request):
+    fromId = request.POST.get("from")
+    toId = request.POST.get("target") 
+    amount = (request.POST.get("point")).replace(',', '')
+    today = (datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')
+    
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+    url = host + "transfer"
+    data = {
+        'from_id'   : fromId, 
+        'to_id'     : toId,
+        'amount'    : amount,
+        'type'      : '5',
+        'date'      : today
+    }
+    param_data = { 'param_data' : json.dumps(data) }
+    response = requests.post(url, params=param_data, headers=headers)
+    
+    return redirect ('profile:account_myInfo', account_id = request.user.pk)
+
+def get_history(request):
+    fro = request.GET.get('fro',None)
+    this_page_num = request.GET.get('this_page',None)
+    query_type = request.GET.get('type', 1)
+    url = host + "get_txList"
+    params = {'user_id' : fro}
+    response = requests.get(url, params=params)
+    res = response.json()
+    fullLength = len(res)
+    result = res.reverse()
+
+    filtered_list = []
+    # 송금 (txType:5,6,7,8)
+    if query_type == '2' :
+        for x in res :
+            if x["txType"] == '5' or x["txType"] == '6' or x["txType"] == '7' or x["txType"] == '8':
+                filtered_list.append(x)
+    # 결제 (txType:1,2,3,4)
+    elif query_type == '3':
+        for x in res :
+            if x["txType"] =='1' or x["txType"] =='2' or x["txType"] =='3' or x["txType"] =='4':
+                filtered_list.append(x)
+    # 발행 (txType:0)
+    elif query_type == '1':
+        for x in res :
+            if x["txType"] =='0':
+                filtered_list.append(x)
+    elif query_type == '0':
+        filtered_list = res
+
+    history_list = []
+    page_size = 10
+    p = Paginator(filtered_list, page_size)
+
+    for history in p.page(this_page_num):
+        s_name = history['trader']
+        if history['txType'] == '1':
+            user = get_object_or_404(User, username=history['trader'])
+            store = Store.objects.filter(Q(representative=user.id) & ~Q(status='d'))
+            s_name = store[0].name
+        temp = {
+            'balance':history["balance"],
+            'trader':s_name,
+            'amount':history["amount"],
+            'txType':history["txType"],
+            'date':history["date"]
+        }
+        history_list.append(temp)
+
+    start_seq = p.count - (page_size * (int(this_page_num) - 1))
+    data = {
+        'start_seq' : start_seq,
+        'history_list' : history_list,
+        'current_page_num' : this_page_num,
+        'max_page_num' : p.num_pages,
+        'fullLength' : start_seq
+    }
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
 
 
-def history(request):
-    print("#############################")
-    withdraw_list = []
-    item_list = ["짜장면", "오징어", "호박엿"]
-    name_list = ["영선","재호","종석","민근","광민"]
-    type_list = ["pagado","pendiente","cancelado"]
-    price_list = [1000,2000,3000,4000,5000,6000,7000,8000,9000,10000]
-    date_list = ["18.10.11","18.9.11","18.8.11","18.7.11","18.6.11","18.5.11","18.4.11"]
-    for s in range(70):
-        number = 70-s
-        dic = {}
-        dic['no'] = number
-        dic['name'] = random.choice(name_list)
-        dic['item'] = random.choice(item_list)
-        dic['type'] = random.choice(type_list)
-        if dic['type'] == "pagado":
-            kortype = "송금"
-        elif dic['type'] == "pendiente":
-            kortype = "결제"
-        elif dic['type'] == "cancelado":
-            kortype = "발행"
-        dic['typekor'] = kortype
-        dic['price'] = random.choice(price_list)
-        # 70~60 = 1 / 50번대 = 2 / 40번대 = 3 / 30번대 = 4 / 20번대 = 5 / 10번대 = 6
-        if dic['no'] >= 60:
-            dic['date'] = date_list[1]
-        elif dic['no'] >= 50:
-            dic['date'] = date_list[2]
-        elif dic['no'] >= 40:
-            dic['date'] = date_list[3]
-        elif dic['no'] >= 30:
-            dic['date'] = date_list[4]
-        elif dic['no'] >= 20:
-            dic['date'] = date_list[5]
-        elif dic['no'] >= 10:
-            dic['date'] = date_list[6]
-        elif dic['no'] >= 0:
-            dic['date'] = date_list[6]
+def get_receipt(request):
+    u_id = request.GET.get('u_id', None)
+    this_page_num = request.GET.get('this_page', None)
+    data = {}
+    
+    user = get_object_or_404(User, pk=u_id)
+    store = Store.objects.filter(Q(representative_id=u_id) & ~Q(status='d'))
+    if store:
+        registered_date = (store[0].registered_date).strftime('%Y-%m-%d %H:%M:%S')    
+        url = host + 'get_txList'
+        params = {'user_id' : user.username}
+        response = requests.get(url, params=params)
+        res = response.json()
+        res.reverse()
 
-        withdraw_list.append(dic)
-    # withdraw_list = User.objects.all()
-    print(withdraw_list)
-    page = request.GET.get('page', 1)
-    paginator = Paginator(withdraw_list, 10)
-    withdraws = paginator.page(1)
+        filtered_list = []
+        for receipt in res:
+            if (receipt['date'] >= registered_date) and (receipt['txType'] == '2' or receipt['txType'] == '3'):
+                filtered_list.append(receipt)
+
+        page_size = 10
+        p = Paginator(filtered_list, page_size)
+
+        history_list = []
+        for receipt in p.page(this_page_num):
+            canceled = Cancellation.objects.filter(Q(txHash=receipt['tx_id'])).exists()
+
+            temp = {
+                'txHash' : str(receipt['tx_id']),
+                'trader' : receipt['trader'],
+                'amount' : receipt['amount'],
+                'txType' : receipt['txType'],
+                'date'  : receipt['date'],
+                'canceled' : canceled
+            }
+            history_list.append(temp)
+
+        start_seq = p.count - (page_size * (int(this_page_num) - 1))
+        data = {
+            'start_seq' : start_seq,
+            'receipt_list' : history_list,
+            'current_page_num' : this_page_num,
+            'max_page_num' : p.num_pages,
+        }
+
+    json_data = json.dumps(data)
+    return HttpResponse(json_data, content_type="application/json;charset=UTF-8")
+
+
+def progress(request):
+    s_id = request.GET.get('s_id')
+    s_rid = request.GET.get('s_rid')
+    s_name = request.GET.get('s_name')
+    u_id = request.user.pk
+    u_name = request.user.username
 
     try:
-        withdraws = paginator.page(page)
-    except PageNotAnInteger:
-        withdraws = paginator.page(1)
-    except EmptyPage:
-        withdraws = paginator.page(paginator.num_pages)
+        store = get_object_or_404(Store, pk=s_id)
+        if s_name == store.name:
+            print("결제")
+    except:
+        print("에러")
 
-    return render(request, "payment/history.html",{'withdraws': withdraws})
+    return render (request, 'payment/payment.html', dict(s_id=s_id, s_name=s_name, s_rid=s_rid, u_id=u_id, u_name=u_name))
+########################################CSRF############################
+from django.views.decorators.csrf import csrf_exempt
+
+
+@csrf_exempt
+########################################################################
+def payment(request):
+    u_id = request.POST.get("u_id", None)
+    s_id = request.POST.get("s_id", None)
+    amount = request.POST.get("amount", 0)
+    
+    store = get_object_or_404(Store, pk=s_id)
+    from_user = get_object_or_404(User, pk=u_id)
+    to_user = get_object_or_404(User, pk=int(store.representative_id))
+    today = (datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')
+            
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+    url = host + "transfer"
+    data = {
+        'from_id'   : from_user.username, 
+        'to_id'     : to_user.username,
+        'amount'    : amount,
+        'type'      : '1',
+        'date'      : today
+    }
+    data_json = json.dumps(data)
+    param_data = { 'param_data' : data_json }
+    response = requests.post(url, params=param_data, headers=headers)
+    msg = response.json()
+    ###################차트 데이터####################
+    if msg['result'] == 'success':
+        user = get_object_or_404(User, id=u_id)
+
+        age = int(datetime.datetime.now().year) - int(user.profile.birth_year) 
+        gender = user.profile.gender
+        location = store.location
+        category = store.category
+        tx_id = msg['tx_id']
+
+        chart = ChartStat()
+        chart.age = age
+        chart.gender = gender
+        chart.store = store
+        chart.amount = amount
+        chart.location = location
+        chart.category = category
+        chart.tx_id = tx_id['_transaction_id']
+
+        chart.save()
+############################################################################################################
+
+    return HttpResponse(msg, content_type="application/json;charset=UTF-8")
+
+
+def cancel_payment(request):
+    to = request.POST.get('to', None)
+    amount = request.POST.get('amount', None)
+    tx = request.POST.get('tx', None)
+    me = get_object_or_404(User, username=request.user.username)
+    store = Store.objects.filter(Q(representative=me) & ~Q(status='d'))
+    return render(request, 'payment/cancel_payment.html', dict(trader=to, store=store[0].name, username=me.username, amount=amount, tx=tx))
+
+
+@csrf_exempt
+def add_canceled_payment(request):
+    to = request.POST.get('trader', None)
+    key = request.POST.get('username', None)
+    amount = request.POST.get('amount', None)
+    tx = request.POST.get('tx', None)
+    comment = request.POST.get('comment', None)
+    today = (datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')
+
+    headers = {'Content-Type': 'application/json; charset=utf-8'}
+    url = host + "transfer"
+    data = {
+        'from_id'   : key, 
+        'to_id'     : to,
+        'amount'    : amount,
+        'type'      : '3',
+        'date'      : today
+    }
+    data_json = json.dumps(data)
+    param_data = { 'param_data' : data_json }
+    response = requests.post(url, params=param_data, headers=headers)
+    msg = response.json()
+    
+    if msg['result'] == 'success':
+        canceled = Cancellation()
+        canceled.s_id = Store.objects.filter(Q(representative=request.user.pk))[0]
+        canceled.txHash = tx
+        canceled.amount = amount
+        canceled.comment = comment
+        canceled.removed_date = today
+        canceled.save()
+
+        chart = ChartStat.objects.get(tx_id = tx)
+        chart.delete()
+
+    return redirect('profile:account_myInfo', request.user.pk)
