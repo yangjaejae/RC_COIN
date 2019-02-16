@@ -2,18 +2,44 @@
 {% block content %}
 <script>
     $(document).ready(function () {
-        $('#server').change(function () {
-            var select = $("#server option:selected").val();
-            $('iframe').attr('src', select);
-            console.log(select);
+        $("#server").on('change', function () {
+            var selected_server = $("#server option:selected").val();
+            $("iframe").attr("src", selected_server);
         });
-    })
+        $(".row1_btn").on("click", function () {
+            var peer = "peer0.org1.rgbproject.com";
+            var chaincode = "dev-peer0.org1.rgbproject.com-rc_cc-1.0";
+            exec_remote(peer, chaincode);
+        });
+        $(".row2_btn").on("click", function () {
+            var peer = "peer0.org2.rgbproject.com";
+            var chaincode = "dev-peer0.org2.rgbproject.com-rc_cc-1.0";
+            exec_remote(peer, chaincode);
+        });
+        function exec_remote(peer, chaincode) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1:3000/node_restart/',
+                data: {
+                    peer: peer,
+                    chaincode: chaincode
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function () {
+
+                }
+            })
+        }
+    });
 </script>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card" style="margin-top: -30px;">
                     <div class="card-header card-header-info">
                         <h4 class="card-title "><i class="material-icons">cloud_queue</i>&nbsp;<strong>네트워크 관리</strong>
                         </h4>
@@ -22,11 +48,15 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive block_list" style="min-height: 100%;">
-                            <div class="node_row node_row_1"><strong>사용자 조합 | 7051</strong>
+                            <div class="node_row node_row_1">
+                                <a class="row1_btn btn btn-sm btn-default"><i class="material-icons">wifi</i></a>
+                                <strong>사용자 조합 | 7051 &nbsp;&nbsp;</strong>
                                 <ul id="node_ul_1" style="list-style:none;">
                                 </ul>
                             </div>
-                            <div class="node_row node_row_2"><strong>행정기관 | 8051</strong>
+                            <div class="node_row node_row_2">
+                                <a class="row2_btn btn btn-sm btn-default"><i class="material-icons">wifi</i></a>
+                                <strong>행정기관 | 8051 &nbsp;&nbsp;</strong>
                                 <ul id="node_ul_2" style="list-style:none;">
                                 </ul>
                             </div>
@@ -46,7 +76,7 @@
                                 <td class="title-text name"></td>
                             </tr>
                             <tr>
-                                <td class="node">blodk number</td>
+                                <td class="node">block number</td>
                                 <td class="title-text number"></td>
                             </tr>
                             <tr>
@@ -65,19 +95,45 @@
                     </div>
                 </div>
             </div>
-            <select id="server" style="width: 100%;">
-                <option value="http://127.0.0.1:5000">웹서버</option>
-                <option value="http://210.107.78.166:5000">서버1</option>
-                <option value="http://222.239.231.245:5000">서버2</option>
-            </select>
-            <div style="width:100%; height: 300px; resize: vertical;">
-                <div><iframe src="http://127.0.0.1:5000" style="width:100%; height: 300px;"></div>
+            <div class="term_area fixed-bottom" style="width:100%; min-height: 300px; padding-left: 260px;">
+                <a class="togg" onclick="wider()"><i class="fas fa-chevron-circle-up"></i></a>
+                <select id="server" style="width: 100%;">
+                    <option value="http://127.0.0.1:5000">웹서버</option>
+                    <option value="http://210.107.78.166:5000">서버1</option>
+                    <option value="http://222.239.231.245:5000">서버2</option>
+                </select>
+                <div class="frame" style="height: 250px; display: block;">
+                    <iframe src="http://127.0.0.1:5000" style="width:100%; height: 100%"></iframe>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
+<script>
+    function wider() {
+        var isOn = $(".togg").hasClass("on");
+        if (!isOn) {
+            $(".term_area").css("height", "80vh");
+            $(".frame").css("height", "100%");
+            $(".togg").addClass("on");
+        } else {
+            $(".term_area").css("height", "");
+            $(".frame").css("height", "250px");
+            $(".togg").removeClass("on");
+        }
+    }
+</script>
 <style>
+    .term_area {}
+
+    .togg {
+        position: relative;
+        z-index: 4;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+
     .node {
         margin: 20px 0;
     }
@@ -162,5 +218,4 @@
         padding: 0;
     }
 </style>
-<script></script>
 {% endblock content %}
