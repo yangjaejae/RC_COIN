@@ -33,6 +33,43 @@
                 }
             })
         }
+        $(".search_block").on('click', function () {
+          var param_list = [];
+          param_list = $(this).attr('id').split(',');
+          var block_num = param_list[0];
+          var ip = param_list[1];
+          var port = param_list[2];
+          var node_name = ip + ":" + port;
+
+          $.ajax({
+            type: 'GET',
+            url: protocol + host + seperator + api_port + slash + "get_block_info",
+            data: {
+              block_num: block_num,
+              target: node_name
+            },
+            dataType: 'json',
+            success: function (data) {
+              var timestamp = data['block_info']['timestamp'];
+              var number = data['block_info']['number'];
+              var previous_hash = data['block_info']['previous_hash']
+              previous_hash = previous_hash.substring(0, 20) + '...';
+              var data_hash = data['block_info']['data_hash'];
+              data_hash = data_hash.substring(0, 20) + '...';
+              var mspid = data['block_info']['mspid'];
+
+              $('.time').text(timestamp);
+              $('.name').text(node_name);
+              $('.number').text(number);
+              $('.prev').text(previous_hash);
+              $('.hash').text(data_hash);
+              $('.msp').text(mspid);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              alert('status: ' + textStatus + '\nerror: ' + jqXHR.error);
+            }
+          });
+        });
     });
 </script>
 <div class="content">
@@ -48,18 +85,20 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive block_list" style="min-height: 100%;">
-                            <div class="node_row node_row_1">
+                            {% for data in default_block %}
+                            <div class="node_row node_row_{{data.index}}">
                                 <a class="row1_btn btn btn-sm btn-default"><i class="material-icons">wifi</i></a>
-                                <strong>사용자 조합 | 7051 &nbsp;&nbsp;</strong>
-                                <ul id="node_ul_1" style="list-style:none;">
+                                <strong>node {{ data.index }} | 7051 &nbsp;&nbsp;</strong>
+                                <ul id="node_ul_{{data.index}}" style="list-style:none;">
+                                    <li>
+                                        <a id="{{data.num}},{{data.ip}},{{data.port}}" style="background-color: white; border:0px;" class="search_block">
+                                            <i class="fas fa-cube fa-5x" style="margin-bottom: 5px;"></i>
+                                            <span class="badge badge-pill badge-danger">{{ data.num }}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
-                            <div class="node_row node_row_2">
-                                <a class="row2_btn btn btn-sm btn-default"><i class="material-icons">wifi</i></a>
-                                <strong>행정기관 | 8051 &nbsp;&nbsp;</strong>
-                                <ul id="node_ul_2" style="list-style:none;">
-                                </ul>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -95,14 +134,14 @@
                     </div>
                 </div>
             </div>
-            <div class="term_area fixed-bottom" style="width:100%; min-height: 300px; padding-left: 260px;">
+            <div class="term_area fixed-bottom" style="width:100%; height: 0vh; min-height: 50px; padding-left: 260px;">
                 <a class="togg" onclick="wider()"><i class="fas fa-chevron-circle-up"></i></a>
                 <select id="server" style="width: 100%;">
                     <option value="http://127.0.0.1:5000">웹서버</option>
                     <option value="http://210.107.78.166:5000">서버1</option>
                     <option value="http://222.239.231.245:5000">서버2</option>
                 </select>
-                <div class="frame" style="height: 250px; display: block;">
+                <div class="frame" style="height: 100%; display: block;">
                     <iframe src="http://127.0.0.1:5000" style="width:100%; height: 100%"></iframe>
                 </div>
             </div>
@@ -115,11 +154,9 @@
         var isOn = $(".togg").hasClass("on");
         if (!isOn) {
             $(".term_area").css("height", "80vh");
-            $(".frame").css("height", "100%");
             $(".togg").addClass("on");
         } else {
-            $(".term_area").css("height", "");
-            $(".frame").css("height", "250px");
+            $(".term_area").css("height", "0vh");
             $(".togg").removeClass("on");
         }
     }

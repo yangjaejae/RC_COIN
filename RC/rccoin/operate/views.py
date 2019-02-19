@@ -235,7 +235,11 @@ def cancel(request):
 #--------------------------------------네트워크 관리-----------------------------------------------#
 @login_required
 def network(request):
-    return render(request, 'operate/manage_network.html', ({}))
+    data_list = []
+    context = {}
+    data_list = get_default_block()
+    context['default_block'] = data_list
+    return render(request, 'operate/manage_network.html', (context))
 
 ##----------------------차트관리------------------------------------------------#
 
@@ -448,8 +452,9 @@ def get_waiting_store():
 def get_total_location_tx(location):
     return ChartStat.objects.filter(Q(store__location=location)).aggregate(Sum('amount'))['amount__sum']
 
-def socket_test(request):
-    message = request.GET.get('message')
-    print("socket_test#############")
-    print(message)
-    msg = json.loads(request.body.decode('utf-8'))
+def get_default_block():
+    get_block_url = host + "get_default_block"
+    response = requests.get(get_block_url)
+    json_format = json.loads(response.text)
+    return json_format
+    
