@@ -36,12 +36,12 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="{% static 'js/jquery.custombox.js' %}"></script>
   <!-- <script src="http://210.107.78.166:4000/socket.io/socket.io.js"></script> -->
-  <script src="http://127.0.0.1:4000/socket.io/socket.io.js"></script>
-  <script src="http://127.0.0.1:5050/socket.io/socket.io.js"></script>
+  <script src="http://210.107.78.166:4000/socket.io/socket.io.js"></script>
+  <script src="http://210.107.78.166:5050/socket.io/socket.io.js"></script>
   <script>
     var protocol = "http://";
     // var host = '210.107.78.166';
-    var host = '127.0.0.1';
+    var host = '210.107.78.166';
     var seperator = ":";
     var api_port = '3000';
     var socket_port = '4000';
@@ -84,6 +84,12 @@
             $('#node_ul_1').append(html_block);
           } else if (port == "8051") {
             $('#node_ul_2').append(html_block);
+          } else if (port == "9051") {
+            $('#node_ul_3').append(html_block);
+            html_block = "";
+          } else if (port == "10051") {
+            $('#node_ul_4').append(html_block);
+            html_block = "";
           }
         } else if (data.length > 1) {
           for (var i = 0; i < data.length; i++) {
@@ -101,6 +107,12 @@
               html_block = "";
             } else if (port == "8051") {
               $('#node_ul_2').append(html_block);
+              html_block = "";
+            } else if (port == "9051") {
+              $('#node_ul_3').append(html_block);
+              html_block = "";
+            } else if (port == "10051") {
+              $('#node_ul_4').append(html_block);
               html_block = "";
             }
           }
@@ -161,25 +173,44 @@
       server_socket['io']['engine']['port'] = server_socket_port;
 
       server_socket.on('server_status', function (data) {
-        console.log(data);
-        if( data['peer'] == "7051" ){
-          if( data['status'] == true ){
+        if (data['peer'] == "7051") {
+          if (data['status'] == true) {
             console.log("data");
             $(".row1_btn").removeClass("btn-danger");
             $(".row1_btn").addClass("btn-default");
-          }else if( data['status'] == false ){
+          } else if (data['status'] == false) {
             $(".row1_btn").removeClass("btn-default");
             $(".row1_btn").addClass("btn-danger");
           }
         }
 
-        if( data['peer'] == "8051" ){
-          if( data['status'] == true ){
+        if (data['peer'] == "8051") {
+          if (data['status'] == true) {
             $(".row2_btn").removeClass("btn-danger");
             $(".row2_btn").addClass("btn-default");
-          }else if( data['status'] == false ){
+          } else if (data['status'] == false) {
             $(".row2_btn").removeClass("btn-default");
             $(".row2_btn").addClass("btn-danger");
+          }
+        }
+
+        if (data['peer'] == "9051") {
+          if (data['status'] == true) {
+            $(".row3_btn").removeClass("btn-danger");
+            $(".row3_btn").addClass("btn-default");
+          } else if (data['status'] == false) {
+            $(".row3_btn").removeClass("btn-default");
+            $(".row3_btn").addClass("btn-danger");
+          }
+        }
+
+        if (data['peer'] == "10051") {
+          if (data['status'] == true) {
+            $(".row4_btn").removeClass("btn-danger");
+            $(".row4_btn").addClass("btn-default");
+          } else if (data['status'] == false) {
+            $(".row4_btn").removeClass("btn-default");
+            $(".row4_btn").addClass("btn-danger");
           }
         }
 
