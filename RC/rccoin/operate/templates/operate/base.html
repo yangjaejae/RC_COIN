@@ -71,8 +71,8 @@
         var html_block = '';
 
         if (data.length == 1) {
-          var ip = data[i]['peer_name'].substr(0, peer_list[i].indexOf(":"));
-            var port = data[i]['peer_name'].substr(peer_list[i].indexOf(":")+1);
+          var ip = data[i]['peer_name'].substr(0, data[i]['peer_name'].indexOf(":"));
+          var port = data[i]['peer_name'].substr(data[i]['peer_name'].indexOf(":") + 1);
           var param_str = data[0]['num'] + ',' + ip + ',' + port;
           html_block += '<li>';
           html_block += '<a id="' + param_str + '" style="background-color: white; border:0px;" class="search_block">';
@@ -93,8 +93,8 @@
           }
         } else if (data.length > 1) {
           for (var i = 0; i < data.length; i++) {
-            var ip = data[i]['peer_name'].substr(0, peer_list[i].indexOf(":"));
-            var port = data[i]['peer_name'].substr(peer_list[i].indexOf(":")+1);
+            var ip = data[i]['peer_name'].substr(0, data[i]['peer_name'].indexOf(":"));
+            var port = data[i]['peer_name'].substr(data[i]['peer_name'].indexOf(":") + 1);
             var param_str = data[0]['num'] + ',' + ip + ',' + port;
             html_block += '<li>';
             html_block += '<a id="' + param_str + '" style="background-color: white; border:0px;" class="search_block">';
