@@ -360,7 +360,8 @@ def check_length(string, max_len):
         result = str(string)
     return result
 
-host = "http://127.0.0.1:3000/"
+host = "http://210.107.78.166:3000/"
+host2 = "http://210.107.78.167:3000/"
 
 ## query
 def get_notices():
@@ -456,5 +457,16 @@ def get_default_block():
     get_block_url = host + "get_default_block"
     response = requests.get(get_block_url)
     json_format = json.loads(response.text)
-    return json_format
+
+    get_block_url2 = host2 + "get_default_block"
+    response2 = requests.get(get_block_url2)
+    json_format2 = json.loads(response2.text)
+    print(json_format)
+    print("#########################")
+    print(json_format2)
+    result_list = []
+    result_list = json_format + json_format2
+    print("#########################")
+    print(result_list)
+    return result_list
     

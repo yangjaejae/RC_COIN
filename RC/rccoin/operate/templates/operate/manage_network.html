@@ -88,7 +88,7 @@
                             {% for data in default_block %}
                             <div class="node_row node_row_{{data.index}}">
                                 <a class="row1_btn btn btn-sm btn-default"><i class="material-icons">wifi</i></a>
-                                <strong>node {{ data.index }} | 7051 &nbsp;&nbsp;</strong>
+                                <strong>node {{ data.index }} | {{ data.port }} &nbsp;&nbsp;</strong>
                                 <ul id="node_ul_{{data.index}}" style="list-style:none;">
                                     <li>
                                         <a id="{{data.num}},{{data.ip}},{{data.port}}" style="background-color: white; border:0px;" class="search_block">
