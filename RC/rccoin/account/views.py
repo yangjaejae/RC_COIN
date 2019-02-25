@@ -13,7 +13,7 @@ import json, docxpy, datetime, requests
 from .models import Profile
 
 # Create your views here.
-
+# host = 'http://127.0.0.1:3000/'
 host = 'http://210.107.78.166:3000/'
 
 # 로그인
