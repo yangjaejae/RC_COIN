@@ -1,6 +1,6 @@
 # RC_COIN WEB project
 
-설명
+<strong>설명</strong>
  - 허가형 록체인 hyperledger fabric을 사용한 지역화폐 솔루션입니다. 
  <br>결제, 송금, 이력조회, 관리자 모니터링 등을 구현하였습니다. 
  
