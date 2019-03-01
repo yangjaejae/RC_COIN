@@ -8,6 +8,8 @@
  - 지역화폐 솔루션의 시스템 구조도 입니다. 
 <img src="https://user-images.githubusercontent.com/28856507/53626756-f3ad2280-3c49-11e9-85c5-1d30977e3ec5.png" style="width:90%">
 
+----------- 사용자 ------------
+
 <strong>결제 시스템</strong>
  - 결제 시스템 데이터 플로우입니다. 
 <img src="https://user-images.githubusercontent.com/28856507/53627131-fa886500-3c4a-11e9-83ab-18cfbfeae634.png" style="width:90%">
@@ -19,4 +21,10 @@
  - 결제 이력을 조회합니다. 
 <img src="https://user-images.githubusercontent.com/28856507/53627204-302d4e00-3c4b-11e9-86a3-bf01c156175c.png" style="width:90%">
 
+----------- 관리자 ------------
 
+<strong>블록체인 실시간 모니터링</strong>
+<img src="https://user-images.githubusercontent.com/28856507/53627736-91a1ec80-3c4c-11e9-82ea-d707bda84cbe.png" style="width: 90%">
+
+<strong>화폐 발행 이력 조회</strong>
+<img src="https://user-images.githubusercontent.com/28856507/53627924-11c85200-3c4d-11e9-81ff-257247fea187.png" style="width: 90%">
