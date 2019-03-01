@@ -1,8 +1,8 @@
 # RC_COIN WEB project
-<½Ã½ºÅÛ ±¸Á¶µµ>
+<ì‹œìŠ¤í…œ êµ¬ì¡°ë„>
+<img src="https://user-images.githubusercontent.com/28856507/53626756-f3ad2280-3c49-11e9-85c5-1d30977e3ec5.png" style="width:90%">
 
+<ê²°ì œ ì‹œìŠ¤í…œ>
 
-<°áÁ¦ ½Ã½ºÅÛ>
-
-<°áÁ¦ ÀÌ·Â Á¶È¸>
+<ê²°ì œ ì´ë ¥ ì¡°íšŒ>
 
