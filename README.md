@@ -1,8 +1,14 @@
-# RC_COIN WEB project
+# RC_COIN project
 
 <strong>설명</strong>
  - 허가형 록체인 hyperledger fabric을 사용한 지역화폐 솔루션입니다. 
  <br>결제, 송금, 이력조회, 관리자 모니터링 등을 구현하였습니다. 
+ 
+ <strong>필효한 프로젝트</strong>
+  - https://github.com/yangjaejae/api.git
+  - https://github.com/yangjaejae/hyperledger_rc.git
+  - https://github.com/yangjaejae/web_ssh.git
+  - https://github.com/yangjaejae/chaincode_rc.git
  
 <strong>시스템 구조도</strong>
  - 지역화폐 솔루션의 시스템 구조도 입니다. 
