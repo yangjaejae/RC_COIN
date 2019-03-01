@@ -1,4 +1,4 @@
-# RC_COIN WEB project>
+# RC_COIN WEB project
 
 설명
  - 허가형 록체인 hyperledger fabric을 사용한 지역화폐 솔루션입니다. 
